@@ -5,6 +5,9 @@
  */
 package co.unicauca.restaurante.commons.domain;
 
+//Implementar plato dia como el modelo
+
+
 /**
  *
  * @author EdynsonMJ
