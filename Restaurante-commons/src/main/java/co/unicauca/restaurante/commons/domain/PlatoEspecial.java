@@ -10,16 +10,17 @@ package co.unicauca.restaurante.commons.domain;
  * @author EdynsonMJ
  */
 public class PlatoEspecial extends Plato{
-    private String descripcion;
+   
     /**
      * contructor parametrizado para la creacion de un plato especial
+     * @param id
      * @param descripcion descripcion que tendrta el plato
      * @param nombre nombre del plato
      * @param precio precio para la venta
      */
-    public PlatoEspecial(String descripcion, String nombre, double precio) {
-        super(nombre, precio);
-        this.descripcion = descripcion;
+
+    public PlatoEspecial(int id, String nombre, double precio, String descripcion) {
+        super(id, nombre, precio, descripcion);
     }
     
 }
