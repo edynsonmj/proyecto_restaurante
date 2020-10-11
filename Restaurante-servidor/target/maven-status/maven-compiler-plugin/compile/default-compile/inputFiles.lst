@@ -1,7 +1,7 @@
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-servidor\src\main\java\co\unicauca\restaurante\server\access\PlatoRepository.java
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-servidor\src\main\java\co\unicauca\restaurante\server\access\FactoryRepository.java
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-servidor\src\main\java\co\unicauca\restaurante\server\access\RestauranteRepositoryMysql.java
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-servidor\src\main\java\co\unicauca\restaurante\server\app\AplicacionRestaurante.java
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-servidor\src\main\java\co\unicauca\restaurante\server\infra\RestauranteServerSocket.java
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-servidor\src\main\java\co\unicauca\restaurante\server\access\IPlatoRepository.java
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-servidor\src\main\java\co\unicauca\restaurante\server\domain\service\PlatoService.java
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-servidor/src/main/java/co/unicauca/restaurante/servidor/app/AplicacionRestaurante.java
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-servidor/src/main/java/co/unicauca/restaurante/servidor/dominio/servidor/PlatoServicio.java
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-servidor/src/main/java/co/unicauca/restaurante/servidor/acceso/FabricaRepositorio.java
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-servidor/src/main/java/co/unicauca/restaurante/servidor/infra/RestauranteServerSocket.java
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-servidor/src/main/java/co/unicauca/restaurante/servidor/acceso/IPlatoRepositorio.java
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-servidor/src/main/java/co/unicauca/restaurante/servidor/acceso/RestauranteRepositorioMysql.java
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-servidor/src/main/java/co/unicauca/restaurante/servidor/acceso/RestauranteRepositorioDeveloper.java

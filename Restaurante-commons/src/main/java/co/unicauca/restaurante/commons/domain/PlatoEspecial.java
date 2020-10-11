@@ -11,6 +11,8 @@ package co.unicauca.restaurante.commons.domain;
  */
 public class PlatoEspecial extends Plato{
    
+    
+    public PlatoEspecial(){};
     /**
      * contructor parametrizado para la creacion de un plato especial
      * @param id
