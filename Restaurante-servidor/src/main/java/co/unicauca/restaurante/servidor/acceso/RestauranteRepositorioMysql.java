@@ -122,7 +122,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         System.out.println("ingreso a guardar");
         try{
             this.connect();
-            String sql = "INSERT INTO RESTAURANTE(RES_ID,RES_NOMBRE) VALUES (?,?)";
+            String sql = "INSERT INTO restaurante(RES_ID,RES_NOMBRE) VALUES (?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, res.getId());
             pstmt.setString(2, res.getNombre());
