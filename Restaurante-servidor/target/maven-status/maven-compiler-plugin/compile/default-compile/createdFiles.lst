@@ -1,7 +1,7 @@
-co/unicauca/restaurante/servidor/acceso/RestauranteRepositorioMysql.class
-co/unicauca/restaurante/servidor/acceso/IPlatoRepositorio.class
-co/unicauca/restaurante/servidor/acceso/FabricaRepositorio.class
-co/unicauca/restaurante/servidor/dominio/servidor/PlatoServicio.class
-.netbeans_automatic_build
-co/unicauca/restaurante/servidor/app/AplicacionRestaurante.class
-co/unicauca/restaurante/servidor/acceso/RestauranteRepositorioDeveloper.class
+co\unicauca\restaurante\servidor\dominio\servidor\PlatoServicio.class
+co\unicauca\restaurante\servidor\acceso\FabricaRepositorio.class
+co\unicauca\restaurante\servidor\acceso\RestauranteRepositorioDeveloper.class
+co\unicauca\restaurante\servidor\app\AplicacionRestaurante.class
+co\unicauca\restaurante\servidor\acceso\RestauranteRepositorioMysql.class
+co\unicauca\restaurante\servidor\acceso\IPlatoRepositorio.class
+co\unicauca\restaurante\servidor\infra\RestauranteServerSocket.class

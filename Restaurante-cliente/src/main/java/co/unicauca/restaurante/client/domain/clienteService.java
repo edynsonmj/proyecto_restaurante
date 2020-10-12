@@ -7,6 +7,7 @@ package co.unicauca.restaurante.client.domain;
 
 import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
+import co.unicauca.restaurante.commons.domain.PlatoEspecial;
 import co.unicauca.restaurante.commons.domain.Restaurante;
 
 /**
@@ -34,6 +35,9 @@ public class clienteService {
     }
     public String saveRestaurante(Restaurante res) throws Exception{
         return service.saveRestaurante(res);
+    }
+    public String savePlatoEspecial(PlatoEspecial plato) throws Exception{
+        return service.savePlatoEspecial(plato);
     }
     //aqui los otros servicios, eliminar, modificar listar etc
 }

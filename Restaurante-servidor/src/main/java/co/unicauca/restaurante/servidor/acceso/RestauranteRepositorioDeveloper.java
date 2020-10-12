@@ -58,16 +58,20 @@ public class RestauranteRepositorioDeveloper implements IPlatoRepositorio{
             //primero se establece la conexion
             this.connect(); //validar cuando la conexion no sea exitosa
             //se estructura la sentencia sql en un string
-            String sql = "INSERT INTO platodia(nombre,precio,bebida,carne,entrada,principio) VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO platodia(pdia_id,mdia_id,pdia_nombre,pdia_descripcion,pdia_dia,pdia_entrada,pdia_principio,pdia_bebida,pdia_carne,pdia_precio) VALUES (?,?,?,?,?,?,?,?,?,?)";
             //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
             PreparedStatement pstmt = conn.prepareStatement(sql);
             //se registra cada elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato
-            pstmt.setString(1, instancia.getNombre());
-            pstmt.setInt(2, (int)instancia.getPrecio());
-            pstmt.setString(3, instancia.getBebida());
-            pstmt.setString(4, instancia.getCarne());
-            pstmt.setString(5, instancia.getEntrada());
-            pstmt.setString(6, instancia.getPrincipio());
+            pstmt.setInt(1, instancia.getId());
+            pstmt.setInt(2, instancia.getMenuId());
+            pstmt.setString(3, instancia.getNombre());
+            pstmt.setString(4, instancia.getDescripcion());
+            pstmt.setString(5, String.valueOf(instancia.getDiaSemana()));
+            pstmt.setString(6, instancia.getEntrada());
+            pstmt.setString(7, instancia.getPrincipio());
+            pstmt.setString(8, instancia.getBebida());
+            pstmt.setString(9, instancia.getCarne());
+            pstmt.setInt(10, (int)instancia.getPrecio());
             //se ejecuta la sentencia sql
             pstmt.executeUpdate();
             //se cierra
@@ -116,12 +120,34 @@ public class RestauranteRepositorioDeveloper implements IPlatoRepositorio{
 
     /**
      * metodo que dara enviara la solicitud a la base de datos, similar a savePlatoDia
-     * @param plato instancia de plato especial a guardar
+     * @param instancia instancia de plato especial a guardar
      * @return 
      */
     @Override
-    public String savePlatoEspecial(PlatoEspecial plato) {
-        System.out.println("aun no implementado");
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String savePlatoEspecial(PlatoEspecial instancia) {
+        try{
+            //primero se establece la conexion
+            this.connect(); //validar cuando la conexion no sea exitosa
+            //se estructura la sentencia sql en un string
+            String sql = "INSERT INTO platoespecial(pesp_id,mesp_id,pesp_nombre,pesp_descripcion,pesp_precio) VALUES (?,?,?,?,?)";
+            //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            //se registra cada elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato
+            pstmt.setInt(1, instancia.getId());
+            pstmt.setInt(2, instancia.getMenuEsp());
+            pstmt.setString(3, instancia.getNombre());
+            pstmt.setString(4, instancia.getDescripcion());
+            pstmt.setInt(5, (int)instancia.getPrecio());
+            //se ejecuta la sentencia sql
+            pstmt.executeUpdate();
+            //se cierra
+            pstmt.close();
+            //se termina la coneccion
+            this.disconnect();
+        } catch (SQLException ex) {
+            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
+        }
+        //lo ideal es retornor un id
+        return instancia.getNombre();
     }
 }
