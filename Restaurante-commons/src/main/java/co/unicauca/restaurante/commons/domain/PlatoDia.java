@@ -5,11 +5,15 @@
  */
 package co.unicauca.restaurante.commons.domain;
 
+//Implementar plato dia como el modelo
+
+
 /**
  *
  * @author EdynsonMJ
  */
 public class PlatoDia extends Plato{
+    private DiaEnum diaSemana;
     /**
      * una preparacion de tipo entrada
      */
@@ -26,25 +30,26 @@ public class PlatoDia extends Plato{
      * una preparacion de tipo bebida
      */
     private String bebida;
-
+    
     /**
      * constructor parametrizado para crear un plato
+     * @param id
      * @param entrada
      * @param carne 
+     * @param descripcion 
      * @param principio 
      * @param bebida
      * @param nombre el nombre que tendra el plato
      * @param precio el precio que tendra el plato
      */
-    public PlatoDia(String entrada, String carne, String principio, String bebida, String nombre, double precio) {
-        super(nombre, precio);
-        this.entrada = entrada;
-        this.carne = carne;
-        this.principio = principio;
-        this.bebida = bebida;
+    public PlatoDia(int id, String nombre, double precio, String descripcion,DiaEnum dia,String entrada,String principio,String carne,String bebida) {
+        super(id, nombre, precio, descripcion);
+        this.diaSemana=dia;
+        this.entrada=entrada;
+        this.principio=principio;
+        this.carne=carne;
+        this.bebida=bebida;
     }
-    
-    public PlatoDia(){}
 
     public String getEntrada() {
         return entrada;
