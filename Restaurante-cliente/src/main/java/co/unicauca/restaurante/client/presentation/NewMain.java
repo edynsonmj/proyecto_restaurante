@@ -14,7 +14,7 @@ import co.unicauca.restaurante.client.domain.clienteService;
  * @author EdynsonMJ
  */
 public class NewMain {
-
+    //prueba
     /**
      * @param args the command line arguments
      */
