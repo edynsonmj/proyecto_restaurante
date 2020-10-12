@@ -175,4 +175,14 @@ public class RestauranteRepositorioDeveloper implements IPlatoRepositorio{
         }
         return true;
     }
+
+    @Override
+    public String listarMenuDia(int resId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String listarMenuEspecial(int resId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

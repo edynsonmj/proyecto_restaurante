@@ -72,7 +72,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     
     /**
      * cumunicacion con la base de datos para eliminar un plato del dia
-     * @param instancia un plato del dia que se desea eliminar
      * @return 
      */
     @Override
@@ -246,7 +245,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             //se termina la coneccion
             this.disconnect();
         }catch (SQLException ex) {
-            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al listar el menu del dia", ex);
+            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al listar el menu del especial", ex);
         }
        return response;
     }
