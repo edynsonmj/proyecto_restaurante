@@ -177,11 +177,21 @@ public class RestauranteServerSocket implements Runnable{
                 if(protocolRequest.getAction().equals("postRestaurante")){
                     this.clienteResgistrarRestaurante(protocolRequest);
                 }
+<<<<<<< HEAD
+                
+                if(protocolRequest.getAction().equals("eliminarPlatoDia")){
+                    this.administradorEliminarPlatoDia(protocolRequest);
+                }
+                
+                if(protocolRequest.getAction().equals("eliminarPlatoEspecial")){
+                    this.administradorEliminarPlatoEspecial(protocolRequest);
+=======
                 if (protocolRequest.getAction().equals("listarMenuDia")) {
                     this.listarMenuDia(protocolRequest);
                 }
                 if (protocolRequest.getAction().equals("listarMenuEspecial")) {
                     this.listarMenuEspecial(protocolRequest);
+>>>>>>> 8116ccf4c100a9c2deab7a532fc6fc116ebd1aeb
                 }
                 break;
             //comprador solo tendra la opcion de visualizar, es decir un selec sobre la base de datos y enviarlos platoD cliente
@@ -219,6 +229,26 @@ public class RestauranteServerSocket implements Runnable{
         //el servicio comunicara con la base de datos,
         //se pasa el plato creado, y servicio llamara al repositorio
         response = service.saveRestaurante(res);
+        output.println(response);
+    }
+    
+    private void administradorEliminarPlatoDia(Protocol protocolRequest){
+        int idPlaD;
+        idPlaD = Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
+        String response=null;
+        //el servicio comunicara con la base de datos,
+        //se pasa el plato creado, y servicio llamara al repositorio
+        response = ""+service.deletePlatoDia(idPlaD);
+        output.println(response);
+    }
+    
+    private void administradorEliminarPlatoEspecial(Protocol protocolRequest){
+        int idPlaE;
+        idPlaE = Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
+        String response=null;
+        //el servicio comunicara con la base de datos,
+        //se pasa el plato creado, y servicio llamara al repositorio
+        response = ""+service.deletePlatoEspecial(idPlaE);
         output.println(response);
     }
         /**

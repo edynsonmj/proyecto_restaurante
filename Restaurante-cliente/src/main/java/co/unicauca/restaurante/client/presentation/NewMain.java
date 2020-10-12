@@ -29,7 +29,10 @@ public class NewMain {
         //este solo es el registro de un restaurante
         IClienteAccess service = Factory.getInstance().getClienteService();
         clienteService servicioRestaurante = new clienteService(service);
+<<<<<<< HEAD
+=======
         
+>>>>>>> 8116ccf4c100a9c2deab7a532fc6fc116ebd1aeb
         /*
         Restaurante res = new Restaurante("primero",1);
         try{
@@ -71,5 +74,23 @@ public class NewMain {
         }catch (Exception ex) {
             System.out.println("atencion no se listo Menu");
         }
+        
+        
+        int idPlaD = 90;
+        try{
+            String resposse = ""+servicioRestaurante.deletePlatoDia(idPlaD);
+            System.out.println("plato eliminado con exito");
+        }catch(Exception ex){
+            System.out.println("no se pudo eliminar el plato");
+        }
+        */
+        int idPlaE = 340;
+        try{
+            String resposse = ""+servicioRestaurante.deletePlatoEspecial(idPlaE);
+            System.out.println("plato eliminado con exito");
+        }catch(Exception ex){
+            System.out.println("no se pudo eliminar el plato");
+        }
+
     }
 }

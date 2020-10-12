@@ -175,6 +175,51 @@ public class ClienteAccessSocket implements IClienteAccess{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public boolean deletePlatoDia(int idPlaD) throws Exception {
+        String respJson = deletePlatoDiaJson(idPlaD);
+        if(!(this.procesarConexion(respJson))){
+            return false;
+        }
+        return true;
+    }
+    
+    public String deletePlatoDiaJson(int idPlaD) throws Exception {
+        Protocol protocol = new Protocol();
+        protocol.setResource("administrador");
+        protocol.setAction("eliminarPlatoDia");
+        protocol.addParameter("id", ""+idPlaD);
+        
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(protocol);
+        System.out.println("json: "+requestJson);
+        
+        return requestJson;
+    }
+    
+    
+    @Override
+    public boolean deletePlatoEspecial(int idPlaE) throws Exception {
+        String respJson = deletePlatoEspecialJson(idPlaE);
+        if(!(this.procesarConexion(respJson))){
+            return false;
+        }
+        return true;
+    }
+    
+    public String deletePlatoEspecialJson(int idPlaE) throws Exception {
+        Protocol protocol = new Protocol();
+        protocol.setResource("administrador");
+        protocol.setAction("eliminarPlatoEspecial");
+        protocol.addParameter("id", ""+idPlaE);
+        
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(protocol);
+        System.out.println("json: "+requestJson);
+        
+        return requestJson;
+    }
+
    
     //VERIFICAR el uso de este metodo para los platos.
         /**

@@ -18,18 +18,29 @@ import java.util.List;
 public interface IPlatoRepositorio {
     /**
      * registrar una tupla en la base de datos
-     * @param instancia objeto plato que se desea almacenar
+     * @param instancia objeto plato dia que se desea almacenar
      * @return 
      */
     public String savePlatoDia(PlatoDia instancia);
     /**
      * registra una tupla en la base de datos
-     * @param plato objeto plato que se desea almacenar
+     * @param plato objeto plato especial que se desea almacenar
      * @return 
      */
     public String savePlatoEspecial(PlatoEspecial plato);
     
     public String saveRestaurante(Restaurante res);
+<<<<<<< HEAD
+    /**
+     * elimina una tupla en la base de datos
+     * @param idPlaD id plato dia que e deea borrar
+     * @return 
+     */
+    public boolean deletePlatoDia(int idPlaD);
+    
+    public boolean deletePlatoEspecial(int idPlaE);
+=======
     public String listarMenuDia(int resId); 
     public String listarMenuEspecial(int resId);
+>>>>>>> 8116ccf4c100a9c2deab7a532fc6fc116ebd1aeb
 }
