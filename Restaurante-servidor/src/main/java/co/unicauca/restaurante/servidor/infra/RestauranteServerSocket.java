@@ -177,14 +177,40 @@ public class RestauranteServerSocket implements Runnable{
                 if(protocolRequest.getAction().equals("postRestaurante")){
                     this.clienteResgistrarRestaurante(protocolRequest);
                 }
+                if (protocolRequest.getAction().equals("listarMenuDia")) {
+                    this.listarMenuDia(protocolRequest);
+                }
+                if (protocolRequest.getAction().equals("listarMenuEspecial")) {
+                    this.listarMenuEspecial(protocolRequest);
+                }
                 break;
             //comprador solo tendra la opcion de visualizar, es decir un selec sobre la base de datos y enviarlos platoD cliente
             case "comprador":
+                Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.INFO.SEVERE, "solicitud comprador recibida");
+                if (protocolRequest.getAction().equals("listarMenuDia")) {
+                    this.listarMenuDia(protocolRequest);
+                }
+                if (protocolRequest.getAction().equals("listarMenuEspecial")) {
+                    this.listarMenuEspecial(protocolRequest);
+                }
                 break;
                 
         }
     }
+    private void listarMenuDia(Protocol protocolRequest){
+        int resId =Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
+        String response;
+        response=service.listarMenuDia(resId);
+        output.println(response);
         
+    }
+    private void listarMenuEspecial(Protocol protocolRequest){
+        int resdId=Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
+        String response;
+        response=service.listarMenuEspecial(resdId);
+        output.println(response);
+    }
+    
     private void clienteResgistrarRestaurante(Protocol protocolRequest){
         Restaurante res = new Restaurante();
         res.setId(Integer.parseInt(protocolRequest.getParameters().get(0).getValue()));

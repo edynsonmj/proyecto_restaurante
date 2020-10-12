@@ -5,10 +5,12 @@
  */
 package co.unicauca.restaurante.servidor.dominio.servidor;
 
+import co.unicauca.restaurante.commons.domain.Plato;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
 import co.unicauca.restaurante.commons.domain.Restaurante;
 import co.unicauca.restaurante.servidor.acceso.IPlatoRepositorio;
+import java.util.List;
 
 /**
  *comunicacion con la capa de bajo nivel
@@ -49,5 +51,11 @@ public class PlatoServicio {
     
     public String saveRestaurante(Restaurante res){
         return repositorio.saveRestaurante(res);
+    }
+    public String listarMenuDia(int resId){
+        return repositorio.listarMenuDia(resId);
+    }
+    public String listarMenuEspecial(int resId){
+        return repositorio.listarMenuEspecial(resId);
     }
 }

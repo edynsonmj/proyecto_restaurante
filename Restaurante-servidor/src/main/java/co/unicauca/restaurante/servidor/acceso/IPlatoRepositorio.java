@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package co.unicauca.restaurante.servidor.acceso;
+import co.unicauca.restaurante.commons.domain.Plato;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
 import co.unicauca.restaurante.commons.domain.Restaurante;
+import co.unicauca.restaurante.commons.infra.Protocol;
+import java.util.List;
 
 /**
  *interface del repositorio de platos, usarla mediante inyeccion de dependencias
@@ -27,4 +30,6 @@ public interface IPlatoRepositorio {
     public String savePlatoEspecial(PlatoEspecial plato);
     
     public String saveRestaurante(Restaurante res);
+    public String listarMenuDia(int resId); 
+    public String listarMenuEspecial(int resId);
 }
