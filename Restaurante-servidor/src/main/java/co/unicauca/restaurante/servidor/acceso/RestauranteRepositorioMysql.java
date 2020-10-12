@@ -13,6 +13,7 @@ import co.unicauca.restaurante.commons.infra.Utilities;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +30,93 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
 
     public RestauranteRepositorioMysql(){
 
+    }
+    private boolean findPlatoEspecial(int id){
+        try{
+            this.connect();
+            String sql = "SELECT PESP_NOMBRE FROM platoespecial where PESP_ID = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet res= ps.executeQuery();
+            ps.close();
+            this.disconnect();
+            return res.first();
+        }catch (Exception e){
+            return false;
+        }
+    }
+    private boolean findPlatoDia(int id){
+        try{
+            this.connect();
+            String sql = "SELECT PDIA_NOMBRE FROM platodia where PDIA_ID = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet res= ps.executeQuery();
+            ps.close();
+            this.disconnect();
+            return res.first();
+        }catch (Exception e){
+            return false;
+        }
+    }
+    @Override
+    public String updatePlatoDia(String clave, String atributo, String valor){
+        if(findPlatoDia(Integer.parseInt(clave))){
+            System.out.println("EXISTE EL ELEMENTO");
+        }else{
+            System.out.println("SE CAGO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            return "FALLO";
+        }
+        try{
+            this.connect();
+            //String sql = "UPDATE platoespecial set "+atributo+" = "+valor+" WHERE PESP_NOMBRE = "+clave;
+            String sql = "UPDATE platodia SET "+atributo+" = ? WHERE PDIA_ID = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            if(atributo.equals("PDIA_PRECIO")){
+                int valorNum = Integer.parseInt(valor);
+                pstmt.setInt(1, valorNum);
+            }else{
+                pstmt.setString(1, valor);
+            }
+            pstmt.setInt(2, Integer.parseInt(clave));
+            
+            pstmt.executeUpdate();
+            
+            pstmt.close();
+            this.disconnect();
+        }catch (SQLException ex) {
+            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
+        }
+        return clave;
+    }
+    @Override
+    public String updatePlatoEspecial(String clave, String atributo, String valor){
+        if(findPlatoEspecial(Integer.parseInt(clave))){
+            System.out.println("EXISTE EL ELEMENTO");
+        }else{
+            System.out.println("SE CAGO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            return "FALLO";
+        }
+        try{
+            this.connect();
+            String sql = "UPDATE platoespecial SET "+atributo+" = ? WHERE PESP_ID = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            if(atributo.equals("PESP_PRECIO")){
+                int valorNum = Integer.parseInt(valor);
+                pstmt.setInt(1, valorNum);
+            }else{
+                pstmt.setString(1, valor);
+            }
+            pstmt.setInt(2, Integer.parseInt(clave));
+            
+            pstmt.executeUpdate();
+            
+            pstmt.close();
+            this.disconnect();
+        }catch (SQLException ex) {
+            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
+        }
+        return clave;
     }
     /**
      * cumunicacion con la base de datos para guardar un platodel dia

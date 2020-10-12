@@ -124,4 +124,14 @@ public class RestauranteRepositorioDeveloper implements IPlatoRepositorio{
         System.out.println("aun no implementado");
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String updatePlatoEspecial(String clave, String atributo, String valor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String updatePlatoDia(String clave, String atributo, String valor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

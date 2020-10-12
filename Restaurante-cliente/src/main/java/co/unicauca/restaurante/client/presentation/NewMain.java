@@ -8,7 +8,6 @@ package co.unicauca.restaurante.client.presentation;
 import co.unicauca.restaurante.client.access.Factory;
 import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
-import co.unicauca.restaurante.commons.domain.Restaurante;
 
 /**
  * esta clase debe ejecutar las interfaces con lsa que interactua el cliente
@@ -24,12 +23,5 @@ public class NewMain {
         //este solo es el registro de un restaurante
         IClienteAccess service = Factory.getInstance().getClienteService();
         clienteService servicioRestaurante = new clienteService(service);
-        Restaurante res = new Restaurante("primero",1);
-        try{
-            String resposse = servicioRestaurante.saveRestaurante(res);
-            System.out.println("agregado restaurante con exito");
-        }catch(Exception ex){
-            System.out.println("atencion no se save si agrego restaurante");
-        }
     }
 }

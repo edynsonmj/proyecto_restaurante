@@ -30,10 +30,18 @@ public class clienteService {
      * @throws Exception 
      */
     public String savePlatoDia(PlatoDia plato) throws Exception{
-        return service.savePlatoDia(plato);
+        return service.savePlatoDia(plato); //fklsjdklfjslkdj
     }
     public String saveRestaurante(Restaurante res) throws Exception{
         return service.saveRestaurante(res);
+    }
+    public String updatePlatoEspecial(int clave, String atributo, String valor) throws Exception{
+        //validaciones
+        return service.updatePlatoEspecial(clave, atributo, valor);
+    }
+    public String updatePlatoDia(int clave, String atributo, String valor) throws Exception{
+        //validaciones
+        return service.updatePlatoDia(clave, atributo, valor);
     }
     //aqui los otros servicios, eliminar, modificar listar etc
 }
