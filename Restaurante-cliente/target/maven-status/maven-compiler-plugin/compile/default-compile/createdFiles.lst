@@ -1,6 +1,8 @@
+co\unicauca\restaurante\client\access\ClienteAccessSocket$1.class
+co\unicauca\restaurante\client\access\IClienteAccess.class
+co\unicauca\restaurante\client\domain\clienteService.class
 co\unicauca\restaurante\client\infra\RestauranteSocket.class
 co\unicauca\restaurante\client\access\ClienteAccessSocket.class
-co\unicauca\restaurante\client\access\IClienteAccess.class
+co\unicauca\restaurante\client\access\ClienteAccessSocket$2.class
 co\unicauca\restaurante\client\access\Factory.class
-co\unicauca\restaurante\client\domain\clienteService.class
 co\unicauca\restaurante\client\presentation\NewMain.class
