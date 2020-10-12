@@ -90,8 +90,8 @@ public class ClienteAccessSocket implements IClienteAccess{
         //el orden debe ser respetado
         protocol.setResource("administrador");
         protocol.setAction("postRestaurante");
-        //protocol.addParameter("res_id", String.valueOf(instancia.getId()));
-        protocol.addParameter("res_id", ""+instancia.getId());
+        protocol.addParameter("res_id", String.valueOf(instancia.getId()));
+        //protocol.addParameter("res_id", ""+instancia.getId());
         protocol.addParameter("nombre", instancia.getNombre());
         
         Gson gson = new Gson();

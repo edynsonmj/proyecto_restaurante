@@ -24,7 +24,7 @@ public class NewMain {
         //este solo es el registro de un restaurante
         IClienteAccess service = Factory.getInstance().getClienteService();
         clienteService servicioRestaurante = new clienteService(service);
-        Restaurante res = new Restaurante("primero",5);
+        Restaurante res = new Restaurante("primero",1);
         try{
             String resposse = servicioRestaurante.saveRestaurante(res);
             System.out.println("agregado restaurante con exito");

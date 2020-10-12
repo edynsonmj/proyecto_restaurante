@@ -21,6 +21,8 @@ public class Plato {
      */
     private double precio;
     
+    public Plato(){}
+    
     public Plato(int id,String nombre, double precio,String descripcion){
         this.id=id;
         this.nombre = nombre;
