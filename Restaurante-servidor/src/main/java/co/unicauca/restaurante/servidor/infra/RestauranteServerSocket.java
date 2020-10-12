@@ -177,7 +177,6 @@ public class RestauranteServerSocket implements Runnable{
                 if(protocolRequest.getAction().equals("postRestaurante")){
                     this.clienteResgistrarRestaurante(protocolRequest);
                 }
-<<<<<<< HEAD
                 
                 if(protocolRequest.getAction().equals("eliminarPlatoDia")){
                     this.administradorEliminarPlatoDia(protocolRequest);
@@ -185,13 +184,12 @@ public class RestauranteServerSocket implements Runnable{
                 
                 if(protocolRequest.getAction().equals("eliminarPlatoEspecial")){
                     this.administradorEliminarPlatoEspecial(protocolRequest);
-=======
+                }
                 if (protocolRequest.getAction().equals("listarMenuDia")) {
                     this.listarMenuDia(protocolRequest);
                 }
                 if (protocolRequest.getAction().equals("listarMenuEspecial")) {
                     this.listarMenuEspecial(protocolRequest);
->>>>>>> 8116ccf4c100a9c2deab7a532fc6fc116ebd1aeb
                 }
                 break;
             //comprador solo tendra la opcion de visualizar, es decir un selec sobre la base de datos y enviarlos platoD cliente
