@@ -8,10 +8,20 @@ package co.unicauca.restaurante.client.presentation;
 import co.unicauca.restaurante.client.access.Factory;
 import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
+
 import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
 import co.unicauca.restaurante.commons.domain.Restaurante;
 import java.util.List;
+
+import co.unicauca.restaurante.commons.domain.DiaEnum;
+import co.unicauca.restaurante.commons.domain.MenuDia;
+import co.unicauca.restaurante.commons.domain.MenuEspecial;
+import co.unicauca.restaurante.commons.domain.Restaurante;
+import co.unicauca.restaurante.commons.domain.PlatoDia;
+import co.unicauca.restaurante.commons.domain.PlatoEspecial;
+
+
 
 /**
  * esta clase debe ejecutar las interfaces con lsa que interactua el cliente
@@ -31,8 +41,13 @@ public class NewMain {
 
         /*
         Restaurante res = new Restaurante("primero",1);
+        MenuDia menuDia = new MenuDia(11);
+        MenuEspecial menuEspecial = new MenuEspecial(15);
+        PlatoDia platoDia = new PlatoDia(444,"Corrientaso",7000,"",DiaEnum.Lunes,"Sancocho","Frijoles","Res Asado","Tomate",menuDia.getId());
+        PlatoEspecial platoEspecial = new PlatoEspecial(4444,"Bandeja Paisa",14000,"PAISITA :3",menuEspecial.getId());
         try{
-            String resposse = servicioRestaurante.saveRestaurante(res);
+            String platoE = servicioRestaurante.savePlatoEspecial(platoEspecial);
+            String paltoD = servicioRestaurante.savePlatoDia(platoDia);
             System.out.println("agregado restaurante con exito");
         }catch(Exception ex){
             System.out.println("atencion no se save si agrego restaurante");
