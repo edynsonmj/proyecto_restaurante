@@ -178,7 +178,7 @@ public class ClienteAccessSocket implements IClienteAccess{
     @Override
     public boolean deletePlatoDia(int idPlaD) throws Exception {
         String respJson = deletePlatoDiaJson(idPlaD);
-        if(!(this.procesarConexion(respJson))){
+        if(this.procesarConexion(respJson)==null){
             return false;
         }
         return true;
@@ -201,7 +201,7 @@ public class ClienteAccessSocket implements IClienteAccess{
     @Override
     public boolean deletePlatoEspecial(int idPlaE) throws Exception {
         String respJson = deletePlatoEspecialJson(idPlaE);
-        if(!(this.procesarConexion(respJson))){
+        if(this.procesarConexion(respJson)==null){
             return false;
         }
         return true;
