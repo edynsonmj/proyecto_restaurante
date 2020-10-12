@@ -1,6 +1,15 @@
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\access\Factory.java
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\presentation\NewMain.java
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\access\IClienteAccess.java
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\access\ClienteAccessSocket.java
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\domain\clienteService.java
-F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\infra\RestauranteSocket.java
+<<<<<<< HEAD
+D:\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\access\IClienteAccess.java
+D:\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\domain\clienteService.java
+D:\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\infra\RestauranteSocket.java
+D:\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\access\ClienteAccessSocket.java
+D:\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\access\Factory.java
+D:\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\presentation\NewMain.java
+=======
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-cliente/src/main/java/co/unicauca/restaurante/client/access/ClienteAccessSocket.java
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-cliente/src/main/java/co/unicauca/restaurante/client/presentation/NewMain.java
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-cliente/src/main/java/co/unicauca/restaurante/client/infra/RestauranteSocket.java
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-cliente/src/main/java/co/unicauca/restaurante/client/access/IClienteAccess.java
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-cliente/src/main/java/co/unicauca/restaurante/client/access/Factory.java
+/home/fallen/proyectoPrueba/proyecto_restaurante/Restaurante-cliente/src/main/java/co/unicauca/restaurante/client/domain/clienteService.java
+>>>>>>> 8116ccf4c100a9c2deab7a532fc6fc116ebd1aeb

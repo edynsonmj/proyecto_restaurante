@@ -7,7 +7,9 @@ package co.unicauca.restaurante.client.domain;
 
 import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
+import co.unicauca.restaurante.commons.domain.PlatoEspecial;
 import co.unicauca.restaurante.commons.domain.Restaurante;
+import java.util.List;
 
 /**
  * servicios que el cliente puede usar del servidor (mascaras)
@@ -43,5 +45,18 @@ public class clienteService {
         //validaciones
         return service.updatePlatoDia(clave, atributo, valor);
     }
+    public List<PlatoDia> listarMenuDia(int resId)throws Exception{
+        return service.listarMenuDia(resId);
+    }
+    public List<PlatoEspecial> listarMenuEspecial(int resId) throws Exception{
+        return service.listarMenuEspecial(resId);
+    }
     //aqui los otros servicios, eliminar, modificar listar etc
+    public boolean deletePlatoDia(int idPlaD) throws Exception{
+        return service.deletePlatoDia(idPlaD);
+    }
+    
+    public boolean deletePlatoEspecial(int idPlaE) throws Exception{
+        return service.deletePlatoEspecial(idPlaE);
+    }
 }

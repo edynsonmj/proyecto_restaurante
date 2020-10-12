@@ -126,12 +126,71 @@ public class RestauranteRepositorioDeveloper implements IPlatoRepositorio{
     }
 
     @Override
+<<<<<<< HEAD
     public String updatePlatoEspecial(String clave, String atributo, String valor) {
+=======
+    public boolean deletePlatoDia(int idPlaD) {
+        try{
+            //primero se establece la conexion
+            this.connect(); //validar cuando la conexion no sea exitosa
+            //se estructura la sentencia sql en un string
+            String sql = "DELETE FROM platodia WHERE pdia_id = (?)";
+            //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            //se compara el id elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato(de las tablas)
+            pstmt.setInt(1,idPlaD);
+            //se ejecuta la sentencia sql
+            pstmt.executeUpdate();
+            //se cierra
+            pstmt.close();
+            //se termina la coneccion
+            this.disconnect();
+        } catch (SQLException ex) {
+            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al eliminar el plato", ex);
+        }
+        return true;
+    }
+    
+    /**
+     * cumunicacion con la base de datos para eliminar un plato del dia
+     * @param idPlaE id plato especial que se desea eliminar
+     * @return 
+     */
+    @Override
+    public boolean deletePlatoEspecial(int idPlaE) {
+        try{
+            //primero se establece la conexion
+            this.connect(); //validar cuando la conexion no sea exitosa
+            //se estructura la sentencia sql en un string
+            String sql = "DELETE FROM platoespecial WHERE pesp_id = (?)";
+            //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            //se compara el id, OJO Ddebe cumplir estrictamente el orden y el tipo de dato(de las tablas)
+            pstmt.setInt(1,idPlaE);
+            //se ejecuta la sentencia sql
+            pstmt.executeUpdate();
+            //se cierra
+            pstmt.close();
+            //se termina la coneccion
+            this.disconnect();
+        } catch (SQLException ex) {
+            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al eliminar el plato", ex);
+        }
+        return true;
+    }
+
+    @Override
+    public String listarMenuDia(int resId) {
+>>>>>>> 2481176bee57caf7a9ee4edb5b5d2f47edceb063
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
+<<<<<<< HEAD
     public String updatePlatoDia(String clave, String atributo, String valor) {
+=======
+    public String listarMenuEspecial(int resId) {
+>>>>>>> 2481176bee57caf7a9ee4edb5b5d2f47edceb063
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
