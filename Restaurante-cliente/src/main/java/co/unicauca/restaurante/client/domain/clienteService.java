@@ -46,12 +46,22 @@ public class clienteService {
         //validaciones
         return service.updatePlatoDia(clave, atributo, valor);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> aed7828df3066a4454638520d779657ea803c446
     public List<PlatoDia> listarMenuDia(int resId)throws Exception{
         return service.listarMenuDia(resId);
     }
     public List<PlatoEspecial> listarMenuEspecial(int resId) throws Exception{
         return service.listarMenuEspecial(resId);
+<<<<<<< HEAD
+=======
+    }
+    public String savePlatoEspecial(PlatoEspecial plato) throws Exception{
+        return service.savePlatoEspecial(plato);
+
+>>>>>>> aed7828df3066a4454638520d779657ea803c446
     }
     
     //aqui los otros servicios, eliminar, modificar listar etc

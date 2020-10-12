@@ -42,7 +42,13 @@ public class ClienteAccessSocket implements IClienteAccess{
     public String saveRestaurante(Restaurante res) throws Exception{
         
         String requestJson = crearRestauranteJson(res);
+<<<<<<< HEAD
         if((this.procesarConexion(requestJson)).equals("FALLO")){
+=======
+
+        if((this.procesarConexion(requestJson)).equals("FALLO")){
+
+>>>>>>> aed7828df3066a4454638520d779657ea803c446
             return null;
         }
         return res.getNombre();
@@ -84,6 +90,7 @@ public class ClienteAccessSocket implements IClienteAccess{
             }
         }
     }
+
     
     /**
      * crea el plotocolo en formato yeison de la informacion que se desea enviar
@@ -103,7 +110,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         System.out.println("json: "+requestJson);
         return requestJson;
     }
-    
+   
     /**
      *envia la solicitud al servidor para guardar un plato del dia
      * @param instancia una instancia de plato
@@ -179,6 +186,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         System.out.println("json enviado: "+requestJson);
         return requestJson;
     }
+
     /**
      * Extra los mensajes de la lista de errores
      * @param jsonResponse lista de mensajes json
@@ -203,6 +211,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         JsonError[] error = gson.fromJson(jsonError, JsonError[].class);
         return error;
     }
+    
     /**
      * se crea el protocolo de comunicacion, en parameter van los atributos a guardar
      * OJO el orden debe ser exacto
@@ -213,32 +222,62 @@ public class ClienteAccessSocket implements IClienteAccess{
         Protocol protocol = new Protocol();
         protocol.setResource("administrador");
         protocol.setAction("postPlatoDia");
+        protocol.addParameter("pdia_id", String.valueOf(instancia.getId()));
+        protocol.addParameter("mdia_id", String.valueOf(instancia.getMenuId()));
         protocol.addParameter("nombre", instancia.getNombre());
-        protocol.addParameter("precio", String.valueOf(instancia.getPrecio()));
-        protocol.addParameter("bebida", instancia.getBebida());
-        protocol.addParameter("carne", instancia.getCarne());
+        protocol.addParameter("descripcion", instancia.getDescripcion());
+        protocol.addParameter("dia", String.valueOf(instancia.getDiaSemana()));
         protocol.addParameter("entrada", instancia.getEntrada());
         protocol.addParameter("principio", instancia.getPrincipio());
+        protocol.addParameter("bebida", instancia.getBebida());
+        protocol.addParameter("carne", instancia.getCarne());
+        protocol.addParameter("precio", String.valueOf(instancia.getPrecio()));
         
         Gson gson = new Gson();
         String requestJson = gson.toJson(protocol);
         System.out.println("json: "+requestJson);
         return requestJson;
     }
-
     /**
      * se hace practicamente lo mismo que savePlatoEspecial
      * FALTA IMPLEMENTAR
-     * @param plato
+     * @param instancia
      * @return 
+     * @throws java.lang.Exception 
      */
     @Override
-    public String savePlatoEspecial(PlatoEspecial plato) {
-        System.out.println("aun no implementado");
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String savePlatoEspecial(PlatoEspecial instancia) throws Exception{
+        String jsonResponse = null;
+        //devuelve un string en formato Json que lo que se enviara
+        String requestJson = crearPlatoEspecialJson(instancia);
+        if((this.procesarConexion(requestJson).equals("FALLO"))){
+            return null;
+        }
+        return instancia.getNombre();
+
     }
+    private String crearPlatoEspecialJson(PlatoEspecial instancia){
+        
+        Protocol protocol = new Protocol();
+        protocol.setResource("administrador");
+        protocol.setAction("postPlatoEspecial");
+        protocol.addParameter("pesp_id", String.valueOf(instancia.getId()));
+        protocol.addParameter("mesp_id", String.valueOf(instancia.getMenuEsp()));
+        protocol.addParameter("nombre", instancia.getNombre());
+        protocol.addParameter("descripcion", instancia.getDescripcion());
+        protocol.addParameter("precio", String.valueOf(instancia.getPrecio()));
+        
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(protocol);
+        System.out.println("json: "+requestJson);
+        return requestJson;
+    }
+<<<<<<< HEAD
 
+=======
+>>>>>>> aed7828df3066a4454638520d779657ea803c446
 
+    
     @Override
     public boolean deletePlatoDia(int idPlaD) throws Exception {
         String respJson = deletePlatoDiaJson(idPlaD);
@@ -283,6 +322,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         
         return requestJson;
     }
+<<<<<<< HEAD
 
     //VERIFICAR el uso de este metodo para los platos.
       /**
@@ -301,6 +341,9 @@ public class ClienteAccessSocket implements IClienteAccess{
         return customer;
 
     }*/
+=======
+    
+>>>>>>> aed7828df3066a4454638520d779657ea803c446
     @Override
     public List<PlatoDia> listarMenuDia(int resId) throws Exception{
         String resource="administrador";

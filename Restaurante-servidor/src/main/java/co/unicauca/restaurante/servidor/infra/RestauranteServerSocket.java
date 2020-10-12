@@ -5,8 +5,10 @@
  */
 package co.unicauca.restaurante.servidor.infra;
 
+import co.unicauca.restaurante.commons.domain.DiaEnum;
 import co.unicauca.restaurante.commons.domain.Plato;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
+import co.unicauca.restaurante.commons.domain.PlatoEspecial;
 import co.unicauca.restaurante.commons.domain.Restaurante;
 import co.unicauca.restaurante.commons.infra.JsonError;
 import co.unicauca.restaurante.commons.infra.Protocol;
@@ -170,15 +172,18 @@ public class RestauranteServerSocket implements Runnable{
 
                 }
                 //funciona exactamente igual platoD postPlatoDia
-                if(protocolRequest.getAction().equals("postEspecial")){
-                    //llamar platoD un metodo que se encargue de la solicitud especifica
+                if(protocolRequest.getAction().equals("postPlatoEspecial")){
+                    administradorRegistrarPlatoEspecial(protocolRequest);               
                 }
                 
                 if(protocolRequest.getAction().equals("postRestaurante")){
                     this.clienteResgistrarRestaurante(protocolRequest);
                 }
                 
+<<<<<<< HEAD
 
+=======
+>>>>>>> aed7828df3066a4454638520d779657ea803c446
                 if(protocolRequest.getAction().equals("updateEspecial")){
                     administradorUpdateEspecial(protocolRequest);
                 }
@@ -198,7 +203,10 @@ public class RestauranteServerSocket implements Runnable{
                 }
                 if (protocolRequest.getAction().equals("listarMenuEspecial")) {
                     this.listarMenuEspecial(protocolRequest);
+<<<<<<< HEAD
 
+=======
+>>>>>>> aed7828df3066a4454638520d779657ea803c446
                 }
                 break;
             //comprador solo tendra la opcion de visualizar, es decir un selec sobre la base de datos y enviarlos platoD cliente
@@ -213,7 +221,10 @@ public class RestauranteServerSocket implements Runnable{
                 break;
             }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> aed7828df3066a4454638520d779657ea803c446
     
     private void administradorUpdatePlatoDia(Protocol protocol){
         String clave = protocol.getParameters().get(0).getValue();
@@ -234,7 +245,10 @@ public class RestauranteServerSocket implements Runnable{
         output.println(response);
         Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.SEVERE, "response: "+response+" clave:"+clave+" atributo:"+atributo+" valor: "+valor);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> aed7828df3066a4454638520d779657ea803c446
     private void listarMenuDia(Protocol protocolRequest){
         int resId =Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
         String response;
@@ -290,17 +304,38 @@ public class RestauranteServerSocket implements Runnable{
         PlatoDia platoD = new PlatoDia();
         //se asignan los atributos de la instancia, segun los valores de los parametros
         //el orden debe ser exacto
-        platoD.setNombre(protocolRequest.getParameters().get(0).getValue());
+        platoD.setId(Integer.parseInt(protocolRequest.getParameters().get(0).getValue()));
+        platoD.setMenuId(Integer.parseInt(protocolRequest.getParameters().get(1).getValue()));
+        platoD.setNombre(protocolRequest.getParameters().get(2).getValue());
+        platoD.setDescripcion(protocolRequest.getParameters().get(3).getValue());
+        platoD.setDiaSemana(DiaEnum.valueOf(protocolRequest.getParameters().get(4).getValue()));
+        platoD.setEntrada(protocolRequest.getParameters().get(5).getValue());
+        platoD.setPrincipio(protocolRequest.getParameters().get(6).getValue());
+        platoD.setBebida(protocolRequest.getParameters().get(7).getValue());
+        platoD.setCarne(protocolRequest.getParameters().get(8).getValue());
+        platoD.setPrecio(Double.parseDouble(protocolRequest.getParameters().get(9).getValue()));
         //hacer validacion para esta, es decir sobre el parseo del dato
-        platoD.setPrecio(Double.parseDouble(protocolRequest.getParameters().get(1).getValue()));
-        platoD.setBebida(protocolRequest.getParameters().get(2).getValue());
-        platoD.setCarne(protocolRequest.getParameters().get(3).getValue());
-        platoD.setEntrada(protocolRequest.getParameters().get(4).getValue());
-        platoD.setPrincipio(protocolRequest.getParameters().get(5).getValue());
         String response=null;
         //el servicio comunicara con la base de datos,
         //se pasa el plato creado, y servicio llamara al repositorio
         response = service.savePlatoDia(platoD);
+        output.println(response);
+    }
+    private void administradorRegistrarPlatoEspecial(Protocol protocolRequest) {
+        //crea la instancia
+        PlatoEspecial platoE = new PlatoEspecial();
+        //se asignan los atributos de la instancia, segun los valores de los parametros
+        //el orden debe ser exacto
+        platoE.setId(Integer.parseInt(protocolRequest.getParameters().get(0).getValue()));
+        platoE.setMenuEsp(Integer.parseInt(protocolRequest.getParameters().get(1).getValue()));
+        platoE.setNombre(protocolRequest.getParameters().get(2).getValue());
+        platoE.setDescripcion(protocolRequest.getParameters().get(3).getValue());
+        platoE.setPrecio(Double.parseDouble(protocolRequest.getParameters().get(4).getValue()));
+        //hacer validacion para esta, es decir sobre el parseo del dato
+        String response=null;
+        //el servicio comunicara con la base de datos,
+        //se pasa el plato creado, y servicio llamara al repositorio
+        response = service.savePlatoEspecial(platoE);
         output.println(response);
     }
     /**
