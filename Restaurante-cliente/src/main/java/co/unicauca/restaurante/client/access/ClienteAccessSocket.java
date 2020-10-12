@@ -11,7 +11,10 @@ import co.unicauca.restaurante.commons.domain.Restaurante;
 import co.unicauca.restaurante.commons.infra.JsonError;
 import co.unicauca.restaurante.commons.infra.Protocol;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
 
 
 /**
@@ -44,7 +47,6 @@ public class ClienteAccessSocket implements IClienteAccess{
         }
         return res.getNombre();
     }
-    
     /**
      * establece la conexion con el servidor para una solicitud que se pasa por parametro
      * @param requestJson solicitud al servidor
@@ -94,7 +96,6 @@ public class ClienteAccessSocket implements IClienteAccess{
         protocol.setResource("administrador");
         protocol.setAction("postRestaurante");
         protocol.addParameter("res_id", String.valueOf(instancia.getId()));
-        //protocol.addParameter("res_id", ""+instancia.getId());
         protocol.addParameter("nombre", instancia.getNombre());
         
         Gson gson = new Gson();
@@ -236,12 +237,61 @@ public class ClienteAccessSocket implements IClienteAccess{
         System.out.println("aun no implementado");
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
+    @Override
+    public boolean deletePlatoDia(int idPlaD) throws Exception {
+        String respJson = deletePlatoDiaJson(idPlaD);
+        if(this.procesarConexion(respJson)==null){
+            return false;
+        }
+        return true;
+    }
+    
+    public String deletePlatoDiaJson(int idPlaD) throws Exception {
+        Protocol protocol = new Protocol();
+        protocol.setResource("administrador");
+        protocol.setAction("eliminarPlatoDia");
+        protocol.addParameter("id", ""+idPlaD);
+        
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(protocol);
+        System.out.println("json: "+requestJson);
+        
+        return requestJson;
+    }
+    
+    
+    @Override
+    public boolean deletePlatoEspecial(int idPlaE) throws Exception {
+        String respJson = deletePlatoEspecialJson(idPlaE);
+        if(this.procesarConexion(respJson)==null){
+            return false;
+        }
+        return true;
+    }
+    
+    public String deletePlatoEspecialJson(int idPlaE) throws Exception {
+        Protocol protocol = new Protocol();
+        protocol.setResource("administrador");
+        protocol.setAction("eliminarPlatoEspecial");
+        protocol.addParameter("id", ""+idPlaE);
+        
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(protocol);
+        System.out.println("json: "+requestJson);
+        
+        return requestJson;
+    }
+
     //VERIFICAR el uso de este metodo para los platos.
       /**
      * Convierte jsonCustomer, proveniente del server socket, de json a un
      * objeto Customer
      *
-     * @param jsonCustomer objeto cliente en formato json
+     * @param resId
+     * @return 
+     * @throws java.lang.Exception 
      */
     /*private Customer jsonToCustomer(String jsonCustomer) {
 
@@ -251,4 +301,43 @@ public class ClienteAccessSocket implements IClienteAccess{
         return customer;
 
     }*/
+    @Override
+    public List<PlatoDia> listarMenuDia(int resId) throws Exception{
+        String resource="administrador";
+        String accion="listarMenuDia";
+        String requestJson = createlistMenuJson(resource,accion,resId);
+        String response=procesarConexion(requestJson);
+        return jsonListarMenuDia(response);
+    }
+
+    @Override
+    public List<PlatoEspecial> listarMenuEspecial(int resId)throws Exception {
+        String resource="administrador";
+        String accion="listarMenuEspecial";
+        String requestJson = createlistMenuJson(resource,accion,resId);
+        String response= procesarConexion(requestJson);
+        return jsonListarMenuEspecial(response);
+    }
+    
+    private String createlistMenuJson(String resource,String accion,int resId){
+        Protocol protocol=new Protocol();
+        protocol.setResource(resource);
+        protocol.setAction(accion);
+        protocol.addParameter("resId", String.valueOf(resId));
+        
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(protocol);
+        System.out.println("json: "+requestJson);
+        return requestJson;
+    }
+    private List<PlatoDia> jsonListarMenuDia(String jsonListarMenu){
+        Gson gson=new Gson();
+        Type list = new TypeToken<List<PlatoDia>>(){}.getType();
+        return gson.fromJson(jsonListarMenu, list);
+    }
+    private List<PlatoEspecial> jsonListarMenuEspecial(String jsonListarMenu){
+        Gson gson=new Gson();
+        Type list = new TypeToken<List<PlatoEspecial>>(){}.getType();
+        return gson.fromJson(jsonListarMenu, list);
+    }
 }
