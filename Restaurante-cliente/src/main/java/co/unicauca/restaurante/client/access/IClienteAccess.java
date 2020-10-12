@@ -19,6 +19,8 @@ public interface IClienteAccess {
     public String savePlatoEspecial(PlatoEspecial plato) throws Exception;
     public String saveRestaurante(Restaurante res) throws Exception;
     //eliminar
+    public boolean deletePlatoDia(int idPlaD) throws Exception;
+    public boolean deletePlatoEspecial(int idPlaE) throws Exception;
     //modificar
     //listar
 }

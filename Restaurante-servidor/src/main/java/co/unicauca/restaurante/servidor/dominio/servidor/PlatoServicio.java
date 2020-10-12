@@ -50,4 +50,16 @@ public class PlatoServicio {
     public String saveRestaurante(Restaurante res){
         return repositorio.saveRestaurante(res);
     }
+    
+    public boolean deletePlatoDia(int idPlaD){
+        //hacer validaciones aqui OJO aqui no se han hecho pero deben hacerse
+        //comprobar que los datos enviados sean correctos y en caso de ids que no esten repetidos
+        return repositorio.deletePlatoDia(idPlaD);
+    }
+    
+    public boolean deletePlatoEspecial(int idPlaE){
+        //hacer validaciones aqui OJO aqui no se han hecho pero deben hacerse
+        //comprobar que los datos enviados sean correctos y en caso de ids que no esten repetidos
+        return repositorio.deletePlatoEspecial(idPlaE);
+    }
 }

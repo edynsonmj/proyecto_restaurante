@@ -35,5 +35,13 @@ public class clienteService {
     public String saveRestaurante(Restaurante res) throws Exception{
         return service.saveRestaurante(res);
     }
+    
     //aqui los otros servicios, eliminar, modificar listar etc
+    public boolean deletePlatoDia(int idPlaD) throws Exception{
+        return service.deletePlatoDia(idPlaD);
+    }
+    
+    public boolean deletePlatoEspecial(int idPlaE) throws Exception{
+        return service.deletePlatoEspecial(idPlaE);
+    }
 }
