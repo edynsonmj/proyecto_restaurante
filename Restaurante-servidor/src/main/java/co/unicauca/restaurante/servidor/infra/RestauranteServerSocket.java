@@ -177,6 +177,13 @@ public class RestauranteServerSocket implements Runnable{
                 if(protocolRequest.getAction().equals("postRestaurante")){
                     this.clienteResgistrarRestaurante(protocolRequest);
                 }
+                
+                if(protocolRequest.getAction().equals("updateEspecial")){
+                    administradorUpdateEspecial(protocolRequest);
+                }
+                if(protocolRequest.getAction().equals("updatePlatoDia")){
+                    administradorUpdatePlatoDia(protocolRequest);
+                }
                 break;
             //comprador solo tendra la opcion de visualizar, es decir un selec sobre la base de datos y enviarlos platoD cliente
             case "comprador":
@@ -184,8 +191,29 @@ public class RestauranteServerSocket implements Runnable{
                 
         }
     }
-        
+    
+    private void administradorUpdatePlatoDia(Protocol protocol){
+        String clave = protocol.getParameters().get(0).getValue();
+        String atributo = protocol.getParameters().get(1).getValue();
+        String valor = protocol.getParameters().get(2).getValue();
+        String response = null;
+        response = service.updatePlatoDia(clave, atributo, valor);
+        output.println(response);
+        Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.SEVERE, "response: "+response+" clave:"+clave+" atributo:"+atributo+" valor: "+valor);
+    }
+    
+    private void administradorUpdateEspecial(Protocol protocol){
+        String clave = protocol.getParameters().get(0).getValue();
+        String atributo = protocol.getParameters().get(1).getValue();
+        String valor = protocol.getParameters().get(2).getValue();
+        String response = null;
+        response = service.updatePlatoEspecial(clave, atributo, valor);
+        output.println(response);
+        Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.SEVERE, "response: "+response+" clave:"+clave+" atributo:"+atributo+" valor: "+valor);
+    }
+    
     private void clienteResgistrarRestaurante(Protocol protocolRequest){
+        //aqui se recibe con el mismo orden
         Restaurante res = new Restaurante();
         res.setId(Integer.parseInt(protocolRequest.getParameters().get(0).getValue()));
         res.setNombre(protocolRequest.getParameters().get(1).getValue());

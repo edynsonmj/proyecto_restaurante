@@ -27,4 +27,14 @@ public interface IPlatoRepositorio {
     public String savePlatoEspecial(PlatoEspecial plato);
     
     public String saveRestaurante(Restaurante res);
+    /**
+     * hace un update sobre la tabla platoEspecial
+     * @param clave valor con el que se encuentra la tupla
+     * @param atributo columna a modificar
+     * @param valor nuevo valor
+     * @return 
+     */
+    public String updatePlatoEspecial(String clave, String atributo, String valor);
+    
+    public String updatePlatoDia(String clave, String atributo, String valor);
 }

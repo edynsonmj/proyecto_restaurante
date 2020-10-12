@@ -50,4 +50,14 @@ public class PlatoServicio {
     public String saveRestaurante(Restaurante res){
         return repositorio.saveRestaurante(res);
     }
+    
+    public String updatePlatoEspecial(String clave, String atributo, String valor){
+        //hacer validaciones, conversion del valor
+        return repositorio.updatePlatoEspecial(clave, atributo, valor);
+    }
+    
+    public String updatePlatoDia(String clave, String atributo, String valor){
+        //hacer validaciones, conversion del valor
+        return repositorio.updatePlatoDia(clave, atributo, valor);
+    }
 }

@@ -39,7 +39,7 @@ public class ClienteAccessSocket implements IClienteAccess{
     public String saveRestaurante(Restaurante res) throws Exception{
         
         String requestJson = crearRestauranteJson(res);
-        if(!(this.procesarConexion(requestJson))){
+        if((this.procesarConexion(requestJson)).equals("FALLO")){
             return null;
         }
         return res.getNombre();
@@ -51,9 +51,8 @@ public class ClienteAccessSocket implements IClienteAccess{
      * @return verdadero si la solicitud es exitosa, false de lo contrario
      * @throws Exception 
      */
-    private boolean procesarConexion(String requestJson)throws Exception{
+    private String procesarConexion(String requestJson)throws Exception{
         String jsonResponse = null;
-        boolean exito=false;
         try{
             //se establece la conexion
             mySocket.connect();
@@ -62,6 +61,11 @@ public class ClienteAccessSocket implements IClienteAccess{
             jsonResponse = mySocket.sendStream(requestJson);
             mySocket.closeStream();
             mySocket.disconnect();
+	    if(jsonResponse.equals("FALLO")){
+                return "FALLO";
+            }else{
+                System.out.println("todo normal");
+            }
         }catch(IOException ex){
             ex.getMessage();
         }
@@ -73,11 +77,10 @@ public class ClienteAccessSocket implements IClienteAccess{
                 System.out.println("hubo algun tipo de error");
                 throw new Exception(this.extractMessages(jsonResponse));
             } else {
-                //Agregó correctamente, devuelve la cedula del customer 
-                exito = true;
+                //Devuelve la respuesta del servidor
+                return jsonResponse;
             }
         }
-        return exito;
     }
     
     /**
@@ -90,8 +93,8 @@ public class ClienteAccessSocket implements IClienteAccess{
         //el orden debe ser respetado
         protocol.setResource("administrador");
         protocol.setAction("postRestaurante");
-        //protocol.addParameter("res_id", String.valueOf(instancia.getId()));
-        protocol.addParameter("res_id", ""+instancia.getId());
+        protocol.addParameter("res_id", String.valueOf(instancia.getId()));
+        //protocol.addParameter("res_id", ""+instancia.getId());
         protocol.addParameter("nombre", instancia.getNombre());
         
         Gson gson = new Gson();
@@ -108,13 +111,72 @@ public class ClienteAccessSocket implements IClienteAccess{
      */
     @Override
     public String savePlatoDia(PlatoDia instancia) throws Exception{
-        String jsonResponse = null;
         //devuelve un string en formato Json que lo que se enviara
         String requestJson = crearPlatoDiaJson(instancia);
-        if(!(this.procesarConexion(requestJson))){
+        if((this.procesarConexion(requestJson)).equals("FALLO")){
             return null;
         }
         return instancia.getNombre();
+    }
+    @Override
+    public String updatePlatoDia(int clave, String atributo, String valor) throws Exception{
+        String requestJson = updatePlatoDiaJson(clave, atributo, valor);
+        if((this.procesarConexion(requestJson)).equals("FALLO")){
+            return null;
+        }
+        return atributo;
+    }
+    
+    public String updatePlatoDiaJson(int clave, String atributo, String valor){
+        Protocol protocol = new Protocol();
+        //el orden debe ser respetado
+        protocol.setResource("administrador");
+        protocol.setAction("updatePlatoDia");
+        protocol.addParameter("clave", ""+clave);
+        protocol.addParameter("atributo", atributo);
+        protocol.addParameter("valor", valor);
+        
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(protocol);
+        System.out.println("json enviado: "+requestJson);
+        return requestJson;
+    }
+    /**
+     * hace un update sobre la tabla menu especial en la base de datos
+     * @param clave valor con el que se encontraran coincidencias, en este caso el nombre
+     * @param atributo columna que se va a modificar
+     * @param valor nuevo valor a establecer
+     * @return 
+     */
+    @Override
+    public String updatePlatoEspecial(int clave, String atributo, String valor) throws Exception{
+        //estring en formato json que se enviara al servidor
+        String requestJson = updateEspecialJson(clave, atributo, valor);
+        if((this.procesarConexion(requestJson).equals("FALLO"))){
+            return null;
+        }
+        return atributo;
+    }
+    /**
+     * genera el string en el formato json para ser enviado
+     * @param clave 
+     * @param atributo
+     * @param valor
+     * @return 
+     */
+    private String updateEspecialJson(int clave, String atributo, String valor){
+        Protocol protocol = new Protocol();
+        //el orden debe ser respetado
+        protocol.setResource("administrador");
+        protocol.setAction("updateEspecial");
+        protocol.addParameter("clave", ""+clave);
+        protocol.addParameter("atributo", atributo);
+        protocol.addParameter("valor", valor);
+        
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(protocol);
+        System.out.println("json enviado: "+requestJson);
+        return requestJson;
     }
     /**
      * Extra los mensajes de la lista de errores
@@ -174,10 +236,8 @@ public class ClienteAccessSocket implements IClienteAccess{
         System.out.println("aun no implementado");
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-   
     //VERIFICAR el uso de este metodo para los platos.
-        /**
+      /**
      * Convierte jsonCustomer, proveniente del server socket, de json a un
      * objeto Customer
      *

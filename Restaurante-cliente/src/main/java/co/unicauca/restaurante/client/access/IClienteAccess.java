@@ -18,6 +18,8 @@ public interface IClienteAccess {
     public String savePlatoDia(PlatoDia instancia) throws Exception;
     public String savePlatoEspecial(PlatoEspecial plato) throws Exception;
     public String saveRestaurante(Restaurante res) throws Exception;
+    public String updatePlatoEspecial(int clave, String atributo, String valor)throws Exception;
+    public String updatePlatoDia(int clave, String atributo, String valor)throws Exception;
     //eliminar
     //modificar
     //listar

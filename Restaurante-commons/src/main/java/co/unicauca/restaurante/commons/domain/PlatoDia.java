@@ -30,6 +30,8 @@ public class PlatoDia extends Plato{
      * una preparacion de tipo bebida
      */
     private String bebida;
+
+    public PlatoDia() {}
     
     /**
      * constructor parametrizado para crear un plato
@@ -37,6 +39,7 @@ public class PlatoDia extends Plato{
      * @param entrada
      * @param carne 
      * @param descripcion 
+     * @param dia 
      * @param principio 
      * @param bebida
      * @param nombre el nombre que tendra el plato
@@ -50,7 +53,17 @@ public class PlatoDia extends Plato{
         this.carne=carne;
         this.bebida=bebida;
     }
+    
 
+    public DiaEnum getDiaSemana() {
+        return diaSemana;
+    }
+
+    public void setDiaSemana(DiaEnum diaSemana) {
+        this.diaSemana = diaSemana;
+    }
+    
+    
     public String getEntrada() {
         return entrada;
     }
