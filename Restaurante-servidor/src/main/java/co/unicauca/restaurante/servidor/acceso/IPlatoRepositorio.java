@@ -30,7 +30,7 @@ public interface IPlatoRepositorio {
     public String savePlatoEspecial(PlatoEspecial plato);
     
     public String saveRestaurante(Restaurante res);
-<<<<<<< HEAD
+
     /**
      * elimina una tupla en la base de datos
      * @param idPlaD id plato dia que e deea borrar
@@ -39,8 +39,8 @@ public interface IPlatoRepositorio {
     public boolean deletePlatoDia(int idPlaD);
     
     public boolean deletePlatoEspecial(int idPlaE);
-=======
+
     public String listarMenuDia(int resId); 
     public String listarMenuEspecial(int resId);
->>>>>>> 8116ccf4c100a9c2deab7a532fc6fc116ebd1aeb
+
 }

@@ -29,10 +29,7 @@ public class NewMain {
         //este solo es el registro de un restaurante
         IClienteAccess service = Factory.getInstance().getClienteService();
         clienteService servicioRestaurante = new clienteService(service);
-<<<<<<< HEAD
-=======
-        
->>>>>>> 8116ccf4c100a9c2deab7a532fc6fc116ebd1aeb
+
         /*
         Restaurante res = new Restaurante("primero",1);
         try{
@@ -40,8 +37,8 @@ public class NewMain {
             System.out.println("agregado restaurante con exito");
         }catch(Exception ex){
             System.out.println("atencion no se save si agrego restaurante");
-        }*/
-        /*
+        }
+        
         List<PlatoDia> lista;
         int resId=1;
         try {
@@ -59,7 +56,7 @@ public class NewMain {
             }
         } catch (Exception e) {
             System.out.println("No listo el menu dia");
-        }*/
+        }
         
         int resId=2;
         List<PlatoEspecial> list;
@@ -74,7 +71,7 @@ public class NewMain {
         }catch (Exception ex) {
             System.out.println("atencion no se listo Menu");
         }
-        
+        */
         
         int idPlaD = 90;
         try{
@@ -83,7 +80,7 @@ public class NewMain {
         }catch(Exception ex){
             System.out.println("no se pudo eliminar el plato");
         }
-        */
+        
         int idPlaE = 340;
         try{
             String resposse = ""+servicioRestaurante.deletePlatoEspecial(idPlaE);
