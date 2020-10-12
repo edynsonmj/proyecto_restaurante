@@ -37,6 +37,7 @@ public class clienteService {
     public String saveRestaurante(Restaurante res) throws Exception{
         return service.saveRestaurante(res);
     }
+
     public String updatePlatoEspecial(int clave, String atributo, String valor) throws Exception{
         //validaciones
         return service.updatePlatoEspecial(clave, atributo, valor);
@@ -50,6 +51,10 @@ public class clienteService {
     }
     public List<PlatoEspecial> listarMenuEspecial(int resId) throws Exception{
         return service.listarMenuEspecial(resId);
+    }
+    public String savePlatoEspecial(PlatoEspecial plato) throws Exception{
+        return service.savePlatoEspecial(plato);
+
     }
     //aqui los otros servicios, eliminar, modificar listar etc
     public boolean deletePlatoDia(int idPlaD) throws Exception{
