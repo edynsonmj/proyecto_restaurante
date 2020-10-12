@@ -323,7 +323,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.setInt(1, resId);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {            
-                Plato pla=new PlatoEspecial(Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(3)), rs.getString(4));
+                Plato pla=new PlatoEspecial(Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(4)), rs.getString(3));
                 list.add(pla);
             }
             response=listToJson(list);
