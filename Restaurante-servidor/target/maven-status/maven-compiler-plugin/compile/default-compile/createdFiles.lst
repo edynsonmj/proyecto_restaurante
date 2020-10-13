@@ -1,6 +1,0 @@
-co/unicauca/restaurante/servidor/acceso/RestauranteRepositorioMysql.class
-co/unicauca/restaurante/servidor/acceso/IPlatoRepositorio.class
-co/unicauca/restaurante/servidor/acceso/FabricaRepositorio.class
-co/unicauca/restaurante/servidor/infra/RestauranteServerSocket.class
-co/unicauca/restaurante/servidor/dominio/servidor/PlatoServicio.class
-co/unicauca/restaurante/servidor/app/AplicacionRestaurante.class
