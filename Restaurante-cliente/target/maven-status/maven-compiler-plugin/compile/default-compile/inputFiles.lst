@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 D:\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\access\IClienteAccess.java
 D:\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\domain\clienteService.java
 D:\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\infra\RestauranteSocket.java
 D:\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\access\ClienteAccessSocket.java
 D:\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\access\Factory.java
 D:\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\presentation\NewMain.java
+=======
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\presentation\GUIRegPlatoD.java
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\access\Factory.java
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\access\ClienteAccessSocket.java
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\access\IClienteAccess.java
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\domain\clienteService.java
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\infra\RestauranteSocket.java
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\presentation\GUIRegPlato.java
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-cliente\src\main\java\co\unicauca\restaurante\client\presentation\NewMain.java
+>>>>>>> aed7828df3066a4454638520d779657ea803c446

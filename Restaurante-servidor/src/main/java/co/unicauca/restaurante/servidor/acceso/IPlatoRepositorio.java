@@ -4,12 +4,9 @@
  * and open the template in the editor.
  */
 package co.unicauca.restaurante.servidor.acceso;
-import co.unicauca.restaurante.commons.domain.Plato;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
 import co.unicauca.restaurante.commons.domain.Restaurante;
-import co.unicauca.restaurante.commons.infra.Protocol;
-import java.util.List;
 
 /**
  *interface del repositorio de platos, usarla mediante inyeccion de dependencias
@@ -28,19 +25,29 @@ public interface IPlatoRepositorio {
      * @return 
      */
     public String savePlatoEspecial(PlatoEspecial plato);
-    
     public String saveRestaurante(Restaurante res);
 
     /**
+     * hace un update sobre la tabla platoEspecial
+     * @param clave valor con el que se encuentra la tupla
+     * @param atributo columna a modificar
+     * @param valor nuevo valor
+     * @return 
+     */
+    public String updatePlatoEspecial(String clave, String atributo, String valor);
+    public String updatePlatoDia(String clave, String atributo, String valor);
+    /*
      * elimina una tupla en la base de datos
-     * @param idPlaD id plato dia que e deea borrar
+     * @param idPlaD id plato  que e desea borrar
      * @return 
      */
     public boolean deletePlatoDia(int idPlaD);
-    
     public boolean deletePlatoEspecial(int idPlaE);
-
+    /**
+     * lista todas las tuplas de los menus
+     * @param resId id del restaurante del que se va a mostrar el menu
+     * @return 
+     */
     public String listarMenuDia(int resId); 
     public String listarMenuEspecial(int resId);
-
 }

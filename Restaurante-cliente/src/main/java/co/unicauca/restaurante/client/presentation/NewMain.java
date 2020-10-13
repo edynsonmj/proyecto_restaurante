@@ -8,11 +8,6 @@ package co.unicauca.restaurante.client.presentation;
 import co.unicauca.restaurante.client.access.Factory;
 import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
-import co.unicauca.restaurante.commons.domain.Plato;
-import co.unicauca.restaurante.commons.domain.PlatoDia;
-import co.unicauca.restaurante.commons.domain.PlatoEspecial;
-import co.unicauca.restaurante.commons.domain.Restaurante;
-import java.util.List;
 
 /**
  * esta clase debe ejecutar las interfaces con lsa que interactua el cliente
@@ -58,7 +53,6 @@ public class NewMain {
             System.out.println("No listo el menu dia");
         }
         
-        int resId=2;
         List<PlatoEspecial> list;
         try {
             list=servicioRestaurante.listarMenuEspecial(resId);
@@ -69,25 +63,24 @@ public class NewMain {
                 System.out.println("Precio: " + lis.getPrecio());
             }
         }catch (Exception ex) {
-            System.out.println("atencion no se listo Menu");
+            System.out.println("atencion no se listo Menu especial");
         }
-        */
         
         int idPlaD = 90;
         try{
-            String resposse = ""+servicioRestaurante.deletePlatoDia(idPlaD);
-            System.out.println("plato eliminado con exito");
+            if (servicioRestaurante.deletePlatoDia(idPlaD)) {
+                System.out.println("plato eliminado con exito");
+            }
         }catch(Exception ex){
             System.out.println("no se pudo eliminar el plato");
         }
-        
+        */
         int idPlaE = 340;
-        try{
-            String resposse = ""+servicioRestaurante.deletePlatoEspecial(idPlaE);
+        boolean resultado = servicioRestaurante.deletePlatoEspecial(idPlaE);
+        if (resultado) {
             System.out.println("plato eliminado con exito");
-        }catch(Exception ex){
-            System.out.println("no se pudo eliminar el plato");
+        }else{
+            System.out.println("el plato no existe");
         }
-
     }
 }
