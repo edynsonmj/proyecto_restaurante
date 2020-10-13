@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Camilo Gonzalez\Documents\Proyecto_Restaurante\proyecto_restaurante\Restaurante-servidor\src\main\java\co\unicauca\restaurante\servidor\acceso\IPlatoRepositorio.java
 C:\Users\Camilo Gonzalez\Documents\Proyecto_Restaurante\proyecto_restaurante\Restaurante-servidor\src\main\java\co\unicauca\restaurante\servidor\acceso\RestauranteRepositorioMysql.java
 C:\Users\Camilo Gonzalez\Documents\Proyecto_Restaurante\proyecto_restaurante\Restaurante-servidor\src\main\java\co\unicauca\restaurante\servidor\app\AplicacionRestaurante.java
@@ -5,3 +6,11 @@ C:\Users\Camilo Gonzalez\Documents\Proyecto_Restaurante\proyecto_restaurante\Res
 C:\Users\Camilo Gonzalez\Documents\Proyecto_Restaurante\proyecto_restaurante\Restaurante-servidor\src\main\java\co\unicauca\restaurante\servidor\acceso\RestauranteRepositorioDeveloper.java
 C:\Users\Camilo Gonzalez\Documents\Proyecto_Restaurante\proyecto_restaurante\Restaurante-servidor\src\main\java\co\unicauca\restaurante\servidor\acceso\FabricaRepositorio.java
 C:\Users\Camilo Gonzalez\Documents\Proyecto_Restaurante\proyecto_restaurante\Restaurante-servidor\src\main\java\co\unicauca\restaurante\servidor\dominio\servidor\PlatoServicio.java
+=======
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-servidor\src\main\java\co\unicauca\restaurante\servidor\dominio\servidor\PlatoServicio.java
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-servidor\src\main\java\co\unicauca\restaurante\servidor\acceso\IPlatoRepositorio.java
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-servidor\src\main\java\co\unicauca\restaurante\servidor\acceso\RestauranteRepositorioMysql.java
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-servidor\src\main\java\co\unicauca\restaurante\servidor\app\AplicacionRestaurante.java
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-servidor\src\main\java\co\unicauca\restaurante\servidor\acceso\FabricaRepositorio.java
+C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-servidor\src\main\java\co\unicauca\restaurante\servidor\infra\RestauranteServerSocket.java
+>>>>>>> aed7828df3066a4454638520d779657ea803c446

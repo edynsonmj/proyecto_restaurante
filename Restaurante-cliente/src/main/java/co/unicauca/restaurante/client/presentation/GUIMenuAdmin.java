@@ -29,10 +29,11 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonRegistrar = new javax.swing.JButton();
+        jButtonModificar = new javax.swing.JButton();
+        jButtonEliminar = new javax.swing.JButton();
+        jButtonListar = new javax.swing.JButton();
+        jButtonVolver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -43,110 +44,131 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(817, 370));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(153, 0, 0));
-        jButton1.setText("REGISTRAR UN MENÚ");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRegistrar.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonRegistrar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
+        jButtonRegistrar.setForeground(new java.awt.Color(153, 0, 0));
+        jButtonRegistrar.setText("REGISTRAR UN MENÚ");
+        jButtonRegistrar.setToolTipText("");
+        jButtonRegistrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonRegistrar.setBorderPainted(false);
+        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 310, 110));
+        getContentPane().add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 310, 110));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(153, 0, 0));
-        jButton2.setText("MODIFICAR UN MENÚ");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
-        jButton2.setBorderPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonModificar.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonModificar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
+        jButtonModificar.setForeground(new java.awt.Color(153, 0, 0));
+        jButtonModificar.setText("MODIFICAR UN PLATO");
+        jButtonModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
+        jButtonModificar.setBorderPainted(false);
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 310, 110));
+        getContentPane().add(jButtonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 310, 110));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(153, 0, 0));
-        jButton3.setText("ELIMINAR UN MENÚ");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
-        jButton3.setBorderPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEliminar.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
+        jButtonEliminar.setForeground(new java.awt.Color(153, 0, 0));
+        jButtonEliminar.setText("ELIMINAR UN PLATO");
+        jButtonEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
+        jButtonEliminar.setBorderPainted(false);
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 310, 110));
+        getContentPane().add(jButtonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 310, 110));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(153, 0, 0));
-        jButton4.setText("LISTAR MENÚ");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
-        jButton4.setBorderPainted(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonListar.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonListar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
+        jButtonListar.setForeground(new java.awt.Color(153, 0, 0));
+        jButtonListar.setText("LISTAR MENÚ");
+        jButtonListar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
+        jButtonListar.setBorderPainted(false);
+        jButtonListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonListarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 310, 110));
+        getContentPane().add(jButtonListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 310, 110));
+
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
         jLabel2.setBackground(new java.awt.Color(153, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MENÚ DE ADMINISTRADOR");
-        jLabel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo Gonzalez\\Desktop\\background.jpg")); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 380));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         // TODO add your handling code here:
-        GUIModificarPlato ins = new GUIModificarPlato();
-                    //ins.setExtendedState(MAXIMIZED_BOTH);
-                    ins.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        setVisible(false);
+        GUIMenuModificar ins = new GUIMenuModificar();
+        //ins.setExtendedState(MAXIMIZED_BOTH);
+        ins.setVisible(true);
+    }//GEN-LAST:event_jButtonModificarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         // TODO add your handling code here:
-                    GUIRegistrarPlato ins = new GUIRegistrarPlato();
-                    //ins.setExtendedState(MAXIMIZED_BOTH);
-                    ins.setVisible(true);
-                
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        setVisible(false);
+        GUIRegPlato ins = new GUIRegPlato();
+        //ins.setExtendedState(MAXIMIZED_BOTH);
+        ins.setVisible(true);
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+    }//GEN-LAST:event_jButtonRegistrarActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
         GUIEliminarPlato ins = new GUIEliminarPlato();
-                    //ins.setExtendedState(MAXIMIZED_BOTH);
-                    ins.setVisible(true);
-                                      
-    }//GEN-LAST:event_jButton3ActionPerformed
+        //ins.setExtendedState(MAXIMIZED_BOTH);
+        ins.setVisible(true);
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
         GUIListar ins = new GUIListar();
-                    //ins.setExtendedState(MAXIMIZED_BOTH);
-                    ins.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-                
+        //ins.setExtendedState(MAXIMIZED_BOTH);
+        ins.setVisible(true);
+    }//GEN-LAST:event_jButtonListarActionPerformed
+
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        GUILogin ins = new GUILogin();
+        //ins.setExtendedState(MAXIMIZED_BOTH);
+        ins.setVisible(true);
+    }//GEN-LAST:event_jButtonVolverActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonEliminar;
+    private javax.swing.JButton jButtonListar;
+    private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonRegistrar;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

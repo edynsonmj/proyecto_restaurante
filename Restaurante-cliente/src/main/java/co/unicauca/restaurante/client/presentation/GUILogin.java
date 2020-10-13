@@ -5,8 +5,6 @@
  */
 package co.unicauca.restaurante.client.presentation;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -47,10 +45,9 @@ public class GUILogin extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBoxTipo.setEditable(true);
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleciones una opción...", "Administrador", "Cliente" }));
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Administrador", "Cliente" }));
         getContentPane().add(jComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 340, 40));
 
-        jPasswordField1.setText("jPasswordField1");
         jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 340, 40));
 
@@ -81,15 +78,19 @@ public class GUILogin extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 220, 40));
 
         jLabelFo.setBackground(new java.awt.Color(153, 0, 0));
-        jLabelFo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
+        jLabelFo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabelFo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFo.setText("MOBICELL");
         jLabelFo.setOpaque(true);
         getContentPane().add(jLabelFo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 65));
 
-        jLabelFondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo Gonzalez\\Desktop\\background.jpg")); // NOI18N
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 330));
+        jLabelFondo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/unicauca/restaurante/client/resources/background.jpg"))); // NOI18N
+        jLabelFondo.setText(".");
+        jLabelFondo.setOpaque(true);
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 650, 330));
+        jLabelFondo.getAccessibleContext().setAccessibleParent(jLabelFondo);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -100,6 +101,7 @@ public class GUILogin extends javax.swing.JFrame {
         if (opcion.equals("Administrador")) {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
+                    setVisible(false);
                     GUIMenuAdmin ins = new GUIMenuAdmin();
                     //ins.setExtendedState(MAXIMIZED_BOTH);
                     ins.setVisible(true);

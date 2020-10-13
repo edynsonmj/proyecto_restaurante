@@ -52,7 +52,7 @@ CREATE TABLE `menuespecial` (
 CREATE TABLE `platodia` (
   `PDIA_ID` int(10) NOT NULL,
   `MDIA_ID` int(10) NOT NULL,
-  `PDIA_NOMBRE` int(40) NOT NULL,
+  `PDIA_NOMBRE` varchar(100) NOT NULL,
   `PDIA_DESCRIPCION` char(100) NOT NULL,
   `PDIA_ENTRADA` varchar(100) NOT NULL,
   `PDIA_PRINCIPIO` varchar(100) NOT NULL,

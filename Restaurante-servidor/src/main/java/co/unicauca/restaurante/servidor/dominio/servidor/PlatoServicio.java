@@ -50,4 +50,34 @@ public class PlatoServicio {
     public String saveRestaurante(Restaurante res){
         return repositorio.saveRestaurante(res);
     }
+    
+    public String updatePlatoEspecial(String clave, String atributo, String valor){
+        //hacer validaciones, conversion del valor
+        return repositorio.updatePlatoEspecial(clave, atributo, valor);
+    }
+    
+    public String updatePlatoDia(String clave, String atributo, String valor){
+        //hacer validaciones, conversion del valor
+        return repositorio.updatePlatoDia(clave, atributo, valor);
+    }
+    
+    public boolean deletePlatoDia(int idPlaD){
+        //hacer validaciones aqui OJO aqui no se han hecho pero deben hacerse
+        //comprobar que los datos enviados sean correctos y en caso de ids que no esten repetidos
+        return repositorio.deletePlatoDia(idPlaD);
+    }
+    
+    public boolean deletePlatoEspecial(int idPlaE){
+        //hacer validaciones aqui OJO aqui no se han hecho pero deben hacerse
+        //comprobar que los datos enviados sean correctos y en caso de ids que no esten repetidos
+        return repositorio.deletePlatoEspecial(idPlaE);
+    }
+    
+    public String listarMenuDia(int resId){
+        return repositorio.listarMenuDia(resId);
+    }
+    
+    public String listarMenuEspecial(int resId){
+        return repositorio.listarMenuEspecial(resId);
+    }
 }
