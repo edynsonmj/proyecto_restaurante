@@ -15,6 +15,7 @@ import java.util.List;
  * servicios que el cliente puede usar del servidor (mascaras)
  * se comunica con la capa de bajo nivel que envia la solicitud
  * @author EdynsonMJ
+ * @author Jhonny Rosero
  */
 public class clienteService {
     private final IClienteAccess service;

@@ -30,6 +30,7 @@ import co.unicauca.restaurante.servidor.acceso.IPlatoRepositorio;
 /**
  * esta clase se encarga de establecer y gestionar la conexion entre el servidor y los clientes
  * @author EdynsonMJ
+ * @author Jhonny Rosero
  */
 public class RestauranteServerSocket implements Runnable{
     /**
@@ -256,7 +257,11 @@ public class RestauranteServerSocket implements Runnable{
         response = service.saveRestaurante(res);
         output.println(response);
     }
-    
+    /**
+     * Procesa la solicitud de eliminar el plato dia que ha enviado el cliente
+     *
+     * @param protocolRequest Protocolo de la solicitud
+     */
     private void administradorEliminarPlatoDia(Protocol protocolRequest){
         int idPlaD;
         idPlaD = Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
@@ -266,7 +271,11 @@ public class RestauranteServerSocket implements Runnable{
         response = service.deletePlatoDia(idPlaD);
         output.println(response);
     }
-    
+    /**
+     * Procesa la solicitud de eliminar el plato especial que ha enviado el cliente
+     *
+     * @param protocolRequest Protocolo de la solicitud
+     */
     private void administradorEliminarPlatoEspecial(Protocol protocolRequest){
         int idPlaE;
         idPlaE = Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
@@ -276,8 +285,8 @@ public class RestauranteServerSocket implements Runnable{
         response = service.deletePlatoEspecial(idPlaE);
         output.println(response);
     }
-        /**
-     * Procesa la solicitud de registrar implato dia que ha enviado el cliente
+     /**
+     * Procesa la solicitud de registrar el plato dia que ha enviado el cliente
      *
      * @param protocolRequest Protocolo de la solicitud
      */
