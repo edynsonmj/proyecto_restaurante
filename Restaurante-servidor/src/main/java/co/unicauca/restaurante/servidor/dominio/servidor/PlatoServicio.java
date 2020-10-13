@@ -27,6 +27,7 @@ public class PlatoServicio {
     public PlatoServicio(IPlatoRepositorio repositorio) {
         this.repositorio = repositorio;
     }
+    
     /**
      * envia la solicitud a la capa de bajo nivel para guardar un plato del dia en la base de datos
      * @param plato instancia a guardar
@@ -60,7 +61,6 @@ public class PlatoServicio {
         //hacer validaciones, conversion del valor
         return repositorio.updatePlatoDia(clave, atributo, valor);
     }
-    
     public boolean deletePlatoDia(int idPlaD){
         //hacer validaciones aqui OJO aqui no se han hecho pero deben hacerse
         //comprobar que los datos enviados sean correctos y en caso de ids que no esten repetidos

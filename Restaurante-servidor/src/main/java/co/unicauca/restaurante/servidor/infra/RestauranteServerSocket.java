@@ -158,19 +158,17 @@ public class RestauranteServerSocket implements Runnable{
         // Convertir la solicitud platoD objeto Protocol para poderlo procesar
         Gson gson = new Gson();
         Protocol protocolRequest = gson.fromJson(requestJson, Protocol.class);
-        Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.INFO, "procesar solicitud");
         //saca de request la persona que ha hecho la solicitud, en nuestro caso administrador o comprador
         switch (protocolRequest.getResource()) {
             case "administrador":
-                Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.SEVERE, "solicitud administrador recibida");
                 //se berifica el tipo de solicitud y se llama al metodo responsable
                 //post informacion para guardar
                 //palabra clave post
                 if (protocolRequest.getAction().equals("postPlatoDia")) {
                     // Agregar un elemento por parte de administrador  
                     administradorRegistrarPlatoDia(protocolRequest);
-
                 }
+                
                 //funciona exactamente igual platoD postPlatoDia
                 if(protocolRequest.getAction().equals("postPlatoEspecial")){
                     administradorRegistrarPlatoEspecial(protocolRequest);               
@@ -183,6 +181,7 @@ public class RestauranteServerSocket implements Runnable{
                 if(protocolRequest.getAction().equals("updateEspecial")){
                     administradorUpdateEspecial(protocolRequest);
                 }
+                
                 if(protocolRequest.getAction().equals("updatePlatoDia")){
                     administradorUpdatePlatoDia(protocolRequest);
                 }
@@ -211,8 +210,7 @@ public class RestauranteServerSocket implements Runnable{
                     this.listarMenuEspecial(protocolRequest);
                 }
                 break;
-                
-        }
+            }
     }
     
     private void administradorUpdatePlatoDia(Protocol protocol){
@@ -234,6 +232,7 @@ public class RestauranteServerSocket implements Runnable{
         output.println(response);
         Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.SEVERE, "response: "+response+" clave:"+clave+" atributo:"+atributo+" valor: "+valor);
     }
+    
     private void listarMenuDia(Protocol protocolRequest){
         int resId =Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
         String response;
@@ -285,7 +284,7 @@ public class RestauranteServerSocket implements Runnable{
      * @param protocolRequest Protocolo de la solicitud
      */
     private void administradorRegistrarPlatoDia(Protocol protocolRequest) {
-        //crea la instancia
+      /*  //crea la instancia
         PlatoDia platoD = new PlatoDia();
         //se asignan los atributos de la instancia, segun los valores de los parametros
         //el orden debe ser exacto
@@ -304,7 +303,7 @@ public class RestauranteServerSocket implements Runnable{
         //el servicio comunicara con la base de datos,
         //se pasa el plato creado, y servicio llamara al repositorio
         response = service.savePlatoDia(platoD);
-        output.println(response);
+        output.println(response);*/
     }
     private void administradorRegistrarPlatoEspecial(Protocol protocolRequest) {
         //crea la instancia

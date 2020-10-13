@@ -42,9 +42,7 @@ public class ClienteAccessSocket implements IClienteAccess{
     public String saveRestaurante(Restaurante res) throws Exception{
         
         String requestJson = crearRestauranteJson(res);
-
         if((this.procesarConexion(requestJson)).equals("FALLO")){
-
             return null;
         }
         return res.getNombre();
@@ -123,12 +121,12 @@ public class ClienteAccessSocket implements IClienteAccess{
         return instancia.getNombre();
     }
     @Override
-    public String updatePlatoDia(int clave, String atributo, String valor) throws Exception{
+    public boolean updatePlatoDia(int clave, String atributo, String valor) throws Exception{
         String requestJson = updatePlatoDiaJson(clave, atributo, valor);
-        if((this.procesarConexion(requestJson)).equals("FALLO")){
-            return null;
+        if(procesarConexion(requestJson).equals("FALLO")){
+            return false;
         }
-        return atributo;
+        return true;
     }
     
     public String updatePlatoDiaJson(int clave, String atributo, String valor){
@@ -153,13 +151,15 @@ public class ClienteAccessSocket implements IClienteAccess{
      * @return 
      */
     @Override
-    public String updatePlatoEspecial(int clave, String atributo, String valor) throws Exception{
+    public boolean updatePlatoEspecial(int clave, String atributo, String valor) throws Exception{
         //estring en formato json que se enviara al servidor
         String requestJson = updateEspecialJson(clave, atributo, valor);
-        if((this.procesarConexion(requestJson).equals("FALLO"))){
-            return null;
+         if(procesarConexion(requestJson).equals("FALLO")){
+             System.out.println("devolvio fallo");
+            return false;
         }
-        return atributo;
+         System.out.println("devolvio ");
+        return true;
     }
     /**
      * genera el string en el formato json para ser enviado
@@ -268,7 +268,6 @@ public class ClienteAccessSocket implements IClienteAccess{
         System.out.println("json: "+requestJson);
         return requestJson;
     }
-
     
     @Override
     public boolean deletePlatoDia(int idPlaD) throws Exception {
@@ -314,7 +313,23 @@ public class ClienteAccessSocket implements IClienteAccess{
         
         return requestJson;
     }
-    
+      /**
+     * Convierte jsonCustomer, proveniente del server socket, de json a un
+     * objeto Customer
+     *
+     * @param resId
+     * @return 
+     * @throws java.lang.Exception 
+     */
+    /*private Customer jsonToCustomer(String jsonCustomer) {
+
+        Gson gson = new Gson();
+        Customer customer = gson.fromJson(jsonCustomer, Customer.class);
+
+        return customer;
+
+    }*/
+
     @Override
     public List<PlatoDia> listarMenuDia(int resId) throws Exception{
         String resource="administrador";
