@@ -172,8 +172,8 @@ public class GUIRegPlato extends javax.swing.JFrame {
         if (txtNombre.getText()!=null && txtDescripcion.getText()!=null && txtCodigo.getText()!=null && txtValor.getText()!=null) {
             IClienteAccess service = Factory.getInstance().getClienteService();
             clienteService servicioRestaurante = new clienteService(service);
-            MenuEspecial menuEspecial = new MenuEspecial(15);
-            PlatoEspecial platoEspecial = new PlatoEspecial(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText(),15);
+            MenuEspecial menuEspecial = new MenuEspecial(1);
+            PlatoEspecial platoEspecial = new PlatoEspecial(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText(),1);
             try{
                 String platoE = servicioRestaurante.savePlatoEspecial(platoEspecial);
                 JOptionPane.showMessageDialog(null, "plato agragado con exito");

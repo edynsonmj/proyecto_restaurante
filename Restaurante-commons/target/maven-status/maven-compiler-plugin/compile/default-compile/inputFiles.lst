@@ -1,25 +1,11 @@
-<<<<<<< HEAD
-C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\DiaEnum.java
-C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\MenuEspecial.java
-C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\infra\Parameter.java
-C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\infra\JsonError.java
-C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\infra\Protocol.java
-C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\PlatoEspecial.java
-C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\Restaurante.java
-C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\PlatoDia.java
-C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\Plato.java
-C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\MenuDia.java
-C:\Users\jafes\Documents\NetBeansProjects\Restaurante salvaguardar\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\infra\Utilities.java
-=======
-C:\Users\jafes\Documents\NetBeansProjects\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\infra\Parameter.java
-C:\Users\jafes\Documents\NetBeansProjects\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\Plato.java
-C:\Users\jafes\Documents\NetBeansProjects\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\PlatoEspecial.java
-C:\Users\jafes\Documents\NetBeansProjects\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\infra\JsonError.java
-C:\Users\jafes\Documents\NetBeansProjects\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\PlatoDia.java
-C:\Users\jafes\Documents\NetBeansProjects\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\MenuDia.java
-C:\Users\jafes\Documents\NetBeansProjects\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\DiaEnum.java
-C:\Users\jafes\Documents\NetBeansProjects\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\infra\Utilities.java
-C:\Users\jafes\Documents\NetBeansProjects\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\MenuEspecial.java
-C:\Users\jafes\Documents\NetBeansProjects\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\Restaurante.java
-C:\Users\jafes\Documents\NetBeansProjects\restaurante\proyecto_restaurante\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\infra\Protocol.java
->>>>>>> eb89c796177298617cc1be9db7cd4f3f235f552e
+F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\infra\JsonError.java
+F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\Plato.java
+F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\PlatoDia.java
+F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\infra\Parameter.java
+F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\DiaEnum.java
+F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\MenuEspecial.java
+F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\PlatoEspecial.java
+F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\Restaurante.java
+F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\domain\MenuDia.java
+F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\infra\Utilities.java
+F:\UNIVERSIDAD\LAB SOFTWARE 2\PROYECTO\Restaurante-commons\src\main\java\co\unicauca\restaurante\commons\infra\Protocol.java

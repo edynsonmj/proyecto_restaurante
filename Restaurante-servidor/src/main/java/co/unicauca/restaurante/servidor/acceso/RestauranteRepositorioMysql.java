@@ -37,45 +37,49 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
 
     }
     private boolean findPlatoEspecial(int id){
+        boolean resultado;
         try{
             this.connect();
-            String sql = "SELECT PESP_NOMBRE FROM platoespecial where PESP_ID = ?";
+            String sql = "select pesp_nombre from platoespecial where PESP_ID = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet res= ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            resultado = rs.next();
             ps.close();
             this.disconnect();
-            return res.first();
-        }catch (Exception e){
+            return resultado;
+        }catch(SQLException ex){
+            System.out.println("revento excepcion encontrar plato especial_:"+ex.getMessage());
             return false;
         }
     }
     private boolean findPlatoDia(int id){
+        boolean resultado;
         try{
             this.connect();
-            String sql = "SELECT PDIA_NOMBRE FROM platodia where PDIA_ID = ?";
+            String sql = "select pdia_nombre from platodia where PDIA_ID = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet res= ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            resultado = rs.next();
             ps.close();
             this.disconnect();
-            return res.first();
-        }catch (Exception e){
+            return resultado;
+        }catch(SQLException ex){
+            System.out.println("revento excepcion encontrar plato_:"+ex.getMessage());
             return false;
         }
     }
     @Override
     public String updatePlatoDia(String clave, String atributo, String valor){
-        if(findPlatoDia(Integer.parseInt(clave))){
-            System.out.println("EXISTE EL ELEMENTO");
-        }else{
-            System.out.println("SE CAGO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        if(!this.findPlatoDia(Integer.parseInt(clave))){
             return "FALLO";
         }
         try{
             this.connect();
             //String sql = "UPDATE platoespecial set "+atributo+" = "+valor+" WHERE PESP_NOMBRE = "+clave;
             String sql = "UPDATE platodia SET "+atributo+" = ? WHERE PDIA_ID = ?";
+            System.out.println("SENTENCIA SQL UPDATE PLATO DIA: "+sql);
             PreparedStatement pstmt = conn.prepareStatement(sql);
             if(atributo.equals("PDIA_PRECIO")){
                 int valorNum = Integer.parseInt(valor);
@@ -96,15 +100,13 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     }
     @Override
     public String updatePlatoEspecial(String clave, String atributo, String valor){
-        if(findPlatoEspecial(Integer.parseInt(clave))){
-            System.out.println("EXISTE EL ELEMENTO");
-        }else{
-            System.out.println("SE CAGO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        if(!this.findPlatoEspecial(Integer.parseInt(clave))){
             return "FALLO";
         }
         try{
             this.connect();
             String sql = "UPDATE platoespecial SET "+atributo+" = ? WHERE PESP_ID = ?";
+            System.out.println("SENTENCIA SQL UPDATE PLATO ESPECIAL: "+sql);
             PreparedStatement pstmt = conn.prepareStatement(sql);
             if(atributo.equals("PESP_PRECIO")){
                 int valorNum = Integer.parseInt(valor);
@@ -121,7 +123,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
         }
-        return clave;
+        return "";
     }
     /**
      * cumunicacion con la base de datos para guardar un platodel dia
@@ -130,6 +132,9 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     @Override
     public String savePlatoDia(PlatoDia instancia) {
+        if(!(this.findPlatoDia(instancia.getId()))){
+            return "FALLO";
+        }
         try{
             //primero se establece la conexion
             this.connect(); //validar cuando la conexion no sea exitosa
@@ -167,6 +172,9 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     @Override
     public boolean deletePlatoDia(int idPlaD) {
+        if(!(this.findPlatoDia(idPlaD))){
+            return false;
+        }
         try{
             //primero se establece la conexion
             this.connect(); //validar cuando la conexion no sea exitosa
@@ -195,6 +203,9 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     @Override
     public boolean deletePlatoEspecial(int idPlaE) {
+        if(!(this.findPlatoEspecial(idPlaE))){
+            return false;
+        }
         try{
             //primero se establece la conexion
             this.connect(); //validar cuando la conexion no sea exitosa
@@ -262,6 +273,9 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     @Override
     public String savePlatoEspecial(PlatoEspecial instancia) {
+        if(!this.findPlatoEspecial(instancia.getId())){
+            return "FALLO";
+        }
         try{
             //primero se establece la conexion
             this.connect(); //validar cuando la conexion no sea exitosa

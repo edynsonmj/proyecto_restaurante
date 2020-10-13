@@ -248,10 +248,10 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
             && !((cboDia.getSelectedItem().toString()).equalsIgnoreCase("Seleccione"))) {
             IClienteAccess service = Factory.getInstance().getClienteService();
             clienteService servicioRestaurante = new clienteService(service);
-            MenuDia menuDia = new MenuDia(11);
+            MenuDia menuDia = new MenuDia(1);
             PlatoDia platoDia = new PlatoDia(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText()
                                              , DiaEnum.valueOf(cboDia.getSelectedItem().toString()),txtEntrada.getText(),txtPrincipio.getText(),txtCarne.getText()
-                                             , txtBebida.getText(),11);
+                                             , txtBebida.getText(),1);
             try{
                 String platoE = servicioRestaurante.savePlatoDia(platoDia);
                 JOptionPane.showMessageDialog(null, "plato agragado con exito");
