@@ -28,7 +28,7 @@ import co.unicauca.restaurante.commons.domain.PlatoEspecial;
  * @author EdynsonMJ
  */
 public class NewMain {
-
+    //prueba
     /**
      * @param args the command line arguments
      * @throws java.lang.Exception
