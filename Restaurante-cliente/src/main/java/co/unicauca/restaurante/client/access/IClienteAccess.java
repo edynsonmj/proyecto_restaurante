@@ -24,8 +24,8 @@ public interface IClienteAccess {
     public String updatePlatoEspecial(int clave, String atributo, String valor)throws Exception;
     public String updatePlatoDia(int clave, String atributo, String valor)throws Exception;
     //eliminar
-    public boolean deletePlatoDia(int idPlaD) throws Exception;
-    public boolean deletePlatoEspecial(int idPlaE) throws Exception;
+    public String deletePlatoDia(int idPlaD) throws Exception;
+    public String deletePlatoEspecial(int idPlaE) throws Exception;
     //modificar
     //listar
     public List<PlatoDia> listarMenuDia(int resId)throws Exception;

@@ -57,12 +57,12 @@ public class PlatoServicio {
         //hacer validaciones, conversion del valor
         return repositorio.updatePlatoDia(clave, atributo, valor);
     }
-    public boolean deletePlatoDia(int idPlaD){
+    public String deletePlatoDia(int idPlaD){
         //hacer validaciones aqui OJO aqui no se han hecho pero deben hacerse
         //comprobar que los datos enviados sean correctos y en caso de ids que no esten repetidos
         return repositorio.deletePlatoDia(idPlaD);
     }
-    public boolean deletePlatoEspecial(int idPlaE){
+    public String deletePlatoEspecial(int idPlaE){
         //hacer validaciones aqui OJO aqui no se han hecho pero deben hacerse
         //comprobar que los datos enviados sean correctos y en caso de ids que no esten repetidos
         return repositorio.deletePlatoEspecial(idPlaE);

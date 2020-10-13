@@ -76,11 +76,11 @@ public class NewMain {
         }
         */
         int idPlaE = 340;
-        boolean resultado = servicioRestaurante.deletePlatoEspecial(idPlaE);
-        if (resultado) {
-            System.out.println("plato eliminado con exito");
-        }else{
+        String resultado = servicioRestaurante.deletePlatoEspecial(idPlaE);
+        if ("FALLO".equals(resultado)) {
             System.out.println("el plato no existe");
+        }else{
+            System.out.println("plato eliminado con exito");
         }
     }
 }

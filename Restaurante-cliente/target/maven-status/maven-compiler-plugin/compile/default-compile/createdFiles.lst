@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-co\unicauca\restaurante\client\access\ClienteAccessSocket$1.class
-co\unicauca\restaurante\client\access\IClienteAccess.class
-co\unicauca\restaurante\client\domain\clienteService.class
-co\unicauca\restaurante\client\infra\RestauranteSocket.class
-co\unicauca\restaurante\client\access\ClienteAccessSocket.class
-co\unicauca\restaurante\client\access\ClienteAccessSocket$2.class
-co\unicauca\restaurante\client\access\Factory.class
-=======
 co\unicauca\restaurante\client\presentation\GUIRegPlatoD$7.class
 co\unicauca\restaurante\client\presentation\GUIRegPlatoD$2.class
 co\unicauca\restaurante\client\presentation\GUIRegPlatoD.class
@@ -32,5 +23,4 @@ co\unicauca\restaurante\client\access\ClienteAccessSocket$1.class
 co\unicauca\restaurante\client\presentation\GUIRegPlato$5.class
 co\unicauca\restaurante\client\domain\clienteService.class
 co\unicauca\restaurante\client\presentation\GUIRegPlatoD$5.class
->>>>>>> aed7828df3066a4454638520d779657ea803c446
 co\unicauca\restaurante\client\presentation\NewMain.class

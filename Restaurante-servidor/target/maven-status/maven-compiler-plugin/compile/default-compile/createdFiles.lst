@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-co\unicauca\restaurante\servidor\dominio\servidor\PlatoServicio.class
-=======
->>>>>>> aed7828df3066a4454638520d779657ea803c446
 co\unicauca\restaurante\servidor\acceso\FabricaRepositorio.class
 co\unicauca\restaurante\servidor\app\AplicacionRestaurante.class
 co\unicauca\restaurante\servidor\acceso\RestauranteRepositorioMysql.class

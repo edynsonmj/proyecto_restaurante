@@ -270,12 +270,12 @@ public class ClienteAccessSocket implements IClienteAccess{
 
     
     @Override
-    public boolean deletePlatoDia(int idPlaD) throws Exception {
+    public String deletePlatoDia(int idPlaD) throws Exception {
         String respJson = deletePlatoDiaJson(idPlaD);
-        if((this.procesarConexion(respJson).equals("FALLO"))){
-            return false;
+        if(this.procesarConexion(respJson).equals("FALLO")){
+            return "FALLO";
         }
-        return true;
+        return ""+idPlaD;
     }
     
     public String deletePlatoDiaJson(int idPlaD) throws Exception {
@@ -293,12 +293,12 @@ public class ClienteAccessSocket implements IClienteAccess{
     
     
     @Override
-    public boolean deletePlatoEspecial(int idPlaE) throws Exception {
+    public String deletePlatoEspecial(int idPlaE) throws Exception {
         String respJson = deletePlatoEspecialJson(idPlaE);
         if(this.procesarConexion(respJson).equals("FALLO")){
-            return false;
+            return "FALLO";
         }
-        return true;
+        return ""+idPlaE;
     }
     
     public String deletePlatoEspecialJson(int idPlaE) throws Exception {

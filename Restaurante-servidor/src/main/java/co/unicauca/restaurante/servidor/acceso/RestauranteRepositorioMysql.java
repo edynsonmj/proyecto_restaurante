@@ -172,12 +172,12 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      * @return 
      */
     @Override
-    public boolean deletePlatoDia(int idPlaD) {
+    public String deletePlatoDia(int idPlaD) {
         if(findPlatoDia(idPlaD)){
             System.out.println("EXISTE EL ELEMENTO");
         }else{
-            System.out.println("SE CAGO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            return false;
+            System.out.println("NO EXISTE EL ELEMENTO");
+            return "FALLO";
         }
         try{
             //primero se establece la conexion
@@ -197,7 +197,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al eliminar el plato", ex);
         }
-        return true;
+        return ""+idPlaD;
     }
     /**
      * cumunicacion con la base de datos para eliminar un plato del dia
@@ -205,12 +205,12 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      * @return 
      */
     @Override
-    public boolean deletePlatoEspecial(int idPlaE) {
+    public String deletePlatoEspecial(int idPlaE) {
         if(findPlatoEspecial(idPlaE)){
             System.out.println("EXISTE EL ELEMENTO");
         }else{
             System.out.println("NO EXISTE EL ELEMENTO");
-            return false;
+            return "FALLO";
         }
         try{
             //primero se establece la conexion
@@ -227,11 +227,11 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.close();
             //se termina la coneccion
             this.disconnect();
-            return true;
+  
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al eliminar el plato", ex);
-            return false;
         }
+        return ""+idPlaE;
     }
     /**
      * Permite hacer la conexion con la base de datos

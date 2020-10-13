@@ -41,8 +41,8 @@ public interface IPlatoRepositorio {
      * @param idPlaD id plato  que e desea borrar
      * @return 
      */
-    public boolean deletePlatoDia(int idPlaD);
-    public boolean deletePlatoEspecial(int idPlaE);
+    public String deletePlatoDia(int idPlaD);
+    public String deletePlatoEspecial(int idPlaE);
     /**
      * lista todas las tuplas de los menus
      * @param resId id del restaurante del que se va a mostrar el menu

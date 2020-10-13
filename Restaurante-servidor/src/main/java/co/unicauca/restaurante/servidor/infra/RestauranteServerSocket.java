@@ -260,7 +260,7 @@ public class RestauranteServerSocket implements Runnable{
     private void administradorEliminarPlatoDia(Protocol protocolRequest){
         int idPlaD;
         idPlaD = Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
-        boolean response=false;
+        String response=null;
         //el servicio comunicara con la base de datos,
         //se pasa el plato creado, y servicio llamara al repositorio
         response = service.deletePlatoDia(idPlaD);
@@ -270,7 +270,7 @@ public class RestauranteServerSocket implements Runnable{
     private void administradorEliminarPlatoEspecial(Protocol protocolRequest){
         int idPlaE;
         idPlaE = Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
-        boolean response=false;
+        String response=null;
         //el servicio comunicara con la base de datos,
         //se pasa el plato creado, y servicio llamara al repositorio
         response = service.deletePlatoEspecial(idPlaE);

@@ -54,10 +54,10 @@ public class clienteService {
     public String savePlatoEspecial(PlatoEspecial plato) throws Exception{
         return service.savePlatoEspecial(plato);
     }
-    public boolean deletePlatoDia(int idPlaD) throws Exception{
+    public String deletePlatoDia(int idPlaD) throws Exception{
         return service.deletePlatoDia(idPlaD);
     }
-    public boolean deletePlatoEspecial(int idPlaE) throws Exception{
+    public String deletePlatoEspecial(int idPlaE) throws Exception{
         return service.deletePlatoEspecial(idPlaE);
     }
 }
