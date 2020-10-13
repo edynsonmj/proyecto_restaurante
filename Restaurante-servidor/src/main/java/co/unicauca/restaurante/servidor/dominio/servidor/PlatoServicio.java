@@ -38,7 +38,7 @@ public class PlatoServicio {
         return repositorio.savePlatoDia(plato);
     }
     /**
-     * envia la solicitud a la capa de bajo nivel para guardar un plato especial
+     * envia la solicitud a la capa de bajo nivel para guardar un plato especial en la base de datos
      * @param plato instancia de plato especial a guardar
      * @return 
      */

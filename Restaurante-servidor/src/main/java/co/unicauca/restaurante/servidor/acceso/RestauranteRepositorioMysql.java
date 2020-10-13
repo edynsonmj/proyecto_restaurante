@@ -23,10 +23,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * objeto concreto de un repositorio, en este caso un repositorio de mysql
- * @author EdynsonMJ
- */
 public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     /**
      * Conección con Mysql
@@ -37,30 +33,36 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
 
     }
     private boolean findPlatoEspecial(int id){
+        boolean resultado;
         try{
             this.connect();
-            String sql = "SELECT PESP_NOMBRE FROM platoespecial where PESP_ID = ?";
+            String sql = "select pesp_nombre from platoespecial where PESP_ID = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet res= ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            resultado = rs.next();
             ps.close();
             this.disconnect();
-            return res.first();
-        }catch (Exception e){
+            return resultado;
+        }catch(SQLException ex){
+            System.out.println("revento excepcion encontrar plato especial_:"+ex.getMessage());
             return false;
         }
     }
     private boolean findPlatoDia(int id){
+        boolean resultado;
         try{
             this.connect();
-            String sql = "SELECT PDIA_NOMBRE FROM platodia where PDIA_ID = ?";
+            String sql = "select pdia_nombre from platodia where PDIA_ID = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet res= ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            resultado = rs.next();
             ps.close();
             this.disconnect();
-            return res.first();
-        }catch (Exception e){
+            return resultado;
+        }catch(SQLException ex){
+            System.out.println("revento excepcion encontrar plato_:"+ex.getMessage());
             return false;
         }
     }
@@ -131,8 +133,13 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     @Override
     public String savePlatoDia(PlatoDia instancia) {
         try{
+            if (findPlatoDia(instancia.getId()))
+            {
+                return "FALLO";
+            }
+            System.out.println("entro");
             //primero se establece la conexion
-            this.connect(); //validar cuando la conexion no sea exitosa
+            this.connect(); 
             //se estructura la sentencia sql en un string
             String sql = "INSERT INTO platodia(PDIA_ID,MDIA_ID,PDIA_NOMBRE,PDIA_DESCRIPCION,PDIA_DIA,PDIA_ENTRADA,PDIA_PRINCIPIO,PDIA_BEBIDA,PDIA_CARNE,PDIA_PRECIO) VALUES (?,?,?,?,?,?,?,?,?,?)";
             //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
@@ -154,11 +161,49 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.close();
             //se termina la coneccion
             this.disconnect();
+            return instancia.getNombre();   
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
+            return "FALLO";
         }
         //lo ideal es retornor un id
-        return instancia.getNombre();   
+        
+    }
+    /**
+     * comunicacion con la base de datos para guardar un plato Especial
+     * @param instancia un plato Especial que se desea registrar
+     * @return 
+     */
+    @Override
+    public String savePlatoEspecial(PlatoEspecial instancia) {
+        try{
+            if (findPlatoEspecial(instancia.getId()))
+            {
+                return "FALLO";
+            }
+            //primero se establece la conexion
+            this.connect(); 
+            //se estructura la sentencia sql en un string
+            String sql = "INSERT INTO platoespecial(PESP_ID,MESP_ID,PESP_NOMBRE,PESP_DESCRIPCION,PESP_PRECIO) VALUES (?,?,?,?,?)";
+            //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            //se registra cada elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato
+            pstmt.setInt(1, instancia.getId());
+            pstmt.setInt(2, instancia.getMenuEsp());
+            pstmt.setString(3, instancia.getNombre());
+            pstmt.setString(4, instancia.getDescripcion());
+            pstmt.setInt(5, (int)instancia.getPrecio());
+            //se ejecuta la sentencia sql
+            pstmt.executeUpdate();
+            //se cierra
+            pstmt.close();
+            //se termina la coneccion
+            this.disconnect();
+            return instancia.getNombre();
+        } catch (SQLException ex) {
+            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
+            return null;
+        }
     }
     
     /**
@@ -253,39 +298,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.FINER, "Error al cerrar Connection", ex);
         }
-    }
-
-    /**
-     * 
-     * @param instancia
-     * @return 
-     */
-    @Override
-    public String savePlatoEspecial(PlatoEspecial instancia) {
-        try{
-            //primero se establece la conexion
-            this.connect(); //validar cuando la conexion no sea exitosa
-            //se estructura la sentencia sql en un string
-            String sql = "INSERT INTO platoespecial(PESP_ID,MESP_ID,PESP_NOMBRE,PESP_DESCRIPCION,PESP_PRECIO) VALUES (?,?,?,?,?)";
-            //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            //se registra cada elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato
-            pstmt.setInt(1, instancia.getId());
-            pstmt.setInt(2, instancia.getMenuEsp());
-            pstmt.setString(3, instancia.getNombre());
-            pstmt.setString(4, instancia.getDescripcion());
-            pstmt.setInt(5, (int)instancia.getPrecio());
-            //se ejecuta la sentencia sql
-            pstmt.executeUpdate();
-            //se cierra
-            pstmt.close();
-            //se termina la coneccion
-            this.disconnect();
-        } catch (SQLException ex) {
-            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
-        }
-        //lo ideal es retornor un id
-        return instancia.getNombre();
     }
     /**
      * guarda un restaurante en la base de datos

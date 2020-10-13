@@ -125,6 +125,16 @@ public class GUIRegPlato extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, -1, -1));
 
         txtValor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtValor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorActionPerformed(evt);
+            }
+        });
+        txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtValorKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 160, 30));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -135,6 +145,11 @@ public class GUIRegPlato extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, -1, -1));
 
         txtCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 110, 30));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
@@ -171,7 +186,6 @@ public class GUIRegPlato extends javax.swing.JFrame {
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 810, 70));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo Gonzalez\\Documents\\Proyecto_Restaurante\\Proyecto_Restaurante\\proyecto_restaurante\\Restaurante-cliente\\src\\main\\java\\resources\\background.jpg")); // NOI18N
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 360));
 
@@ -209,19 +223,21 @@ public class GUIRegPlato extends javax.swing.JFrame {
         if (txtNombre.getText()!=null && txtDescripcion.getText()!=null && txtCodigo.getText()!=null && txtValor.getText()!=null) {
             IClienteAccess service = Factory.getInstance().getClienteService();
             clienteService servicioRestaurante = new clienteService(service);
-            MenuEspecial menuEspecial = new MenuEspecial(15);
-            PlatoEspecial platoEspecial = new PlatoEspecial(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText(),15);
+            MenuEspecial menuEspecial = new MenuEspecial(1);
+            PlatoEspecial platoEspecial = new PlatoEspecial(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText(),menuEspecial.getId());
             try{
                 String platoE = servicioRestaurante.savePlatoEspecial(platoEspecial);
-                JOptionPane.showMessageDialog(null, "plato agregado con exito");
+                if (platoE.equals(platoEspecial.getNombre())){
+                JOptionPane.showMessageDialog(null, "plato agragado con exito");
                 txtCodigo.setText("");
                 txtNombre.setText("");
                 txtValor.setText("");
                 txtDescripcion.setText("");
+                }
             }catch(Exception ex){
-                System.out.println("atencion no se save si agrego");
+                JOptionPane.showMessageDialog(null, "El plato ya esta registrado"+ex.getMessage());
              
-        }
+            }
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -232,6 +248,20 @@ public class GUIRegPlato extends javax.swing.JFrame {
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();     // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorActionPerformed
+
+    private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume(); 
+    }//GEN-LAST:event_txtValorKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;

@@ -37,8 +37,6 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo Gonzalez\\Desktop\\background.jpg")); // NOI18N
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 450));
         setPreferredSize(new java.awt.Dimension(817, 370));
@@ -112,8 +110,6 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         jLabel2.setText("MENÚ DE ADMINISTRADOR");
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo Gonzalez\\Desktop\\background.jpg")); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 340));
 
         pack();
@@ -130,7 +126,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIRegPlato ins = new GUIRegPlato();
+        GUIRegPlatoD ins = new GUIRegPlatoD();
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
 

@@ -86,7 +86,6 @@ public class GUILogin extends javax.swing.JFrame {
         getContentPane().add(jLabelFo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 65));
 
         jLabelFondo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/unicauca/restaurante/client/resources/background.jpg"))); // NOI18N
         jLabelFondo.setText(".");
         jLabelFondo.setOpaque(true);
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 650, 330));

@@ -55,8 +55,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         lblValor = new javax.swing.JLabel();
         lblEntrada = new javax.swing.JLabel();
         lblPrincipio = new javax.swing.JLabel();
-        lblMenu = new javax.swing.JLabel();
-        cboMenu = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         txtCarne = new javax.swing.JTextField();
@@ -178,22 +176,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         lblPrincipio.setOpaque(true);
         getContentPane().add(lblPrincipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
 
-        lblMenu.setBackground(new java.awt.Color(255, 255, 255));
-        lblMenu.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        lblMenu.setForeground(new java.awt.Color(153, 0, 0));
-        lblMenu.setText("Menú:");
-        lblMenu.setOpaque(true);
-        getContentPane().add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
-
-        cboMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Plato del Dia", "Plato Especial" }));
-        cboMenu.setBorder(null);
-        cboMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboMenuActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cboMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 180, 30));
-
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -218,7 +200,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         lblDia.setForeground(new java.awt.Color(153, 0, 0));
         lblDia.setText("Dia:");
         lblDia.setOpaque(true);
-        getContentPane().add(lblDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        getContentPane().add(lblDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         cboDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
         cboDia.setBorder(null);
@@ -227,7 +209,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
                 cboDiaActionPerformed(evt);
             }
         });
-        getContentPane().add(cboDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 180, 30));
+        getContentPane().add(cboDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 180, 30));
 
         jLabel2.setBackground(new java.awt.Color(153, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
@@ -235,7 +217,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 870, 70));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo Gonzalez\\Documents\\Proyecto_Restaurante\\Proyecto_Restaurante\\proyecto_restaurante\\Restaurante-cliente\\src\\main\\java\\resources\\background.jpg")); // NOI18N
         jLabel3.setOpaque(true);
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 350));
 
@@ -250,10 +231,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         ins.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void cboMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMenuActionPerformed
-
     private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorActionPerformed
@@ -264,24 +241,28 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
             && !((cboDia.getSelectedItem().toString()).equalsIgnoreCase("Seleccione"))) {
             IClienteAccess service = Factory.getInstance().getClienteService();
             clienteService servicioRestaurante = new clienteService(service);
-            MenuDia menuDia = new MenuDia(11);
+            MenuDia menuDia = new MenuDia(1);
             PlatoDia platoDia = new PlatoDia(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText()
                                              , DiaEnum.valueOf(cboDia.getSelectedItem().toString()),txtEntrada.getText(),txtPrincipio.getText(),txtCarne.getText()
-                                             , txtBebida.getText(),11);
+                                             , txtBebida.getText(),menuDia.getId());
             try{
-                String platoE = servicioRestaurante.savePlatoDia(platoDia);
-                JOptionPane.showMessageDialog(null, "plato agragado con exito");
-                txtCodigo.setText("");
-                txtNombre.setText("");
-                txtValor.setText("");
-                txtDescripcion.setText("");
-                txtBebida.setText("");
-                txtPrincipio.setText("");
-                txtEntrada.setText("");
-                txtCarne.setText("");
+                String platoD = servicioRestaurante.savePlatoDia(platoDia);
+                if (platoD.equals(platoDia.getNombre())){
+                    JOptionPane.showMessageDialog(null, "Se registro el plato exitosamente");
+                    txtCodigo.setText("");
+                    txtNombre.setText("");
+                    txtValor.setText("");
+                    txtDescripcion.setText("");
+                    txtBebida.setText("");
+                    txtPrincipio.setText("");
+                    txtEntrada.setText("");
+                    txtCarne.setText("");
+                }
+                
             }catch(Exception ex){
-                System.out.println("atencion no se save si agrego");
-        }
+                JOptionPane.showMessageDialog(null, "El plato ya esta registrado; Message: "+ex.getMessage());
+               // System.out.println("atencion no se save si agrego"+ex.getMessage());
+            }
         }// TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -298,7 +279,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cboDia;
-    private javax.swing.JComboBox<String> cboMenu;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -311,7 +291,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblDia;
     private javax.swing.JLabel lblEntrada;
-    private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPrincipio;
     private javax.swing.JLabel lblValor;
