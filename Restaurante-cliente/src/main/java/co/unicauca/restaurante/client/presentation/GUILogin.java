@@ -5,6 +5,9 @@
  */
 package co.unicauca.restaurante.client.presentation;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -109,9 +112,15 @@ public class GUILogin extends javax.swing.JFrame {
         } else if (opcion.equals("Cliente")) {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    GUIListar ins = new GUIListar();
+                    GUIListar ins;
+                    try {
+                        ins = new GUIListar();
+                        ins.setVisible(true);
+                    } catch (Exception ex) {
+                        Logger.getLogger(GUILogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     //ins.setExtendedState(MAXIMIZED_BOTH);
-                    ins.setVisible(true);
+                    
                 }
             });
             

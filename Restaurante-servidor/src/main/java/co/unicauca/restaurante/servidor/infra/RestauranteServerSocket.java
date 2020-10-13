@@ -234,6 +234,14 @@ public class RestauranteServerSocket implements Runnable{
         output.println(response);
         Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.SEVERE, "response: "+response+" clave:"+clave+" atributo:"+atributo+" valor: "+valor);
     }
+    
+    /**
+     * Recibe la peticion del cliente, manda el id del restaurante
+     * y manda esta peticion procesada al repositorio del servidor
+     * para el menu por dias
+     * 
+     * @param protocolRequest 
+     */
     private void listarMenuDia(Protocol protocolRequest){
         int resId =Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
         String response;
@@ -241,6 +249,14 @@ public class RestauranteServerSocket implements Runnable{
         output.println(response);
         
     }
+    
+    /**
+     * Recibe la peticion del cliente, manda el id del restaurante
+     * y manda esta peticion procesada al repositorio del servidor
+     * para el menu especial
+     * 
+     * @param protocolRequest 
+     */
     private void listarMenuEspecial(Protocol protocolRequest){
         int resdId=Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
         String response;

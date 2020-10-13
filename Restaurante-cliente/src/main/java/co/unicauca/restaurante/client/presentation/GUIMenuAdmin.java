@@ -5,6 +5,9 @@
  */
 package co.unicauca.restaurante.client.presentation;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Camilo Gonzalez
@@ -145,9 +148,14 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIListar ins = new GUIListar();
-        //ins.setExtendedState(MAXIMIZED_BOTH);
-        ins.setVisible(true);
+        GUIListar ins;
+        try {
+            ins = new GUIListar();
+            ins.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(GUIMenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
