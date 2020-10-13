@@ -334,9 +334,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Camilo Gonzalez\Documents\Proyecto_Restaurante\Proyecto_Restaurante\proyecto_restaurante\Restaurante-cliente\src\main\java\resources\background.jpg"/>
-        </Property>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
       <Constraints>

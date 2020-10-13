@@ -5,6 +5,9 @@
  */
 package co.unicauca.restaurante.client.presentation;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Camilo Gonzalez
@@ -36,8 +39,6 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         jButtonVolver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo Gonzalez\\Desktop\\background.jpg")); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 450));
@@ -112,8 +113,6 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         jLabel2.setText("MENÚ DE ADMINISTRADOR");
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo Gonzalez\\Desktop\\background.jpg")); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 340));
 
         pack();
@@ -149,9 +148,14 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIListar ins = new GUIListar();
-        //ins.setExtendedState(MAXIMIZED_BOTH);
-        ins.setVisible(true);
+        GUIListar ins;
+        try {
+            ins = new GUIListar();
+            ins.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(GUIMenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed

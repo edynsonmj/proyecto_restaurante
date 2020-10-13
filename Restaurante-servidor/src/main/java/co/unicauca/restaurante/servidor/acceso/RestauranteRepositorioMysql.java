@@ -311,7 +311,16 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return res.getNombre();
     }
-
+    
+    /**
+     * Lista el menu desde la consulta hecha a la base de datos 
+     * añade las tuplas encontradas en una lista de Plato
+     * y convierte la lista en json para enviarla por el sockect devuelta
+     * al cliente
+     * 
+     * @param resId
+     * @return 
+     */
     @Override
     public String listarMenuDia(int resId) {
         List<Plato> list=new ArrayList<>();
@@ -337,7 +346,15 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return response;
     }
-
+    
+    /**
+     * Lista el menu desde la consulta hecha a la base de datos 
+     * añade las tuplas encontradas en una lista de Plato
+     * y convierte la lista en json para enviarla por el sockect devuelta
+     * al cliente
+     * @param resId
+     * @return 
+     */
     @Override
     public String listarMenuEspecial(int resId) {
         List<Plato> list=new ArrayList<>();
@@ -364,7 +381,12 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
        return response;
     }
-    
+    /**
+     * Convierte una lista de tipo plato en un json
+     * 
+     * @param list
+     * @return 
+     */
     public String listToJson (List<Plato> list){
         Gson gson=new Gson();
         String response=gson.toJson(list);

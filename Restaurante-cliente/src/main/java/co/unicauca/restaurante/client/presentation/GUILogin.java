@@ -5,6 +5,9 @@
  */
 package co.unicauca.restaurante.client.presentation;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -86,7 +89,6 @@ public class GUILogin extends javax.swing.JFrame {
         getContentPane().add(jLabelFo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 65));
 
         jLabelFondo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/unicauca/restaurante/client/resources/background.jpg"))); // NOI18N
         jLabelFondo.setText(".");
         jLabelFondo.setOpaque(true);
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 650, 330));
@@ -110,9 +112,15 @@ public class GUILogin extends javax.swing.JFrame {
         } else if (opcion.equals("Cliente")) {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    GUIListar ins = new GUIListar();
+                    GUIListar ins;
+                    try {
+                        ins = new GUIListar();
+                        ins.setVisible(true);
+                    } catch (Exception ex) {
+                        Logger.getLogger(GUILogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     //ins.setExtendedState(MAXIMIZED_BOTH);
-                    ins.setVisible(true);
+                    
                 }
             });
             

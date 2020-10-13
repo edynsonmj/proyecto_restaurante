@@ -171,7 +171,6 @@ public class GUIRegPlato extends javax.swing.JFrame {
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 810, 70));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo Gonzalez\\Documents\\Proyecto_Restaurante\\Proyecto_Restaurante\\proyecto_restaurante\\Restaurante-cliente\\src\\main\\java\\resources\\background.jpg")); // NOI18N
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 360));
 
