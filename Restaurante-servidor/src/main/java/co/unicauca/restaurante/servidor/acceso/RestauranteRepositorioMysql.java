@@ -42,6 +42,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             String sql = "SELECT PESP_NOMBRE FROM platoespecial where PESP_ID = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
+            ps.executeUpdate();
             ResultSet res= ps.executeQuery();
             ps.close();
             this.disconnect();
@@ -134,16 +135,20 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             //primero se establece la conexion
             this.connect(); //validar cuando la conexion no sea exitosa
             //se estructura la sentencia sql en un string
-            String sql = "INSERT INTO platodia(nombre,precio,bebida,carne,entrada,principio) VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO platodia(PDIA_ID,MDIA_ID,PDIA_NOMBRE,PDIA_DESCRIPCION,PDIA_DIA,PDIA_ENTRADA,PDIA_PRINCIPIO,PDIA_BEBIDA,PDIA_CARNE,PDIA_PRECIO) VALUES (?,?,?,?,?,?,?,?,?,?)";
             //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            //se registra cada elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato(de las tablas)
-            pstmt.setString(1, instancia.getNombre());
-            pstmt.setInt(2, (int)instancia.getPrecio());
-            pstmt.setString(3, instancia.getBebida());
-            pstmt.setString(4, instancia.getCarne());
-            pstmt.setString(5, instancia.getEntrada());
-            pstmt.setString(6, instancia.getPrincipio());
+            //se registra cada elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato
+            pstmt.setInt(1, instancia.getId());
+            pstmt.setInt(2, instancia.getMenuId());
+            pstmt.setString(3, instancia.getNombre());
+            pstmt.setString(4, instancia.getDescripcion());
+            pstmt.setString(5, String.valueOf(instancia.getDiaSemana()));
+            pstmt.setString(6, instancia.getEntrada());
+            pstmt.setString(7, instancia.getPrincipio());
+            pstmt.setString(8, instancia.getBebida());
+            pstmt.setString(9, instancia.getCarne());
+            pstmt.setInt(10, (int)instancia.getPrecio());
             //se ejecuta la sentencia sql
             pstmt.executeUpdate();
             //se cierra
@@ -154,7 +159,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
         }
         //lo ideal es retornor un id
-        return instancia.getNombre();
+        return instancia.getNombre();   
     }
     
     /**
@@ -210,6 +215,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al eliminar el plato", ex);
         }
         return true;
+
     }
     /**
      * Permite hacer la conexion con la base de datos
@@ -251,15 +257,38 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     }
 
     /**
-     * metodo que dara enviara la solicitud a la base de datos, similar a savePlatoDia
-     * @param plato instancia de plato especial a guardar
+     * 
+     * @param instancia
      * @return 
      */
     @Override
-    public String savePlatoEspecial(PlatoEspecial plato) {
-        System.out.println("aun no implementado");
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String savePlatoEspecial(PlatoEspecial instancia) {
+        try{
+            //primero se establece la conexion
+            this.connect(); //validar cuando la conexion no sea exitosa
+            //se estructura la sentencia sql en un string
+            String sql = "INSERT INTO platoespecial(PESP_ID,MESP_ID,PESP_NOMBRE,PESP_DESCRIPCION,PESP_PRECIO) VALUES (?,?,?,?,?)";
+            //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            //se registra cada elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato
+            pstmt.setInt(1, instancia.getId());
+            pstmt.setInt(2, instancia.getMenuEsp());
+            pstmt.setString(3, instancia.getNombre());
+            pstmt.setString(4, instancia.getDescripcion());
+            pstmt.setInt(5, (int)instancia.getPrecio());
+            //se ejecuta la sentencia sql
+            pstmt.executeUpdate();
+            //se cierra
+            pstmt.close();
+            //se termina la coneccion
+            this.disconnect();
+        } catch (SQLException ex) {
+            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
+        }
+        //lo ideal es retornor un id
+        return instancia.getNombre();
     }
+    
     /**
      * guarda un restaurante en la base de datos
      * @param res instancia a guardar
@@ -284,7 +313,15 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return res.getNombre();
     }
-
+    /**
+     * Lista el menu desde la consulta hecha a la base de datos 
+     * añade las tuplas encontradas en una lista de Plato
+     * y convierte la lista en json para enviarla por el sockect devuelta
+     * al cliente
+     * 
+     * @param resId
+     * @return 
+     */
     @Override
     public String listarMenuDia(int resId) {
         List<Plato> list=new ArrayList<>();
@@ -292,25 +329,30 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         System.out.println("ingreso al listar Menu Dia");
         try{
             this.connect();
-            String sql = "select pdia_id,pdia_nombre,pdia_descripcion,pdia_entrada,pdia_principio,pdia_bebida,pdia_carne,pdia_precio from (restaurante r inner join menudia m on r.res_id=m.res_id) inner join platodia p on m.mdia_id=p.mdia_id where r.res_id ="+resId;
+            String sql = "select pdia_id,pdia_nombre,pdia_descripcion,pdia_dia, pdia_entrada,pdia_principio,pdia_carne,pdia_bebida,pdia_precio, m.mdia_id from (restaurante r inner join menudia m on r.res_id=m.res_id) inner join platodia p on m.mdia_id=p.mdia_id where r.res_id ="+resId;
             PreparedStatement pstmt=conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
-            
             while (rs.next()) {      
-                Plato pla=new PlatoDia(Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(8)), rs.getString(3), DiaEnum.Lunes, rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                Plato pla=  new PlatoDia(Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(9)), rs.getString(3), DiaEnum.valueOf(rs.getString(4)), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Integer.parseInt(rs.getString(10)));
                 list.add(pla);
             }
             response=listToJson(list);
-            //se cierra
             pstmt.close();
-            //se termina la coneccion
             this.disconnect();
         }catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al listar el menu del dia", ex);
         }
         return response;
     }
-
+    
+    /**
+     * Lista el menu desde la consulta hecha a la base de datos 
+     * añade las tuplas encontradas en una lista de Plato
+     * y convierte la lista en json para enviarla por el sockect devuelta
+     * al cliente
+     * @param resId
+     * @return 
+     */
     @Override
     public String listarMenuEspecial(int resId) {
         List<Plato> list=new ArrayList<>();
@@ -318,18 +360,17 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         System.out.println("ingreso al listar Menu Dia");
         try{
             this.connect();
-            String sql = "select pesp_id,pesp_nombre,pesp_descripcion,pesp_precio from (restaurante r inner join menuespecial m on r.res_id=m.res_id) inner join platoespecial p on m.mesp_id=p.mesp_id where r.res_id = (?)";
+            String sql = "select pesp_id,pesp_nombre,pesp_descripcion,pesp_precio,m.mesp_id from (restaurante r inner join menuespecial m on r.res_id=m.res_id) inner join platoespecial p on m.mesp_id=p.mesp_id where r.res_id = (?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, resId);
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {            
-                Plato pla=new PlatoEspecial(Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(3)), rs.getString(4));
+            while (rs.next()) {   
+                
+                Plato pla = new PlatoEspecial(Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(4)), rs.getString(3), Integer.parseInt(rs.getString(5)));
                 list.add(pla);
             }
             response=listToJson(list);
-            //se cierra
             pstmt.close();
-            //se termina la coneccion
             this.disconnect();
         }catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al listar el menu del especial", ex);
@@ -337,6 +378,12 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
        return response;
     }
     
+    /**
+     * Convierte una lista de tipo plato en un json
+     * 
+     * @param list
+     * @return 
+     */
     public String listToJson (List<Plato> list){
         Gson gson=new Gson();
         String response=gson.toJson(list);
