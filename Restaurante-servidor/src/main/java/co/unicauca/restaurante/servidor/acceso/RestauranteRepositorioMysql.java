@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 /**
  * objeto concreto de un repositorio, en este caso un repositorio de mysql
  * @author EdynsonMJ
+ * @author Jhonny Rosero
  */
 public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     /**

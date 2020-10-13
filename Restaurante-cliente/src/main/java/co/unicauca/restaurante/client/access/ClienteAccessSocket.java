@@ -20,6 +20,7 @@ import java.util.List;
 /**
  *
  * @author EdynsonMJ
+ * @author Jhonny Rosero
  */
 public class ClienteAccessSocket implements IClienteAccess{
     /**
@@ -267,8 +268,12 @@ public class ClienteAccessSocket implements IClienteAccess{
         System.out.println("json: "+requestJson);
         return requestJson;
     }
-
-    
+    /**
+     * envia la solicitud al servidor para eliminar un plato dia
+     * @param idPlaD id del plato dia que se quiere eliminar
+     * @return
+     * @throws Exception
+     */
     @Override
     public String deletePlatoDia(int idPlaD) throws Exception {
         String respJson = deletePlatoDiaJson(idPlaD);
@@ -277,7 +282,13 @@ public class ClienteAccessSocket implements IClienteAccess{
         }
         return ""+idPlaD;
     }
-    
+    /**
+     * se crea el protocolo de comunicacion, en parameter van los datos del plato a borrar
+     * OJO el orden debe ser exacto
+     * @param idPlaD
+     * @return
+     * @throws Exception 
+     */
     public String deletePlatoDiaJson(int idPlaD) throws Exception {
         Protocol protocol = new Protocol();
         protocol.setResource("administrador");
@@ -290,8 +301,12 @@ public class ClienteAccessSocket implements IClienteAccess{
         
         return requestJson;
     }
-    
-    
+    /**
+     * envia la solicitud al servidor para eliminar un plato dia
+     * @param idPlaE id del plato dia que se quiere eliminar
+     * @return
+     * @throws Exception
+     */
     @Override
     public String deletePlatoEspecial(int idPlaE) throws Exception {
         String respJson = deletePlatoEspecialJson(idPlaE);
@@ -300,7 +315,13 @@ public class ClienteAccessSocket implements IClienteAccess{
         }
         return ""+idPlaE;
     }
-    
+    /**
+     * se crea el protocolo de comunicacion, en parameter van los datos del plato a borrar
+     * OJO el orden debe ser exacto
+     * @param idPlaE
+     * @return
+     * @throws Exception 
+     */
     public String deletePlatoEspecialJson(int idPlaE) throws Exception {
         Protocol protocol = new Protocol();
         protocol.setResource("administrador");

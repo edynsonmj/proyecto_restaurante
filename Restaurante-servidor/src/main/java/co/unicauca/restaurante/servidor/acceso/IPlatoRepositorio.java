@@ -11,6 +11,7 @@ import co.unicauca.restaurante.commons.domain.Restaurante;
 /**
  *interface del repositorio de platos, usarla mediante inyeccion de dependencias
  * @author EdynsonMJ
+ * @author Jhonny Rosero
  */
 public interface IPlatoRepositorio {
     /**
@@ -38,7 +39,7 @@ public interface IPlatoRepositorio {
     public String updatePlatoDia(String clave, String atributo, String valor);
     /*
      * elimina una tupla en la base de datos
-     * @param idPlaD id plato  que e desea borrar
+     * @param idPlaD,idPlaE id plato  que se desea borrar
      * @return 
      */
     public String deletePlatoDia(int idPlaD);

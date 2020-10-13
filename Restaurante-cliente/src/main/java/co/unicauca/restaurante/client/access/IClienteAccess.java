@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * entidad abstracta del los servicios que el cliente puede solicitar al servidor
  * @author EdynsonMJ
+ * @author Jhonny Rosero
  */
 public interface IClienteAccess {
     //no confundirlos con guardar en la base de datos, estas son solicitudes al servidor

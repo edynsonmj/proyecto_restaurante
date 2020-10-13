@@ -14,6 +14,7 @@ import co.unicauca.restaurante.servidor.acceso.IPlatoRepositorio;
  *comunicacion con la capa de bajo nivel
  * metodos contra la base de datos
  * @author EdynsonMJ
+ * @author Jhonny Rosero
  */
 public class PlatoServicio {
     /**
@@ -57,14 +58,20 @@ public class PlatoServicio {
         //hacer validaciones, conversion del valor
         return repositorio.updatePlatoDia(clave, atributo, valor);
     }
+    /**
+     * envia la solicitud a la capa de bajo nivel para eliminar un plato dia
+     * @param idPlaD instancia de plato especial a guardar
+     * @return 
+     */
     public String deletePlatoDia(int idPlaD){
-        //hacer validaciones aqui OJO aqui no se han hecho pero deben hacerse
-        //comprobar que los datos enviados sean correctos y en caso de ids que no esten repetidos
         return repositorio.deletePlatoDia(idPlaD);
     }
+    /**
+     * envia la solicitud a la capa de bajo nivel para eliminar un plato especial
+     * @param idPlaE instancia de plato especial a guardar
+     * @return 
+     */
     public String deletePlatoEspecial(int idPlaE){
-        //hacer validaciones aqui OJO aqui no se han hecho pero deben hacerse
-        //comprobar que los datos enviados sean correctos y en caso de ids que no esten repetidos
         return repositorio.deletePlatoEspecial(idPlaE);
     }
     public String listarMenuDia(int resId){
