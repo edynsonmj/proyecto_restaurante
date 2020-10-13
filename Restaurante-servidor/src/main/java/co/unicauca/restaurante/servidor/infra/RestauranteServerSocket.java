@@ -284,7 +284,7 @@ public class RestauranteServerSocket implements Runnable{
      * @param protocolRequest Protocolo de la solicitud
      */
     private void administradorRegistrarPlatoDia(Protocol protocolRequest) {
-        //crea la instancia
+      /*  //crea la instancia
         PlatoDia platoD = new PlatoDia();
         //se asignan los atributos de la instancia, segun los valores de los parametros
         //el orden debe ser exacto
@@ -303,7 +303,7 @@ public class RestauranteServerSocket implements Runnable{
         //el servicio comunicara con la base de datos,
         //se pasa el plato creado, y servicio llamara al repositorio
         response = service.savePlatoDia(platoD);
-        output.println(response);
+        output.println(response);*/
     }
     private void administradorRegistrarPlatoEspecial(Protocol protocolRequest) {
         //crea la instancia

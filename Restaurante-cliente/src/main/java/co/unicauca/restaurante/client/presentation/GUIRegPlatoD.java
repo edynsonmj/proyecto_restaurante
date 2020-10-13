@@ -26,6 +26,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
      */
     public GUIRegPlatoD() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -38,8 +39,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabelTitulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        cboTipoPlato = new javax.swing.JComboBox<>();
         txtNombre = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
@@ -64,33 +63,24 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         lblBebida1 = new javax.swing.JLabel();
         lblDia = new javax.swing.JLabel();
         cboDia = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(700, 450));
+        setPreferredSize(new java.awt.Dimension(817, 370));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabelTitulo.setText("REGISTRAR PLATO");
-        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
-
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText(" Categoría del Plato");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
-
-        cboTipoPlato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Plato del Dia", "Plato Especial" }));
-        cboTipoPlato.setBorder(null);
-        cboTipoPlato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboTipoPlatoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cboTipoPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 160, 30));
+        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitulo.setText("REGISTRAR PLATO DIA");
+        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
 
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 160, 30));
 
         txtDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 240, 50));
+        getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 260, 240, 50));
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -100,25 +90,37 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 90, 50));
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 140, 50));
 
-        lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblDescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        lblDescripcion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblDescripcion.setForeground(new java.awt.Color(153, 0, 0));
         lblDescripcion.setText("Descripción:");
-        getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
+        lblDescripcion.setOpaque(true);
+        getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, -1, -1));
 
-        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblNombre.setBackground(new java.awt.Color(255, 255, 255));
+        lblNombre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(153, 0, 0));
         lblNombre.setText("Nombre:");
+        lblNombre.setOpaque(true);
         getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
 
-        lblBebida.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblBebida.setBackground(new java.awt.Color(255, 255, 255));
+        lblBebida.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblBebida.setForeground(new java.awt.Color(153, 0, 0));
         lblBebida.setText("Bebida:");
+        lblBebida.setOpaque(true);
         getContentPane().add(lblBebida, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, -1, -1));
 
         txtBebida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(txtBebida, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 160, 30));
 
-        lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblCodigo.setBackground(new java.awt.Color(255, 255, 255));
+        lblCodigo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblCodigo.setForeground(new java.awt.Color(153, 0, 0));
         lblCodigo.setText("Codigo:");
+        lblCodigo.setOpaque(true);
         getContentPane().add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, -1, -1));
 
         txtCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -129,6 +131,8 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         });
         getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 110, 30));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         jButton2.setText("Volver");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +140,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 20));
 
         txtValor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtValor.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +148,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
                 txtValorActionPerformed(evt);
             }
         });
-        getContentPane().add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, 160, 30));
+        getContentPane().add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, 140, 30));
 
         txtEntrada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(txtEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 160, 30));
@@ -152,22 +156,33 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         txtPrincipio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(txtPrincipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 160, 30));
 
-        lblValor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblValor.setBackground(new java.awt.Color(255, 255, 255));
+        lblValor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblValor.setForeground(new java.awt.Color(153, 0, 0));
         lblValor.setText("Valor:");
-        getContentPane().add(lblValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, -1, -1));
+        lblValor.setOpaque(true);
+        getContentPane().add(lblValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, -1, -1));
 
+        lblEntrada.setBackground(new java.awt.Color(255, 255, 255));
         lblEntrada.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblEntrada.setForeground(new java.awt.Color(153, 0, 0));
         lblEntrada.setText("Entrada:");
+        lblEntrada.setOpaque(true);
         getContentPane().add(lblEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 70, -1, -1));
 
-        lblPrincipio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPrincipio.setBackground(new java.awt.Color(255, 255, 255));
+        lblPrincipio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblPrincipio.setForeground(new java.awt.Color(153, 0, 0));
         lblPrincipio.setText("Principio");
+        lblPrincipio.setOpaque(true);
         getContentPane().add(lblPrincipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
 
-        lblMenu.setBackground(new java.awt.Color(0, 0, 0));
-        lblMenu.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblMenu.setText("Menu:");
-        getContentPane().add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        lblMenu.setBackground(new java.awt.Color(255, 255, 255));
+        lblMenu.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblMenu.setForeground(new java.awt.Color(153, 0, 0));
+        lblMenu.setText("Menú:");
+        lblMenu.setOpaque(true);
+        getContentPane().add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         cboMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Plato del Dia", "Plato Especial" }));
         cboMenu.setBorder(null);
@@ -176,7 +191,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
                 cboMenuActionPerformed(evt);
             }
         });
-        getContentPane().add(cboMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 160, 30));
+        getContentPane().add(cboMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 180, 30));
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -185,19 +200,24 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 270, 100));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 270, 100));
 
         txtCarne.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(txtCarne, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 160, 30));
 
-        lblBebida1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblBebida1.setBackground(new java.awt.Color(255, 255, 255));
+        lblBebida1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblBebida1.setForeground(new java.awt.Color(153, 0, 0));
         lblBebida1.setText("Carne:");
+        lblBebida1.setOpaque(true);
         getContentPane().add(lblBebida1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
 
-        lblDia.setBackground(new java.awt.Color(0, 0, 0));
-        lblDia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblDia.setBackground(new java.awt.Color(255, 255, 255));
+        lblDia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblDia.setForeground(new java.awt.Color(153, 0, 0));
         lblDia.setText("Dia:");
-        getContentPane().add(lblDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+        lblDia.setOpaque(true);
+        getContentPane().add(lblDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         cboDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
         cboDia.setBorder(null);
@@ -206,33 +226,24 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
                 cboDiaActionPerformed(evt);
             }
         });
-        getContentPane().add(cboDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 160, 30));
+        getContentPane().add(cboDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 180, 30));
+
+        jLabel2.setBackground(new java.awt.Color(153, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setOpaque(true);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 870, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        GUIRegPlato ins = new GUIRegPlato();
+        //ins.setExtendedState(MAXIMIZED_BOTH);
+        ins.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void cboTipoPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoPlatoActionPerformed
-        if ((cboTipoPlato.getSelectedItem().toString().equalsIgnoreCase("Plato Especial")))
-            {
-                this.setVisible(false);
-                GUIRegPlato frame = new GUIRegPlato();
-                frame.setVisible(true);
-            }
-        if ((cboTipoPlato.getSelectedItem().toString().equalsIgnoreCase("Plato del Dia")))
-           {
-               this.setVisible(false);
-               GUIRegPlatoD frame = new GUIRegPlatoD();
-               frame.setVisible(true);
-           }
-        /*
-        GUIPrincipal frame = new GUIPrincipal();
-        GUIRegPlato frame2 = new GUIRegPlato();
-        frame2.getContentPane().add(frame);        // TODO add your handling code here:*/
-    }//GEN-LAST:event_cboTipoPlatoActionPerformed
 
     private void cboMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMenuActionPerformed
         // TODO add your handling code here:
@@ -277,48 +288,14 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboDiaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIRegPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIRegPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIRegPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIRegPlato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUIRegPlatoD().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cboDia;
     private javax.swing.JComboBox<String> cboMenu;
-    private javax.swing.JComboBox<String> cboTipoPlato;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
