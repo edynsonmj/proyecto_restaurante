@@ -248,23 +248,27 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
             && !((cboDia.getSelectedItem().toString()).equalsIgnoreCase("Seleccione"))) {
             IClienteAccess service = Factory.getInstance().getClienteService();
             clienteService servicioRestaurante = new clienteService(service);
-            MenuDia menuDia = new MenuDia(11);
+            MenuDia menuDia = new MenuDia(1);
             PlatoDia platoDia = new PlatoDia(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText()
                                              , DiaEnum.valueOf(cboDia.getSelectedItem().toString()),txtEntrada.getText(),txtPrincipio.getText(),txtCarne.getText()
-                                             , txtBebida.getText(),11);
+                                             , txtBebida.getText(),menuDia.getId());
             try{
-                String platoE = servicioRestaurante.savePlatoDia(platoDia);
-                JOptionPane.showMessageDialog(null, "plato agragado con exito");
-                txtCodigo.setText("");
-                txtNombre.setText("");
-                txtValor.setText("");
-                txtDescripcion.setText("");
-                txtBebida.setText("");
-                txtPrincipio.setText("");
-                txtEntrada.setText("");
-                txtCarne.setText("");
+                String platoD = servicioRestaurante.savePlatoDia(platoDia);
+                if (platoD.equals(platoDia.getNombre())){
+                    JOptionPane.showMessageDialog(null, "Se registro el plato exitosamente");
+                    txtCodigo.setText("");
+                    txtNombre.setText("");
+                    txtValor.setText("");
+                    txtDescripcion.setText("");
+                    txtBebida.setText("");
+                    txtPrincipio.setText("");
+                    txtEntrada.setText("");
+                    txtCarne.setText("");
+                }
+                
             }catch(Exception ex){
-                System.out.println("atencion no se save si agrego");
+                JOptionPane.showMessageDialog(null, "El plato ya esta registrado"+ex.getMessage());
+               // System.out.println("atencion no se save si agrego"+ex.getMessage());
         }
         }// TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed

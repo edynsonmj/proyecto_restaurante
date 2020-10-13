@@ -37,30 +37,36 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
 
     }
     private boolean findPlatoEspecial(int id){
+        boolean resultado;
         try{
             this.connect();
-            String sql = "SELECT PESP_NOMBRE FROM platoespecial where PESP_ID = ?";
+            String sql = "select pesp_nombre from platoespecial where PESP_ID = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet res= ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            resultado = rs.next();
             ps.close();
             this.disconnect();
-            return res.first();
-        }catch (Exception e){
+            return resultado;
+        }catch(SQLException ex){
+            System.out.println("revento excepcion encontrar plato especial_:"+ex.getMessage());
             return false;
         }
     }
     private boolean findPlatoDia(int id){
+        boolean resultado;
         try{
             this.connect();
-            String sql = "SELECT PDIA_NOMBRE FROM platodia where PDIA_ID = ?";
+            String sql = "select pdia_nombre from platodia where PDIA_ID = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet res= ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            resultado = rs.next();
             ps.close();
             this.disconnect();
-            return res.first();
-        }catch (Exception e){
+            return resultado;
+        }catch(SQLException ex){
+            System.out.println("revento excepcion encontrar plato_:"+ex.getMessage());
             return false;
         }
     }
@@ -131,6 +137,10 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     @Override
     public String savePlatoDia(PlatoDia instancia) {
         try{
+            if (findPlatoDia(instancia.getId()))
+            {
+                return "FALLO";
+            }
             //primero se establece la conexion
             this.connect(); //validar cuando la conexion no sea exitosa
             //se estructura la sentencia sql en un string
@@ -263,6 +273,11 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     @Override
     public String savePlatoEspecial(PlatoEspecial instancia) {
         try{
+            if (findPlatoEspecial(instancia.getId()))
+            {
+                return "FALLO";
+            }
+            System.out.println("entro");
             //primero se establece la conexion
             this.connect(); //validar cuando la conexion no sea exitosa
             //se estructura la sentencia sql en un string

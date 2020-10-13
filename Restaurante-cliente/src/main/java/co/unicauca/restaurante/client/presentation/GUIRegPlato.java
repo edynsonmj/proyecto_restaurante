@@ -172,17 +172,19 @@ public class GUIRegPlato extends javax.swing.JFrame {
         if (txtNombre.getText()!=null && txtDescripcion.getText()!=null && txtCodigo.getText()!=null && txtValor.getText()!=null) {
             IClienteAccess service = Factory.getInstance().getClienteService();
             clienteService servicioRestaurante = new clienteService(service);
-            MenuEspecial menuEspecial = new MenuEspecial(15);
-            PlatoEspecial platoEspecial = new PlatoEspecial(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText(),15);
+            MenuEspecial menuEspecial = new MenuEspecial(1);
+            PlatoEspecial platoEspecial = new PlatoEspecial(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText(),menuEspecial.getId());
             try{
                 String platoE = servicioRestaurante.savePlatoEspecial(platoEspecial);
+                if (platoE.equals(platoEspecial.getNombre())){
                 JOptionPane.showMessageDialog(null, "plato agragado con exito");
                 txtCodigo.setText("");
                 txtNombre.setText("");
                 txtValor.setText("");
                 txtDescripcion.setText("");
+                }
             }catch(Exception ex){
-                System.out.println("atencion no se save si agrego");
+                JOptionPane.showMessageDialog(null, "El plato ya esta registrado"+ex.getMessage());
              
         }
         }
