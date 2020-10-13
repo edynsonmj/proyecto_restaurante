@@ -13,6 +13,10 @@ import co.unicauca.restaurante.commons.domain.MenuDia;
 import co.unicauca.restaurante.commons.domain.MenuEspecial;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,13 +24,25 @@ import javax.swing.JOptionPane;
  * @author Camilo Gonzalez
  */
 public class GUIRegPlatoD extends javax.swing.JFrame {
-
     /**
      * Creates new form GUIRegPlato
      */
+    IClienteAccess service;
+    DefaultListModel modelListDia;
     public GUIRegPlatoD() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.modelListDia=new DefaultListModel();
+        jListPlatoDia.setModel(modelListDia);
+        this.service = Factory.getInstance().getClienteService();
+        
+        try {
+            // TODO add your handling code here:
+            listar();
+        } catch (Exception ex) {
+            Logger.getLogger(GUIListar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
@@ -56,12 +72,14 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         lblEntrada = new javax.swing.JLabel();
         lblPrincipio = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListPlatoDia = new javax.swing.JList<>();
         txtCarne = new javax.swing.JTextField();
         lblBebida1 = new javax.swing.JLabel();
         lblDia = new javax.swing.JLabel();
         cboDia = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        cboTipoPlato = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -176,12 +194,12 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         lblPrincipio.setOpaque(true);
         getContentPane().add(lblPrincipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jListPlatoDia.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jListPlatoDia);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 270, 100));
 
@@ -200,7 +218,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         lblDia.setForeground(new java.awt.Color(153, 0, 0));
         lblDia.setText("Dia:");
         lblDia.setOpaque(true);
-        getContentPane().add(lblDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        getContentPane().add(lblDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         cboDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
         cboDia.setBorder(null);
@@ -209,13 +227,29 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
                 cboDiaActionPerformed(evt);
             }
         });
-        getContentPane().add(cboDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 180, 30));
+        getContentPane().add(cboDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 180, 30));
 
         jLabel2.setBackground(new java.awt.Color(153, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 870, 70));
+
+        cboTipoPlato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Plato del Dia", "Plato Especial" }));
+        cboTipoPlato.setBorder(null);
+        cboTipoPlato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboTipoPlatoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cboTipoPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 170, 40));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel6.setText(" Categoría del Plato:");
+        jLabel6.setOpaque(true);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         jLabel3.setOpaque(true);
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 350));
@@ -224,9 +258,9 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        
         setVisible(false);
-        GUIRegPlato ins = new GUIRegPlato();
+        GUIMenuAdmin ins = new GUIMenuAdmin();
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -239,7 +273,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         if (txtNombre.getText()!=null && txtDescripcion.getText()!=null && txtCodigo.getText()!=null && txtValor.getText()!=null 
             && txtBebida.getText()!=null && txtPrincipio.getText()!=null && txtEntrada.getText()!=null && txtCarne.getText()!=null
             && !((cboDia.getSelectedItem().toString()).equalsIgnoreCase("Seleccione"))) {
-            IClienteAccess service = Factory.getInstance().getClienteService();
+            
             clienteService servicioRestaurante = new clienteService(service);
             MenuDia menuDia = new MenuDia(1);
             PlatoDia platoDia = new PlatoDia(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText()
@@ -257,6 +291,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
                     txtPrincipio.setText("");
                     txtEntrada.setText("");
                     txtCarne.setText("");
+                    listar();  
                 }
                 
             }catch(Exception ex){
@@ -274,16 +309,48 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboDiaActionPerformed
 
+    private void cboTipoPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoPlatoActionPerformed
+        if ((cboTipoPlato.getSelectedItem().toString().equalsIgnoreCase("Plato Especial")))
+        {
+            this.setVisible(false);
+            GUIRegPlato frame = new GUIRegPlato();
+            frame.setVisible(true);
+        }
+        if ((cboTipoPlato.getSelectedItem().toString().equalsIgnoreCase("Plato del Dia")))
+        {
+            this.setVisible(false);
+            GUIRegPlatoD frame = new GUIRegPlatoD();
+            frame.setVisible(true);
+        }
+        /*
+        GUIPrincipal frame = new GUIPrincipal();
+        GUIRegPlato frame2 = new GUIRegPlato();
+        frame2.getContentPane().add(frame);        // TODO add your handling code here:*/
+    }//GEN-LAST:event_cboTipoPlatoActionPerformed
+    public void listar() throws Exception{
+        clienteService servicioRestaurante = new clienteService(service);
+        int resId=1;
+        List<PlatoDia> lsDia=servicioRestaurante.listarMenuDia(resId);
+        modelListDia.clear();
+        for (PlatoDia ls : lsDia) {
+            modelListDia.addElement("ID: " + ls.getId() + " NOMBRE: " + ls.getNombre()
+                    + " DIA SEMANA: " + ls.getDiaSemana().name() + " DESCRIPCION: " + ls.getDescripcion()
+                    + " PRECIO: " + ls.getPrecio() + " ENTRADA: " + ls.getEntrada()
+                    + " PRINCIPIO" + ls.getPrincipio() + " CARNE: " + ls.getCarne() + " BEBIDA: " + ls.getBebida());
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cboDia;
+    private javax.swing.JComboBox<String> cboTipoPlato;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jListPlatoDia;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBebida;
     private javax.swing.JLabel lblBebida1;
