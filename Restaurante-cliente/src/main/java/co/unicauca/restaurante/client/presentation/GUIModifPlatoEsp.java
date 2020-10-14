@@ -104,8 +104,6 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
         jLabel1.setText("MOFICAR PLATO ESPECIAL");
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 60));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo Gonzalez\\Desktop\\background.jpg")); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 800, 360));
 
         jLabel3.setText("jLabel3");
