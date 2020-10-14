@@ -157,19 +157,15 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     @Override
     public String savePlatoDia(PlatoDia instancia) {
-        if(!(this.findPlatoDia(instancia.getId()))){
-            return "FALLO";
-        }
-        try{
-            if (findPlatoDia(instancia.getId()))
-            {
+        try {
+            if (findPlatoDia(instancia.getId())) {
                 return "FALLO";
             }
 
             System.out.println("entro");
 
             //primero se establece la conexion
-            this.connect(); 
+            this.connect();
             //se estructura la sentencia sql en un string
             String sql = "INSERT INTO platodia(PDIA_ID,MDIA_ID,PDIA_NOMBRE,PDIA_DESCRIPCION,PDIA_DIA,PDIA_ENTRADA,PDIA_PRINCIPIO,PDIA_BEBIDA,PDIA_CARNE,PDIA_PRECIO) VALUES (?,?,?,?,?,?,?,?,?,?)";
             //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
@@ -184,20 +180,19 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.setString(7, instancia.getPrincipio());
             pstmt.setString(8, instancia.getBebida());
             pstmt.setString(9, instancia.getCarne());
-            pstmt.setInt(10, (int)instancia.getPrecio());
+            pstmt.setInt(10, (int) instancia.getPrecio());
             //se ejecuta la sentencia sql
             pstmt.executeUpdate();
             //se cierra
             pstmt.close();
             //se termina la coneccion
             this.disconnect();
-            return instancia.getNombre();   
+            return instancia.getNombre();
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
             return "FALLO";
         }
         //lo ideal es retornor un id
-        
     }
     
     /**
@@ -313,12 +308,8 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     @Override
     public String savePlatoEspecial(PlatoEspecial instancia) {
-        if(!this.findPlatoEspecial(instancia.getId())){
-            return "FALLO";
-        }
-        try{
-            if (findPlatoEspecial(instancia.getId()))
-            {
+        try {
+            if (findPlatoEspecial(instancia.getId())) {
                 return "FALLO";
             }
             System.out.println("entro");
@@ -333,7 +324,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.setInt(2, instancia.getMenuEsp());
             pstmt.setString(3, instancia.getNombre());
             pstmt.setString(4, instancia.getDescripcion());
-            pstmt.setInt(5, (int)instancia.getPrecio());
+            pstmt.setInt(5, (int) instancia.getPrecio());
             //se ejecuta la sentencia sql
             pstmt.executeUpdate();
             //se cierra
