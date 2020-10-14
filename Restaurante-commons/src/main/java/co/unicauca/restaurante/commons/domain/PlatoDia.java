@@ -30,6 +30,8 @@ public class PlatoDia extends Plato{
      * una preparacion de tipo bebida
      */
     private String bebida;
+    
+    private int menuId;
 
     public PlatoDia() {}
     
@@ -44,14 +46,16 @@ public class PlatoDia extends Plato{
      * @param bebida
      * @param nombre el nombre que tendra el plato
      * @param precio el precio que tendra el plato
+     * @param menuId el id del menu al que pertenece
      */
-    public PlatoDia(int id, String nombre, double precio, String descripcion,DiaEnum dia,String entrada,String principio,String carne,String bebida) {
+    public PlatoDia(int id, String nombre, double precio, String descripcion,DiaEnum dia,String entrada,String principio,String carne,String bebida,int menuId) {
         super(id, nombre, precio, descripcion);
         this.diaSemana=dia;
         this.entrada=entrada;
         this.principio=principio;
         this.carne=carne;
         this.bebida=bebida;
+        this.menuId=menuId;
     }
     
 
@@ -95,5 +99,11 @@ public class PlatoDia extends Plato{
     public void setBebida(String bebida) {
         this.bebida = bebida;
     }
-    
+    public int getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(int menuId) {
+        this.menuId=menuId;
+    }
 }
