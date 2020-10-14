@@ -152,18 +152,21 @@ public class GUIListar extends javax.swing.JFrame {
         int resId=1;
         List<PlatoDia> lsDia=servicioRestaurante.listarMenuDia(resId);
         List<PlatoEspecial> lsEspecial=servicioRestaurante.listarMenuEspecial(resId);
-        modelListDia.clear();
-        modelListEspecial.clear();
-        for (PlatoDia ls : lsDia) {
+        if (lsDia.size()>0) {
+            modelListDia.removeAllElements();
+            for (PlatoDia ls : lsDia) {
             modelListDia.addElement("ID: " + ls.getId() + " NOMBRE: " + ls.getNombre()
                     + " DIA SEMANA: " + ls.getDiaSemana().name() + " DESCRIPCION: " + ls.getDescripcion()
                     + " PRECIO: " + ls.getPrecio() + " ENTRADA: " + ls.getEntrada()
                     + " PRINCIPIO" + ls.getPrincipio() + " CARNE: " + ls.getCarne() + " BEBIDA: " + ls.getBebida());
+            }
         }
-
-        for (PlatoEspecial lse : lsEspecial) {
-            modelListEspecial.addElement("ID: " + lse.getId() + " NOMBRE: " + lse.getNombre()
-                    + " DESCRIPCION: " + lse.getDescripcion() + " PRECIO: " + lse.getPrecio());
+        if (lsEspecial.size()>0) {
+            modelListEspecial.removeAllElements();
+            for (PlatoEspecial lse : lsEspecial) {
+                modelListEspecial.addElement("ID: " + lse.getId() + " NOMBRE: " + lse.getNombre()
+                        + " DESCRIPCION: " + lse.getDescripcion() + " PRECIO: " + lse.getPrecio());
+            }
         }
     }
   
