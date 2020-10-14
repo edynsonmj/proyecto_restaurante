@@ -158,19 +158,17 @@ public class RestauranteServerSocket implements Runnable{
         // Convertir la solicitud platoD objeto Protocol para poderlo procesar
         Gson gson = new Gson();
         Protocol protocolRequest = gson.fromJson(requestJson, Protocol.class);
-        Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.INFO, "procesar solicitud");
         //saca de request la persona que ha hecho la solicitud, en nuestro caso administrador o comprador
         switch (protocolRequest.getResource()) {
             case "administrador":
-                Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.SEVERE, "solicitud administrador recibida");
                 //se berifica el tipo de solicitud y se llama al metodo responsable
                 //post informacion para guardar
                 //palabra clave post
                 if (protocolRequest.getAction().equals("postPlatoDia")) {
                     // Agregar un elemento por parte de administrador  
                     administradorRegistrarPlatoDia(protocolRequest);
-
                 }
+                
                 //funciona exactamente igual platoD postPlatoDia
                 if(protocolRequest.getAction().equals("postPlatoEspecial")){
                     administradorRegistrarPlatoEspecial(protocolRequest);               
@@ -183,6 +181,7 @@ public class RestauranteServerSocket implements Runnable{
                 if(protocolRequest.getAction().equals("updateEspecial")){
                     administradorUpdateEspecial(protocolRequest);
                 }
+                
                 if(protocolRequest.getAction().equals("updatePlatoDia")){
                     administradorUpdatePlatoDia(protocolRequest);
                 }
@@ -211,10 +210,12 @@ public class RestauranteServerSocket implements Runnable{
                     this.listarMenuEspecial(protocolRequest);
                 }
                 break;
-                
-        }
+            }
     }
-    
+    /**
+     * recibe un protocolo con la informacion necesarioa para modificar el plato del dia en la base de datos.
+     * @param protocol protocolo en formato Json
+     */
     private void administradorUpdatePlatoDia(Protocol protocol){
         String clave = protocol.getParameters().get(0).getValue();
         String atributo = protocol.getParameters().get(1).getValue();
@@ -224,7 +225,10 @@ public class RestauranteServerSocket implements Runnable{
         output.println(response);
         Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.SEVERE, "response: "+response+" clave:"+clave+" atributo:"+atributo+" valor: "+valor);
     }
-    
+    /**
+     * recibe un protocolo con la informacion necesarioa para modificar el plato especial en la base de datos.
+     * @param protocol 
+     */
     private void administradorUpdateEspecial(Protocol protocol){
         String clave = protocol.getParameters().get(0).getValue();
         String atributo = protocol.getParameters().get(1).getValue();
@@ -235,6 +239,7 @@ public class RestauranteServerSocket implements Runnable{
         Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.SEVERE, "response: "+response+" clave:"+clave+" atributo:"+atributo+" valor: "+valor);
     }
     
+
     /**
      * Recibe la peticion del cliente, manda el id del restaurante
      * y manda esta peticion procesada al repositorio del servidor

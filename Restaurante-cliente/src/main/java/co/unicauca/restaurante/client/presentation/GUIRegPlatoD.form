@@ -472,6 +472,8 @@
         </Constraint>
       </Constraints>
     </Component>
+<<<<<<< HEAD
+=======
     <Component class="javax.swing.JComboBox" name="cboTipoPlato">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -527,5 +529,6 @@
         </Constraint>
       </Constraints>
     </Component>
+>>>>>>> 06288f53e5b29e34994a235dd348795dd8ad52cf
   </SubComponents>
 </Form>

@@ -148,6 +148,8 @@
         </Constraint>
       </Constraints>
     </Component>
+<<<<<<< HEAD
+=======
     <Component class="javax.swing.JLabel" name="jLabelFondo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -167,5 +169,6 @@
         </Constraint>
       </Constraints>
     </Component>
+>>>>>>> 06288f53e5b29e34994a235dd348795dd8ad52cf
   </SubComponents>
 </Form>

@@ -37,15 +37,31 @@ public class clienteService {
     public String saveRestaurante(Restaurante res) throws Exception{
         return service.saveRestaurante(res);
     }
-
-    public String updatePlatoEspecial(int clave, String atributo, String valor) throws Exception{
+    /**
+     * el cliente solicita la modificacion de un parametro en la base de datos para plato especial
+     * @param clave identificador del plato
+     * @param atributo columna a ser modificada
+     * @param valor nuevo valor a almacenar
+     * @return true si la operacion es exitosa, false si erra
+     * @throws Exception 
+     */
+    public boolean updatePlatoEspecial(int clave, String atributo, String valor) throws Exception{
         //validaciones
         return service.updatePlatoEspecial(clave, atributo, valor);
     }
-    public String updatePlatoDia(int clave, String atributo, String valor) throws Exception{
+    /**
+     * el cliente solicita la modificacion de un parametro en la base de datos para plato dia
+     * @param clave identificador del plato
+     * @param atributo columna a ser modificada
+     * @param valor nuevo valor a almacenar
+     * @return true si la operacion es exitosa, false si erra
+     * @throws Exception 
+     */
+    public boolean updatePlatoDia(int clave, String atributo, String valor) throws Exception{
         //validaciones
         return service.updatePlatoDia(clave, atributo, valor);
     }
+    
     public List<PlatoDia> listarMenuDia(int resId)throws Exception{
         return service.listarMenuDia(resId);
     }
@@ -54,8 +70,8 @@ public class clienteService {
     }
     public String savePlatoEspecial(PlatoEspecial plato) throws Exception{
         return service.savePlatoEspecial(plato);
-
     }
+    
     //aqui los otros servicios, eliminar, modificar listar etc
     public boolean deletePlatoDia(int idPlaD) throws Exception{
         return service.deletePlatoDia(idPlaD);

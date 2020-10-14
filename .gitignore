@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 /Restaurante-servidor/target/
 /Restaurante-cliente/target/
 /Restaurante-commons/target/
 /Restaurante-cliente/nbproject/
+=======
+/Restaurante-commons/target/
+/Restaurante-servidor/target/
+/Restaurante-cliente/target/
+>>>>>>> 8f31a6d533acfc1d91f98e8a8d2b70d652785848

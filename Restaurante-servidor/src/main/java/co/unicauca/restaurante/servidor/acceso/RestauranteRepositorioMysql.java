@@ -32,6 +32,11 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     public RestauranteRepositorioMysql(){
 
     }
+    /**
+     * busca un plato especial en la base de datos.
+     * @param id identificador del plato
+     * @return true si encontro el plato, false de lo contrario
+     */
     private boolean findPlatoEspecial(int id){
         boolean resultado;
         try{
@@ -49,6 +54,11 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             return false;
         }
     }
+    /**
+     * busca un plato del dia en la base de datos
+     * @param id identificador del plato
+     * @return true si lo encuentra, false de lo contrario.
+     */
     private boolean findPlatoDia(int id){
         boolean resultado;
         try{
@@ -66,18 +76,23 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             return false;
         }
     }
+    /**
+     * actualiza un item de plato del dia en la base de datos.
+     * @param clave identificador del plato
+     * @param atributo columna a modificar en la base de datos.
+     * @param valor nuevo valor para la columna.
+     * @return retorna "FALLO" si erra el metodo, identificador de lo contrario.
+     */
     @Override
     public String updatePlatoDia(String clave, String atributo, String valor){
-        if(findPlatoDia(Integer.parseInt(clave))){
-            System.out.println("EXISTE EL ELEMENTO");
-        }else{
-            System.out.println("SE CAGO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        if(!this.findPlatoDia(Integer.parseInt(clave))){
             return "FALLO";
         }
         try{
             this.connect();
             //String sql = "UPDATE platoespecial set "+atributo+" = "+valor+" WHERE PESP_NOMBRE = "+clave;
             String sql = "UPDATE platodia SET "+atributo+" = ? WHERE PDIA_ID = ?";
+            System.out.println("SENTENCIA SQL UPDATE PLATO DIA: "+sql);
             PreparedStatement pstmt = conn.prepareStatement(sql);
             if(atributo.equals("PDIA_PRECIO")){
                 int valorNum = Integer.parseInt(valor);
@@ -96,17 +111,22 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return clave;
     }
+    /**
+     * actualiza un item plato especial en la base de datos
+     * @param clave identificador del plato
+     * @param atributo columna a modificarse en la base de datos.
+     * @param valor nuevo valor para la celda
+     * @return retorna "FALLO" si el metodo erra
+     */
     @Override
     public String updatePlatoEspecial(String clave, String atributo, String valor){
-        if(findPlatoEspecial(Integer.parseInt(clave))){
-            System.out.println("EXISTE EL ELEMENTO");
-        }else{
-            System.out.println("SE CAGO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        if(!this.findPlatoEspecial(Integer.parseInt(clave))){
             return "FALLO";
         }
         try{
             this.connect();
             String sql = "UPDATE platoespecial SET "+atributo+" = ? WHERE PESP_ID = ?";
+            System.out.println("SENTENCIA SQL UPDATE PLATO ESPECIAL: "+sql);
             PreparedStatement pstmt = conn.prepareStatement(sql);
             if(atributo.equals("PESP_PRECIO")){
                 int valorNum = Integer.parseInt(valor);
@@ -123,7 +143,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
         }
-        return clave;
+        return "";
     }
     /**
      * cumunicacion con la base de datos para guardar un platodel dia
@@ -132,12 +152,17 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     @Override
     public String savePlatoDia(PlatoDia instancia) {
+        if(!(this.findPlatoDia(instancia.getId()))){
+            return "FALLO";
+        }
         try{
             if (findPlatoDia(instancia.getId()))
             {
                 return "FALLO";
             }
+
             System.out.println("entro");
+
             //primero se establece la conexion
             this.connect(); 
             //se estructura la sentencia sql en un string
@@ -169,42 +194,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         //lo ideal es retornor un id
         
     }
-    /**
-     * comunicacion con la base de datos para guardar un plato Especial
-     * @param instancia un plato Especial que se desea registrar
-     * @return 
-     */
-    @Override
-    public String savePlatoEspecial(PlatoEspecial instancia) {
-        try{
-            if (findPlatoEspecial(instancia.getId()))
-            {
-                return "FALLO";
-            }
-            //primero se establece la conexion
-            this.connect(); 
-            //se estructura la sentencia sql en un string
-            String sql = "INSERT INTO platoespecial(PESP_ID,MESP_ID,PESP_NOMBRE,PESP_DESCRIPCION,PESP_PRECIO) VALUES (?,?,?,?,?)";
-            //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            //se registra cada elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato
-            pstmt.setInt(1, instancia.getId());
-            pstmt.setInt(2, instancia.getMenuEsp());
-            pstmt.setString(3, instancia.getNombre());
-            pstmt.setString(4, instancia.getDescripcion());
-            pstmt.setInt(5, (int)instancia.getPrecio());
-            //se ejecuta la sentencia sql
-            pstmt.executeUpdate();
-            //se cierra
-            pstmt.close();
-            //se termina la coneccion
-            this.disconnect();
-            return instancia.getNombre();
-        } catch (SQLException ex) {
-            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
-            return null;
-        }
-    }
     
     /**
      * cumunicacion con la base de datos para eliminar un plato del dia
@@ -212,6 +201,9 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     @Override
     public boolean deletePlatoDia(int idPlaD) {
+        if(!(this.findPlatoDia(idPlaD))){
+            return false;
+        }
         try{
             //primero se establece la conexion
             this.connect(); //validar cuando la conexion no sea exitosa
@@ -240,6 +232,9 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     @Override
     public boolean deletePlatoEspecial(int idPlaE) {
+        if(!(this.findPlatoEspecial(idPlaE))){
+            return false;
+        }
         try{
             //primero se establece la conexion
             this.connect(); //validar cuando la conexion no sea exitosa
@@ -298,6 +293,47 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.FINER, "Error al cerrar Connection", ex);
         }
+    }
+
+    /**
+     * 
+     * @param instancia
+     * @return 
+     */
+    @Override
+    public String savePlatoEspecial(PlatoEspecial instancia) {
+        if(!this.findPlatoEspecial(instancia.getId())){
+            return "FALLO";
+        }
+        try{
+            if (findPlatoEspecial(instancia.getId()))
+            {
+                return "FALLO";
+            }
+            System.out.println("entro");
+            //primero se establece la conexion
+            this.connect(); //validar cuando la conexion no sea exitosa
+            //se estructura la sentencia sql en un string
+            String sql = "INSERT INTO platoespecial(PESP_ID,MESP_ID,PESP_NOMBRE,PESP_DESCRIPCION,PESP_PRECIO) VALUES (?,?,?,?,?)";
+            //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            //se registra cada elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato
+            pstmt.setInt(1, instancia.getId());
+            pstmt.setInt(2, instancia.getMenuEsp());
+            pstmt.setString(3, instancia.getNombre());
+            pstmt.setString(4, instancia.getDescripcion());
+            pstmt.setInt(5, (int)instancia.getPrecio());
+            //se ejecuta la sentencia sql
+            pstmt.executeUpdate();
+            //se cierra
+            pstmt.close();
+            //se termina la coneccion
+            this.disconnect();
+        } catch (SQLException ex) {
+            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
+        }
+        //lo ideal es retornor un id
+        return instancia.getNombre();
     }
     /**
      * guarda un restaurante en la base de datos

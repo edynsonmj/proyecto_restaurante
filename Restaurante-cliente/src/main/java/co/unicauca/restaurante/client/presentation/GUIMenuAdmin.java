@@ -38,7 +38,6 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         jButtonListar = new javax.swing.JButton();
         jButtonVolver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 450));
@@ -113,7 +112,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         jLabel2.setText("MENÚ DE ADMINISTRADOR");
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 340));
+
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -175,6 +174,5 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

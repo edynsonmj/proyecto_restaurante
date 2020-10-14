@@ -77,9 +77,11 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         lblDia = new javax.swing.JLabel();
         cboDia = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+
         cboTipoPlato = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 450));
@@ -244,6 +246,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 870, 70));
 
+
         cboTipoPlato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Plato del Dia", "Plato Especial" }));
         cboTipoPlato.setBorder(null);
         cboTipoPlato.addActionListener(new java.awt.event.ActionListener() {
@@ -262,6 +265,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
 
         jLabel3.setOpaque(true);
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 350));
+
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -367,8 +371,10 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboTipoPlato;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
+
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
+
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JList<String> jListPlatoDia;
     private javax.swing.JScrollPane jScrollPane1;
