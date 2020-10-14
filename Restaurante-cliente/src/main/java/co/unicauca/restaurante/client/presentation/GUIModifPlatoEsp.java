@@ -213,7 +213,6 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
                 return;
             }
         }
-        
         clienteService servicioRestaurante = new clienteService(service);
         try {
             respuesta = servicioRestaurante.updatePlatoEspecial(id, atributo, valor);
