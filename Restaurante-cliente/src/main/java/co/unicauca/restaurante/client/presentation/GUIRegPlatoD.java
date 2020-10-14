@@ -291,6 +291,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
             try{
                 String platoD = servicioRestaurante.savePlatoDia(platoDia);
                 if (platoD.equals(platoDia.getNombre())){
+                    System.out.println(platoD);
                     JOptionPane.showMessageDialog(null, "Se registro el plato exitosamente");
                     txtCodigo.setText("");
                     txtNombre.setText("");
