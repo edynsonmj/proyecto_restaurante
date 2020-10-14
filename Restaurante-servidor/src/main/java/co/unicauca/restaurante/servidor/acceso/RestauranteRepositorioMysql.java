@@ -148,7 +148,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
         }
-        return "";
+        return clave;
     }
     /**
      * cumunicacion con la base de datos para guardar un platodel dia
@@ -158,7 +158,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     @Override
     public String savePlatoDia(PlatoDia instancia) {
         try{
-            if (!findPlatoDia(instancia.getId()))
+            if (findPlatoDia(instancia.getId()))
             {
                 return "FALLO";
             }
@@ -188,13 +188,12 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.close();
             //se termina la coneccion
             this.disconnect();
-            return instancia.getNombre();   
+              
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
-            return "FALLO";
+            //return "FALLO";
         }
-        //lo ideal es retornor un id
-        
+        return instancia.getNombre(); 
     }
     
     /**

@@ -21,21 +21,22 @@ import javax.swing.DefaultListModel;
  */
 public class GUIListar extends javax.swing.JFrame {
     
-    IClienteAccess service;
+    clienteService servicioRestaurante;
     
     DefaultListModel modelListDia;
     DefaultListModel modelListEspecial;
     /**
      * Creates new form GUIListar
+     * @param servicioRestaurante
      */
-    public GUIListar(){
+    public GUIListar(clienteService servicioRestaurante){
         initComponents();
         this.setLocationRelativeTo(null);
         this.modelListDia=new DefaultListModel();
         this.modelListEspecial=new DefaultListModel();
         ListDia.setModel(modelListDia);
         ListEspecial.setModel(modelListEspecial);
-        this.service = Factory.getInstance().getClienteService();
+        this.servicioRestaurante=servicioRestaurante;
     }
 
     /**
@@ -128,7 +129,7 @@ public class GUIListar extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIMenuAdmin ins = new GUIMenuAdmin();
+        GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -148,7 +149,6 @@ public class GUIListar extends javax.swing.JFrame {
      * @throws Exception 
      */
     public void listar() throws Exception {
-        clienteService servicioRestaurante = new clienteService(service);
         int resId = 1;
         List<PlatoDia> lsDia = servicioRestaurante.listarMenuDia(resId);
         List<PlatoEspecial> lsEspecial = servicioRestaurante.listarMenuEspecial(resId);

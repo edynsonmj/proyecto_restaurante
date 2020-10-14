@@ -44,7 +44,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         
         String requestJson = crearRestauranteJson(res);
         if((this.procesarConexion(requestJson)).equals("FALLO")){
-            return null;
+            return "FALLO";
         }
         return res.getNombre();
     }
@@ -117,7 +117,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         //devuelve un string en formato Json que lo que se enviara
         String requestJson = crearPlatoDiaJson(instancia);
         if((this.procesarConexion(requestJson)).equals("FALLO")){
-            return null;
+            return "FALLO";
         }
         return instancia.getNombre();
     }
@@ -248,7 +248,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         //devuelve un string en formato Json que lo que se enviara
         String requestJson = crearPlatoEspecialJson(instancia);
         if((this.procesarConexion(requestJson).equals("FALLO"))){
-            return null;
+            return "FALLO";
         }
         return instancia.getNombre();
 

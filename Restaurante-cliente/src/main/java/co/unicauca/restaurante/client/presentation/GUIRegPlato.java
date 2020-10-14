@@ -4,14 +4,8 @@
  * and open the template in the editor.
  */
 package co.unicauca.restaurante.client.presentation;
-import co.unicauca.restaurante.client.access.Factory;
-import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
-import co.unicauca.restaurante.commons.domain.DiaEnum;
-import co.unicauca.restaurante.commons.domain.MenuDia;
 import co.unicauca.restaurante.commons.domain.MenuEspecial;
-import co.unicauca.restaurante.commons.domain.Restaurante;
-import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,17 +19,19 @@ import javax.swing.JOptionPane;
  * @author Camilo Gonzalez
  */
 public class GUIRegPlato extends javax.swing.JFrame {
+    
+    clienteService servicioRestaurante;
+    DefaultListModel modelListEspecial;
      /**
      * Creates new form GUIRegPlato
+     * @param servicioRestaurante
      */
-    IClienteAccess service;
-    DefaultListModel modelListEspecial;
-    public GUIRegPlato() {
+    public GUIRegPlato(clienteService servicioRestaurante) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.modelListEspecial=new DefaultListModel();
         jListPlatoEspecial.setModel(modelListEspecial);
-        this.service = Factory.getInstance().getClienteService();
+        this.servicioRestaurante=servicioRestaurante;
         try {
             // TODO add your handling code here:
             listar();
@@ -210,7 +206,7 @@ public class GUIRegPlato extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIMenuAdmin ins = new GUIMenuAdmin();
+        GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -219,13 +215,13 @@ public class GUIRegPlato extends javax.swing.JFrame {
         if ((cboTipoPlato.getSelectedItem().toString().equalsIgnoreCase("Plato Especial")))
             {
                 this.setVisible(false);
-                GUIRegPlato frame = new GUIRegPlato();
+                GUIRegPlato frame = new GUIRegPlato(servicioRestaurante);
                 frame.setVisible(true);
             }
         if ((cboTipoPlato.getSelectedItem().toString().equalsIgnoreCase("Plato del Dia")))
            {
                this.setVisible(false);
-               GUIRegPlatoD frame = new GUIRegPlatoD();
+               GUIRegPlatoD frame = new GUIRegPlatoD(servicioRestaurante);
                frame.setVisible(true);
            }
         /*
@@ -236,13 +232,12 @@ public class GUIRegPlato extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         if (txtNombre.getText() != null && txtDescripcion.getText() != null && txtCodigo.getText() != null && txtValor.getText() != null) {
-            clienteService servicioRestaurante = new clienteService(service);
             MenuEspecial menuEspecial = new MenuEspecial(15);
             PlatoEspecial platoEspecial = new PlatoEspecial(Integer.valueOf(txtCodigo.getText()), txtNombre.getText(), Integer.valueOf(txtValor.getText()), txtDescripcion.getText(), menuEspecial.getId());
             try {
                 String platoE = servicioRestaurante.savePlatoEspecial(platoEspecial);
-                if (platoE.equals(platoEspecial.getNombre())) {
-                    JOptionPane.showMessageDialog(null, "plato agragado con exito");
+                if (!platoE.equals("FALLO")) {
+                    JOptionPane.showMessageDialog(null, "plato agregado con exito");
                     txtCodigo.setText("");
                     txtNombre.setText("");
                     txtValor.setText("");
@@ -277,8 +272,7 @@ public class GUIRegPlato extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume(); 
     }//GEN-LAST:event_txtValorKeyTyped
-    public void listar() throws Exception{
-        clienteService servicioRestaurante = new clienteService(service);
+    private void listar() throws Exception{
         int resId=1;
         List<PlatoEspecial> lsEspecial=servicioRestaurante.listarMenuEspecial(resId);
         modelListEspecial.clear();

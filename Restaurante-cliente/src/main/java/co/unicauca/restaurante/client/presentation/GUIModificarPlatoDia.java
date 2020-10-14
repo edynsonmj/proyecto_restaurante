@@ -5,8 +5,6 @@
  */
 package co.unicauca.restaurante.client.presentation;
 
-import co.unicauca.restaurante.client.access.Factory;
-import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.infra.Utilities;
@@ -21,21 +19,21 @@ import javax.swing.JOptionPane;
  * @author Camilo Gonzalez
  */
 public class GUIModificarPlatoDia extends javax.swing.JFrame {
-
+    
+    clienteService servicioRestaurante;
     DefaultListModel modelListEspecial;
-    IClienteAccess service;
     /**
      * Creates new form GUIModificarPlato
+     * @param servicioRestaurante
      */
-    public GUIModificarPlatoDia() {
+    public GUIModificarPlatoDia(clienteService servicioRestaurante) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.btnActualizar.setEnabled(false);
         
         this.modelListEspecial=new DefaultListModel();
         this.jListaPlato.setModel(modelListEspecial);
-        
-        service = Factory.getInstance().getClienteService();
+        this.servicioRestaurante=servicioRestaurante;
         
         try {
             // TODO add your handling code here:
@@ -171,7 +169,7 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
          setVisible(false);
-        GUIMenuModificar ins = new GUIMenuModificar ();
+        GUIMenuModificar ins = new GUIMenuModificar (servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
@@ -219,13 +217,12 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
                 return;
             }
         }
-        clienteService servicioRestaurante = new clienteService(service);
         try {
             respuesta = servicioRestaurante.updatePlatoDia(id, atributo, valor);
-            this.listar();
             if(!respuesta){
                 JOptionPane.showMessageDialog(null, "verifique los datos, ITEM NO ENCONTRADO");
             }
+            this.listar();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "ha fallado el servicio, intentelo de nuevo");
             Logger.getLogger(GUIModificarPlatoDia.class.getName()).log(Level.SEVERE, null, ex);
@@ -243,8 +240,7 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
      * lista en la interfaz una base de datos
      * @throws Exception 
      */
-    public void listar() throws Exception{
-        clienteService servicioRestaurante = new clienteService(service);
+    private void listar() throws Exception{
         int resId=1;
         List<PlatoDia> lista = servicioRestaurante.listarMenuDia(resId);
         modelListEspecial.clear();

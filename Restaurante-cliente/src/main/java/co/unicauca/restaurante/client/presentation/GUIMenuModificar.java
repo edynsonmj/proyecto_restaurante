@@ -5,18 +5,23 @@
  */
 package co.unicauca.restaurante.client.presentation;
 
+import co.unicauca.restaurante.client.domain.clienteService;
+
 /**
  *
  * @author Camilo Gonzalez
  */
 public class GUIMenuModificar extends javax.swing.JFrame {
-
+    
+    clienteService servicioRestaurante;
     /**
      * Creates new form MenuModificar
+     * @param servicioRestaurante
      */
-    public GUIMenuModificar() {
+    public GUIMenuModificar(clienteService servicioRestaurante) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.servicioRestaurante=servicioRestaurante;
     }
 
     /**
@@ -96,7 +101,7 @@ public class GUIMenuModificar extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIModificarPlatoDia ins = new GUIModificarPlatoDia();
+        GUIModificarPlatoDia ins = new GUIModificarPlatoDia(servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -104,7 +109,7 @@ public class GUIMenuModificar extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIModifPlatoEsp ins = new GUIModifPlatoEsp();
+        GUIModifPlatoEsp ins = new GUIModifPlatoEsp(servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -112,7 +117,7 @@ public class GUIMenuModificar extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIMenuAdmin ins = new GUIMenuAdmin();
+        GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
