@@ -154,7 +154,6 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
         jLabel1.setText("MOFICAR PLATO ESPECIAL");
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 60));
-
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, -1, -1));
 
@@ -214,8 +213,6 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
                 return;
             }
         }
-        
-        //service = Factory.getInstance().getClienteService();
         clienteService servicioRestaurante = new clienteService(service);
         try {
             respuesta = servicioRestaurante.updatePlatoEspecial(id, atributo, valor);

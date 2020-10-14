@@ -148,6 +148,11 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
                 txtCodigoActionPerformed(evt);
             }
         });
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 110, 30));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
@@ -165,6 +170,11 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         txtValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtValorActionPerformed(evt);
+            }
+        });
+        txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtValorKeyTyped(evt);
             }
         });
         getContentPane().add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, 140, 30));
@@ -286,6 +296,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
             try{
                 String platoD = servicioRestaurante.savePlatoDia(platoDia);
                 if (platoD.equals(platoDia.getNombre())){
+                    System.out.println(platoD);
                     JOptionPane.showMessageDialog(null, "Se registro el plato exitosamente");
                     txtCodigo.setText("");
                     txtNombre.setText("");
@@ -331,6 +342,16 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         GUIRegPlato frame2 = new GUIRegPlato();
         frame2.getContentPane().add(frame);        // TODO add your handling code here:*/
     }//GEN-LAST:event_cboTipoPlatoActionPerformed
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_txtValorKeyTyped
     public void listar() throws Exception{
         clienteService servicioRestaurante = new clienteService(service);
         int resId=1;

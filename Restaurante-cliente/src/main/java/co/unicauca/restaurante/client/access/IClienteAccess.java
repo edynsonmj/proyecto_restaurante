@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * entidad abstracta del los servicios que el cliente puede solicitar al servidor
  * @author EdynsonMJ
+ * @author Jhonny Rosero
  */
 public interface IClienteAccess {
     //no confundirlos con guardar en la base de datos, estas son solicitudes al servidor
@@ -20,6 +21,7 @@ public interface IClienteAccess {
     public String savePlatoDia(PlatoDia instancia) throws Exception;
     public String savePlatoEspecial(PlatoEspecial plato) throws Exception;
     public String saveRestaurante(Restaurante res) throws Exception;
+
     /**
      * el cliente solicita la modificacion de un parametro en la base de datos para plato especial
      * @param clave identificador del plato
@@ -38,9 +40,10 @@ public interface IClienteAccess {
      * @throws Exception 
      */
     public boolean updatePlatoDia(int clave, String atributo, String valor)throws Exception;
+    //actualizar
     //eliminar
-    public boolean deletePlatoDia(int idPlaD) throws Exception;
-    public boolean deletePlatoEspecial(int idPlaE) throws Exception;
+    public String deletePlatoDia(int idPlaD) throws Exception;
+    public String deletePlatoEspecial(int idPlaE) throws Exception;
     //modificar
     //listar
     

@@ -219,7 +219,6 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
                 return;
             }
         }
-        
         clienteService servicioRestaurante = new clienteService(service);
         try {
             respuesta = servicioRestaurante.updatePlatoDia(id, atributo, valor);
