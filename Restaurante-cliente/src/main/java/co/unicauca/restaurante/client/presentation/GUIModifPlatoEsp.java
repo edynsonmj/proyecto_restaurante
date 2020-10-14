@@ -216,10 +216,11 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
         clienteService servicioRestaurante = new clienteService(service);
         try {
             respuesta = servicioRestaurante.updatePlatoEspecial(id, atributo, valor);
-            this.listar();
+            
             if(!respuesta){
                 JOptionPane.showMessageDialog(null, "por favor verifique los valores, no se encuentra el item");
             }
+            this.listar();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "ha fallado la peticion, intentelo nuevamente");
             Logger.getLogger(GUIModificarPlatoDia.class.getName()).log(Level.SEVERE, null, ex);

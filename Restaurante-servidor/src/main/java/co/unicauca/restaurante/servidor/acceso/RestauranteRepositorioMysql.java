@@ -148,7 +148,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
         }
-        return "";
+        return clave;
     }
     /**
      * cumunicacion con la base de datos para guardar un platodel dia

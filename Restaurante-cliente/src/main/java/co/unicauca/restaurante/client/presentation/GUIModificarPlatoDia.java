@@ -222,10 +222,10 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
         clienteService servicioRestaurante = new clienteService(service);
         try {
             respuesta = servicioRestaurante.updatePlatoDia(id, atributo, valor);
-            this.listar();
             if(!respuesta){
                 JOptionPane.showMessageDialog(null, "verifique los datos, ITEM NO ENCONTRADO");
             }
+            this.listar();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "ha fallado el servicio, intentelo de nuevo");
             Logger.getLogger(GUIModificarPlatoDia.class.getName()).log(Level.SEVERE, null, ex);
