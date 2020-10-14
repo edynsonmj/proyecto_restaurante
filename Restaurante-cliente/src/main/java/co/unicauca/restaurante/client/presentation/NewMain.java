@@ -8,10 +8,10 @@ package co.unicauca.restaurante.client.presentation;
 import co.unicauca.restaurante.client.access.Factory;
 import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
+import java.util.List;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
-import co.unicauca.restaurante.commons.domain.Restaurante;
-import java.util.List;
+
 
 /**
  * esta clase debe ejecutar las interfaces con lsa que interactua el cliente
@@ -28,16 +28,9 @@ public class NewMain {
         //este solo es el registro de un restaurante
         IClienteAccess service = Factory.getInstance().getClienteService();
         clienteService servicioRestaurante = new clienteService(service);
-
-        /*
-        Restaurante res = new Restaurante("primero",1);
-        try{
-            String resposse = servicioRestaurante.saveRestaurante(res);
-            System.out.println("agregado restaurante con exito");
-        }catch(Exception ex){
-            System.out.println("atencion no se save si agrego restaurante");
-        }*/
-        List<PlatoDia> lista;
+  
+        //servicioRestaurante.updatePlatoEspecial(1, "PESP_NOMBRE", "nombre");
+        /*List<PlatoDia> lista;
         int resId=1;
         try {
             lista=servicioRestaurante.listarMenuDia(resId);
@@ -68,16 +61,14 @@ public class NewMain {
         }catch (Exception ex) {
             System.out.println("atencion no se listo Menu especial");
         }
+        */
+        int idPlaD = 1;
         
-        int idPlaD = 90;
-        try{
             if (servicioRestaurante.deletePlatoDia(idPlaD)) {
                 System.out.println("plato eliminado con exito");
             }
-        }catch(Exception ex){
-            System.out.println("no se pudo eliminar el plato");
-        }
-        int idPlaE = 340;
+     
+        int idPlaE = 1;
         try{
             if (servicioRestaurante.deletePlatoEspecial(idPlaE)) {
                 System.out.println("plato eliminado con exito");

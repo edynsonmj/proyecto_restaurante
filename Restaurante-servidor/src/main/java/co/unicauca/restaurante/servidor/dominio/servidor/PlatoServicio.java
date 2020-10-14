@@ -27,6 +27,7 @@ public class PlatoServicio {
     public PlatoServicio(IPlatoRepositorio repositorio) {
         this.repositorio = repositorio;
     }
+    
     /**
      * envia la solicitud a la capa de bajo nivel para guardar un plato del dia en la base de datos
      * @param plato instancia a guardar
@@ -51,7 +52,6 @@ public class PlatoServicio {
         return repositorio.saveRestaurante(res);
     }
     
-
     public String updatePlatoEspecial(String clave, String atributo, String valor){
         //hacer validaciones, conversion del valor
         return repositorio.updatePlatoEspecial(clave, atributo, valor);
@@ -76,6 +76,7 @@ public class PlatoServicio {
     public String listarMenuDia(int resId){
         return repositorio.listarMenuDia(resId);
     }
+    
     public String listarMenuEspecial(int resId){
         return repositorio.listarMenuEspecial(resId);
     }
