@@ -215,7 +215,7 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
             }
         }
         
-        service = Factory.getInstance().getClienteService();
+        //service = Factory.getInstance().getClienteService();
         clienteService servicioRestaurante = new clienteService(service);
         try {
             respuesta = servicioRestaurante.updatePlatoEspecial(id, atributo, valor);
