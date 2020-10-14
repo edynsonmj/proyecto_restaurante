@@ -11,20 +11,31 @@ import co.unicauca.restaurante.client.domain.clienteService;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
 import java.util.List;
-import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author Camilo Gonzalez
  */
 public class GUIListar extends javax.swing.JFrame {
-
+    
+    IClienteAccess service;
+    
+    DefaultListModel modelListDia;
+    DefaultListModel modelListEspecial;
     /**
      * Creates new form GUIListar
      */
-    public GUIListar() {
+    public GUIListar(){
         initComponents();
         this.setLocationRelativeTo(null);
+        this.modelListDia=new DefaultListModel();
+        this.modelListEspecial=new DefaultListModel();
+        ListDia.setModel(modelListDia);
+        ListEspecial.setModel(modelListEspecial);
+        this.service = Factory.getInstance().getClienteService();
     }
 
     /**
@@ -39,12 +50,13 @@ public class GUIListar extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPaneMenuEsp = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        ListEspecial = new javax.swing.JList<>();
         jButtonListar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListDia = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 450));
@@ -69,8 +81,8 @@ public class GUIListar extends javax.swing.JFrame {
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
-        jList2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPaneMenuEsp.setViewportView(jList2);
+        ListEspecial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPaneMenuEsp.setViewportView(ListEspecial);
 
         getContentPane().add(jScrollPaneMenuEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 360, 240));
 
@@ -85,9 +97,6 @@ public class GUIListar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 210, -1));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 370, 240));
 
         jLabel2.setBackground(new java.awt.Color(153, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
@@ -104,6 +113,15 @@ public class GUIListar extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, -1));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 800, 430));
 
+        ListDia.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(ListDia);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 340, 240));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,45 +134,50 @@ public class GUIListar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
-        // TODO add your handling code here:
-        IClienteAccess service = Factory.getInstance().getClienteService();
-        clienteService servicioRestaurante = new clienteService(service);
-        List<PlatoDia> lista;
-        int resId=1;
         try {
-            lista=servicioRestaurante.listarMenuDia(resId);
-            System.out.println("Lista menu dia con exito");
-            for (PlatoDia lis : lista) {
-                System.out.println("Nombre: "+lis.getNombre());
-                System.out.println("Descripcion: "+lis.getDescripcion());
-                System.out.println("Dia semana: "+lis.getDiaSemana().name());
-                System.out.println("Precio: "+lis.getPrecio());
-                System.out.println("Entrada: "+lis.getEntrada());
-                System.out.println("Principio: "+lis.getPrincipio());
-                System.out.println("Carne: "+lis.getCarne());
-                System.out.println("Bebida: "+lis.getBebida());
-            }
-        } catch (Exception e) {
-            System.out.println("atencion no se listo Menu especial");
+            // TODO add your handling code here:
+            listar();
+        } catch (Exception ex) {
+            Logger.getLogger(GUIListar.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        
-        
     }//GEN-LAST:event_jButtonListarActionPerformed
+    
+    /**
+     * Lista el menu del dia por platos de este y el menu especial.
+     * 
+     * @throws Exception 
+     */
+    public void listar() throws Exception{
+        clienteService servicioRestaurante = new clienteService(service);
+        int resId=1;
+        List<PlatoDia> lsDia=servicioRestaurante.listarMenuDia(resId);
+        List<PlatoEspecial> lsEspecial=servicioRestaurante.listarMenuEspecial(resId);
+        modelListDia.clear();
+        modelListEspecial.clear();
+        for (PlatoDia ls : lsDia) {
+            modelListDia.addElement("ID: " + ls.getId() + " NOMBRE: " + ls.getNombre()
+                    + " DIA SEMANA: " + ls.getDiaSemana().name() + " DESCRIPCION: " + ls.getDescripcion()
+                    + " PRECIO: " + ls.getPrecio() + " ENTRADA: " + ls.getEntrada()
+                    + " PRINCIPIO" + ls.getPrincipio() + " CARNE: " + ls.getCarne() + " BEBIDA: " + ls.getBebida());
+        }
 
+        for (PlatoEspecial lse : lsEspecial) {
+            modelListEspecial.addElement("ID: " + lse.getId() + " NOMBRE: " + lse.getNombre()
+                    + " DESCRIPCION: " + lse.getDescripcion() + " PRECIO: " + lse.getPrecio());
+        }
+    }
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> ListDia;
+    private javax.swing.JList<String> ListEspecial;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonListar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPaneMenuEsp;
     // End of variables declaration//GEN-END:variables
 }

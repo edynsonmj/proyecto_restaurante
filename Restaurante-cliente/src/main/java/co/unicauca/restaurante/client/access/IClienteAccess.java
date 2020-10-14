@@ -20,13 +20,37 @@ public interface IClienteAccess {
     public String savePlatoDia(PlatoDia instancia) throws Exception;
     public String savePlatoEspecial(PlatoEspecial plato) throws Exception;
     public String saveRestaurante(Restaurante res) throws Exception;
+    /**
+     * el cliente solicita la modificacion de un parametro en la base de datos para plato especial
+     * @param clave identificador del plato
+     * @param atributo columna a ser modificada
+     * @param valor nuevo valor a almacenar
+     * @return true si la operacion es exitosa, false si erra
+     * @throws Exception 
+     */
     public boolean updatePlatoEspecial(int clave, String atributo, String valor)throws Exception;
+    /**
+     * el cliente solicita la modificacion de un parametro en la base de datos para plato del dia
+     * @param clave identificador del plato
+     * @param atributo columna a ser modificada
+     * @param valor nuevo valor a almacenar
+     * @return true si la operacion es exitosa, false si erra
+     * @throws Exception 
+     */
     public boolean updatePlatoDia(int clave, String atributo, String valor)throws Exception;
     //eliminar
     public boolean deletePlatoDia(int idPlaD) throws Exception;
     public boolean deletePlatoEspecial(int idPlaE) throws Exception;
     //modificar
     //listar
+    
+    /**
+     * Lista los menus por tipo y recibe por parametro el id del restaurante
+     * 
+     * @param resId
+     * @return
+     * @throws Exception 
+     */
     public List<PlatoDia> listarMenuDia(int resId)throws Exception;
     public List<PlatoEspecial> listarMenuEspecial(int resId)throws Exception;
 }

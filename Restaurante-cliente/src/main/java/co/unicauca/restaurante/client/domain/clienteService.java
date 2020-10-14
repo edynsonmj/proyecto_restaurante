@@ -37,11 +37,26 @@ public class clienteService {
     public String saveRestaurante(Restaurante res) throws Exception{
         return service.saveRestaurante(res);
     }
-
+    /**
+     * el cliente solicita la modificacion de un parametro en la base de datos para plato especial
+     * @param clave identificador del plato
+     * @param atributo columna a ser modificada
+     * @param valor nuevo valor a almacenar
+     * @return true si la operacion es exitosa, false si erra
+     * @throws Exception 
+     */
     public boolean updatePlatoEspecial(int clave, String atributo, String valor) throws Exception{
         //validaciones
         return service.updatePlatoEspecial(clave, atributo, valor);
     }
+    /**
+     * el cliente solicita la modificacion de un parametro en la base de datos para plato dia
+     * @param clave identificador del plato
+     * @param atributo columna a ser modificada
+     * @param valor nuevo valor a almacenar
+     * @return true si la operacion es exitosa, false si erra
+     * @throws Exception 
+     */
     public boolean updatePlatoDia(int clave, String atributo, String valor) throws Exception{
         //validaciones
         return service.updatePlatoDia(clave, atributo, valor);

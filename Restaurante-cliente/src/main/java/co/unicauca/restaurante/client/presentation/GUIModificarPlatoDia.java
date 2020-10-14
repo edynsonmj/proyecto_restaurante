@@ -8,8 +8,13 @@ package co.unicauca.restaurante.client.presentation;
 import co.unicauca.restaurante.client.access.Factory;
 import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
+import co.unicauca.restaurante.commons.domain.PlatoDia;
+import co.unicauca.restaurante.commons.infra.Utilities;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +22,8 @@ import java.util.logging.Logger;
  */
 public class GUIModificarPlatoDia extends javax.swing.JFrame {
 
+    DefaultListModel modelListEspecial;
+    IClienteAccess service;
     /**
      * Creates new form GUIModificarPlato
      */
@@ -24,6 +31,18 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.btnActualizar.setEnabled(false);
+        
+        this.modelListEspecial=new DefaultListModel();
+        this.jListaPlato.setModel(modelListEspecial);
+        
+        service = Factory.getInstance().getClienteService();
+        
+        try {
+            // TODO add your handling code here:
+            listar();
+        } catch (Exception ex) {
+            Logger.getLogger(GUIListar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -128,7 +147,7 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jListaPlato);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 390, 280));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 800, 280));
 
         jlValor.setBackground(new java.awt.Color(153, 0, 0));
         jlValor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -144,7 +163,7 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MODIFICAR PLATO DEL DIA");
         jLabel2.setOpaque(true);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 60));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -161,7 +180,12 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
 
+    /**
+     * al ser pulsado, valida los datos, y envia la solicitud
+     * @param evt 
+     */
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        boolean respuesta = false;
         int id =Integer.parseInt(txtID.getText());
         String valor = this.txtValor.getText();
         //
@@ -188,15 +212,24 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
             //precio
             atributo = "PDIA_PRECIO";
         }
-        System.out.println(" escoge: "+atributo);
-        System.out.println("id: "+id);
-        System.out.println("valor: "+valor);
         
-        IClienteAccess service = Factory.getInstance().getClienteService();
+        if(atributo.equals("PDIA_PRECIO")){
+            if(!Utilities.isNumeric(valor)){
+                JOptionPane.showMessageDialog(null, "el precio debe contener valores numericos, VERIFIQUE");
+                return;
+            }
+        }
+        
+        service = Factory.getInstance().getClienteService();
         clienteService servicioRestaurante = new clienteService(service);
         try {
-            servicioRestaurante.updatePlatoDia(id, atributo, valor);
+            respuesta = servicioRestaurante.updatePlatoDia(id, atributo, valor);
+            this.listar();
+            if(!respuesta){
+                JOptionPane.showMessageDialog(null, "verifique los datos, ITEM NO ENCONTRADO");
+            }
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "ha fallado el servicio, intentelo de nuevo");
             Logger.getLogger(GUIModificarPlatoDia.class.getName()).log(Level.SEVERE, null, ex);
             //mostrar mensaje
         }
@@ -208,24 +241,65 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
         this.btnActualizar.setEnabled(false);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
+    /**
+     * lista en la interfaz una base de datos
+     * @throws Exception 
+     */
+    public void listar() throws Exception{
+        clienteService servicioRestaurante = new clienteService(service);
+        int resId=1;
+        List<PlatoDia> lista = servicioRestaurante.listarMenuDia(resId);
+        modelListEspecial.clear();
+
+        for (PlatoDia lse : lista) {
+            modelListEspecial.addElement("ID: " + lse.getId() 
+                    + " NOMBRE: " + lse.getNombre()
+                    + " DESCRIPCION: " + lse.getDescripcion() 
+                    + " PRECIO: " + lse.getPrecio() 
+                    + " ENTRADA: "+lse.getEntrada() 
+                    + " PRINCIPIO: "+lse.getPrincipio()
+                    + " CARNE: "+lse.getCarne()
+                    + " BEBIDA: "+lse.getBebida()
+                    + " DIA: "+lse.getDiaSemana());
+        }
+    }
+    /**
+     * valida que se ingresen solo caracteres del 0 al 9 (numeros)
+     * @param evt 
+     */
     private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_txtIDKeyTyped
 
+    /**
+     * se despliega al momento de digitar en la caja de texto, y verifica si estan llenos los parametros
+     * @param evt 
+     */
     private void txtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyReleased
         habilitarBtnActualizar();
     }//GEN-LAST:event_txtIDKeyReleased
 
+    /**
+     * se activa al momento de ingresar caracteres a la caja de texto
+     * @param evt 
+     */
     private void txtValorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyReleased
         // TODO add your handling code here:
         habilitarBtnActualizar();
     }//GEN-LAST:event_txtValorKeyReleased
 
+    /**
+     * se activa al momento de cambiar el estado del combo box
+     * @param evt 
+     */
     private void cbxTipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxTipoItemStateChanged
         habilitarBtnActualizar();
     }//GEN-LAST:event_cbxTipoItemStateChanged
 
+    /**
+     * verifica si ya es momento de activar el boton, solo cuando se han digitado y seleccionado los datos
+     */
     private void habilitarBtnActualizar(){
         if(this.txtID.getText().isEmpty() 
                 || this.txtValor.getText().isEmpty()

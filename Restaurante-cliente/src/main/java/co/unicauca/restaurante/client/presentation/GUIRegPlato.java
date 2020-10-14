@@ -13,6 +13,10 @@ import co.unicauca.restaurante.commons.domain.MenuEspecial;
 import co.unicauca.restaurante.commons.domain.Restaurante;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 
@@ -21,13 +25,24 @@ import javax.swing.JOptionPane;
  * @author Camilo Gonzalez
  */
 public class GUIRegPlato extends javax.swing.JFrame {
-
-    /**
+     /**
      * Creates new form GUIRegPlato
      */
+    IClienteAccess service;
+    DefaultListModel modelListEspecial;
     public GUIRegPlato() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.modelListEspecial=new DefaultListModel();
+        jListPlatoEspecial.setModel(modelListEspecial);
+        this.service = Factory.getInstance().getClienteService();
+        
+        try {
+            // TODO add your handling code here:
+            listar();
+        } catch (Exception ex) {
+            Logger.getLogger(GUIListar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -53,7 +68,7 @@ public class GUIRegPlato extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListPlatoEspecial = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -68,6 +83,7 @@ public class GUIRegPlato extends javax.swing.JFrame {
         getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
         cboTipoPlato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Plato del Dia", "Plato Especial" }));
+        cboTipoPlato.setToolTipText("Plato Especial");
         cboTipoPlato.setBorder(null);
         cboTipoPlato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +141,16 @@ public class GUIRegPlato extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, -1, -1));
 
         txtValor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtValor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorActionPerformed(evt);
+            }
+        });
+        txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtValorKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 160, 30));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -135,6 +161,11 @@ public class GUIRegPlato extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, -1, -1));
 
         txtCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 110, 30));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
@@ -155,12 +186,12 @@ public class GUIRegPlato extends javax.swing.JFrame {
         jLabel6.setOpaque(true);
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jListPlatoEspecial.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jListPlatoEspecial);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 240, 100));
 
@@ -206,21 +237,23 @@ public class GUIRegPlato extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         if (txtNombre.getText()!=null && txtDescripcion.getText()!=null && txtCodigo.getText()!=null && txtValor.getText()!=null) {
-            IClienteAccess service = Factory.getInstance().getClienteService();
             clienteService servicioRestaurante = new clienteService(service);
-            MenuEspecial menuEspecial = new MenuEspecial(15);
-            PlatoEspecial platoEspecial = new PlatoEspecial(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText(),15);
+            MenuEspecial menuEspecial = new MenuEspecial(1);
+            PlatoEspecial platoEspecial = new PlatoEspecial(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText(),menuEspecial.getId());
             try{
                 String platoE = servicioRestaurante.savePlatoEspecial(platoEspecial);
-                JOptionPane.showMessageDialog(null, "plato agregado con exito");
+                if (platoE.equals(platoEspecial.getNombre())){
+                JOptionPane.showMessageDialog(null, "plato agragado con exito");
                 txtCodigo.setText("");
                 txtNombre.setText("");
                 txtValor.setText("");
                 txtDescripcion.setText("");
+                listar();
+                }
             }catch(Exception ex){
-                System.out.println("atencion no se save si agrego");
+                JOptionPane.showMessageDialog(null, "El plato ya esta registrado"+ex.getMessage());
              
-        }
+            }
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -232,6 +265,30 @@ public class GUIRegPlato extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreKeyTyped
 
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();     // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorActionPerformed
+
+    private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume(); 
+    }//GEN-LAST:event_txtValorKeyTyped
+    public void listar() throws Exception{
+        clienteService servicioRestaurante = new clienteService(service);
+        int resId=1;
+        List<PlatoEspecial> lsEspecial=servicioRestaurante.listarMenuEspecial(resId);
+        modelListEspecial.clear();
+
+        for (PlatoEspecial lse : lsEspecial) {
+            modelListEspecial.addElement("ID: " + lse.getId() + " NOMBRE: " + lse.getNombre()
+                    + " DESCRIPCION: " + lse.getDescripcion() + " PRECIO: " + lse.getPrecio());
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cboTipoPlato;
@@ -243,7 +300,7 @@ public class GUIRegPlato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelDescrip;
     private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jListPlatoEspecial;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtCodigo;

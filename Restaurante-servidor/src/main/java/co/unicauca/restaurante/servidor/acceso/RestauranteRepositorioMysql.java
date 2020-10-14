@@ -23,10 +23,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * objeto concreto de un repositorio, en este caso un repositorio de mysql
- * @author EdynsonMJ
- */
 public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     /**
      * Conección con Mysql
@@ -36,6 +32,11 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     public RestauranteRepositorioMysql(){
 
     }
+    /**
+     * busca un plato especial en la base de datos.
+     * @param id identificador del plato
+     * @return true si encontro el plato, false de lo contrario
+     */
     private boolean findPlatoEspecial(int id){
         boolean resultado;
         try{
@@ -53,6 +54,11 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             return false;
         }
     }
+    /**
+     * busca un plato del dia en la base de datos
+     * @param id identificador del plato
+     * @return true si lo encuentra, false de lo contrario.
+     */
     private boolean findPlatoDia(int id){
         boolean resultado;
         try{
@@ -70,6 +76,13 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             return false;
         }
     }
+    /**
+     * actualiza un item de plato del dia en la base de datos.
+     * @param clave identificador del plato
+     * @param atributo columna a modificar en la base de datos.
+     * @param valor nuevo valor para la columna.
+     * @return retorna "FALLO" si erra el metodo, identificador de lo contrario.
+     */
     @Override
     public String updatePlatoDia(String clave, String atributo, String valor){
         if(!this.findPlatoDia(Integer.parseInt(clave))){
@@ -98,6 +111,13 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return clave;
     }
+    /**
+     * actualiza un item plato especial en la base de datos
+     * @param clave identificador del plato
+     * @param atributo columna a modificarse en la base de datos.
+     * @param valor nuevo valor para la celda
+     * @return retorna "FALLO" si el metodo erra
+     */
     @Override
     public String updatePlatoEspecial(String clave, String atributo, String valor){
         if(!this.findPlatoEspecial(Integer.parseInt(clave))){
@@ -140,8 +160,11 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             {
                 return "FALLO";
             }
+
+            System.out.println("entro");
+
             //primero se establece la conexion
-            this.connect(); //validar cuando la conexion no sea exitosa
+            this.connect(); 
             //se estructura la sentencia sql en un string
             String sql = "INSERT INTO platodia(PDIA_ID,MDIA_ID,PDIA_NOMBRE,PDIA_DESCRIPCION,PDIA_DIA,PDIA_ENTRADA,PDIA_PRINCIPIO,PDIA_BEBIDA,PDIA_CARNE,PDIA_PRECIO) VALUES (?,?,?,?,?,?,?,?,?,?)";
             //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
@@ -163,11 +186,13 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.close();
             //se termina la coneccion
             this.disconnect();
+            return instancia.getNombre();   
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
+            return "FALLO";
         }
         //lo ideal es retornor un id
-        return instancia.getNombre();   
+        
     }
     
     /**
@@ -334,7 +359,16 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return res.getNombre();
     }
-
+    
+    /**
+     * Lista el menu desde la consulta hecha a la base de datos 
+     * añade las tuplas encontradas en una lista de Plato
+     * y convierte la lista en json para enviarla por el sockect devuelta
+     * al cliente
+     * 
+     * @param resId
+     * @return 
+     */
     @Override
     public String listarMenuDia(int resId) {
         List<Plato> list=new ArrayList<>();
@@ -360,7 +394,15 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return response;
     }
-
+    
+    /**
+     * Lista el menu desde la consulta hecha a la base de datos 
+     * añade las tuplas encontradas en una lista de Plato
+     * y convierte la lista en json para enviarla por el sockect devuelta
+     * al cliente
+     * @param resId
+     * @return 
+     */
     @Override
     public String listarMenuEspecial(int resId) {
         List<Plato> list=new ArrayList<>();
@@ -387,7 +429,12 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
        return response;
     }
-    
+    /**
+     * Convierte una lista de tipo plato en un json
+     * 
+     * @param list
+     * @return 
+     */
     public String listToJson (List<Plato> list){
         Gson gson=new Gson();
         String response=gson.toJson(list);

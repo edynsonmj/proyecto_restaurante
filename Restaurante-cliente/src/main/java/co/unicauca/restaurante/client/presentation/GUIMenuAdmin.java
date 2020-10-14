@@ -113,6 +113,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -127,7 +128,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIRegPlato ins = new GUIRegPlato();
+        GUIRegPlatoD ins = new GUIRegPlatoD();
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
 
