@@ -5,6 +5,7 @@
  */
 package co.unicauca.restaurante.client.presentation;
 
+import co.unicauca.restaurante.client.domain.clienteService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,13 +14,16 @@ import java.util.logging.Logger;
  * @author Camilo Gonzalez
  */
 public class GUIMenuAdmin extends javax.swing.JFrame {
-
+    
+    clienteService servicioRestaurante;
     /**
      * Creates new form GUIMenuAdmin
+     * @param servicioRestaurante
      */
-    public GUIMenuAdmin() {
+    public GUIMenuAdmin(clienteService servicioRestaurante) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.servicioRestaurante=servicioRestaurante;
     }
 
     /**
@@ -120,7 +124,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIMenuModificar ins = new GUIMenuModificar();
+        GUIMenuModificar ins = new GUIMenuModificar(servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButtonModificarActionPerformed
@@ -128,7 +132,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIRegPlatoD ins = new GUIRegPlatoD();
+        GUIRegPlatoD ins = new GUIRegPlatoD(servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
 
@@ -138,7 +142,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIEliminarPlato ins = new GUIEliminarPlato();
+        GUIEliminarPlato ins = new GUIEliminarPlato(servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
 
@@ -149,7 +153,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         setVisible(false);
         GUIListar ins;
         try {
-            ins = new GUIListar();
+            ins = new GUIListar(servicioRestaurante);
             ins.setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(GUIMenuAdmin.class.getName()).log(Level.SEVERE, null, ex);

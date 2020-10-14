@@ -5,8 +5,6 @@
  */
 package co.unicauca.restaurante.client.presentation;
 
-import co.unicauca.restaurante.client.access.Factory;
-import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
@@ -22,26 +20,26 @@ import javax.swing.JOptionPane;
  * @author Jhonny Rosero
  */
 public class GUIEliminarPlato extends javax.swing.JFrame {
-    IClienteAccess service;
     clienteService servicioRestaurante;
     DefaultListModel modelListEspecial;
     DefaultListModel modelListDia;
     /**
      * Creates new form GUIEliminarPlato
+     * @param servicioRestaurante
      */
-    public GUIEliminarPlato() {
+    public GUIEliminarPlato(clienteService servicioRestaurante) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.modelListEspecial=new DefaultListModel();
         this.modelListDia=new DefaultListModel();
         jListPlatoEspecial.setModel(modelListEspecial);
         jListPlatoDia.setModel(modelListDia);
-        this.service = Factory.getInstance().getClienteService();
-        this.servicioRestaurante = new clienteService(service);
+        this.servicioRestaurante = servicioRestaurante;
         
         try {
             // TODO add your handling code here:
-            listar();
+            listarMenuDia();
+            listarMenuEspecial();
         } catch (Exception ex) {
             Logger.getLogger(GUIListar.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -178,8 +176,8 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
                     jTextFieldEliminarPlaEsp.setText(null);
                 } else {
                     JOptionPane.showMessageDialog(null, "Plato eliminado con exito");
-                    listar();
                     jTextFieldEliminarPlaEsp.setText(null);
+                    listarMenuEspecial();
                 }
             } catch (Exception ex) {
                 Logger.getLogger(GUIEliminarPlato.class.getName()).log(Level.SEVERE, null, ex);
@@ -190,7 +188,7 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIMenuAdmin ins = new GUIMenuAdmin();
+        GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -219,8 +217,8 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
                     jTextFieldEliminarPlaDia.setText(null);
                 } else {
                     JOptionPane.showMessageDialog(null, "Plato eliminado con exito");
-                    listar();
                     jTextFieldEliminarPlaDia.setText(null);
+                    listarMenuDia();
                 }
             } catch (Exception ex) {
                 Logger.getLogger(GUIEliminarPlato.class.getName()).log(Level.SEVERE, null, ex);
@@ -234,24 +232,25 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_jTextFieldEliminarPlaDiaKeyTyped
-
-    public void listar() throws Exception{
-        clienteService servicioRestaurante = new clienteService(service);
+    
+    private void listarMenuEspecial()throws Exception{
+        int resId=1;
+        List<PlatoEspecial> lsEspecial=servicioRestaurante.listarMenuEspecial(resId);
+        modelListEspecial.clear();
+        for (PlatoEspecial lse : lsEspecial) {
+            modelListEspecial.addElement("ID: " + lse.getId() + " NOMBRE: " + lse.getNombre()
+                    + " DESCRIPCION: " + lse.getDescripcion() + " PRECIO: " + lse.getPrecio());
+        }
+    }
+    private void listarMenuDia() throws Exception{
         int resId=1;
         List<PlatoDia> lsDia=servicioRestaurante.listarMenuDia(resId);
-        List<PlatoEspecial> lsEspecial=servicioRestaurante.listarMenuEspecial(resId);
         modelListDia.clear();
-        modelListEspecial.clear();
         for (PlatoDia ls : lsDia) {
             modelListDia.addElement("ID: " + ls.getId() + " NOMBRE: " + ls.getNombre()
                     + " DIA SEMANA: " + ls.getDiaSemana().name() + " DESCRIPCION: " + ls.getDescripcion()
                     + " PRECIO: " + ls.getPrecio() + " ENTRADA: " + ls.getEntrada()
                     + " PRINCIPIO" + ls.getPrincipio() + " CARNE: " + ls.getCarne() + " BEBIDA: " + ls.getBebida());
-        }
-
-        for (PlatoEspecial lse : lsEspecial) {
-            modelListEspecial.addElement("ID: " + lse.getId() + " NOMBRE: " + lse.getNombre()
-                    + " DESCRIPCION: " + lse.getDescripcion() + " PRECIO: " + lse.getPrecio());
         }
     }
 

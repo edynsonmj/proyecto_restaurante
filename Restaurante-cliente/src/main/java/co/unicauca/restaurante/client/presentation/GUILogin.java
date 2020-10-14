@@ -5,6 +5,9 @@
  */
 package co.unicauca.restaurante.client.presentation;
 
+import co.unicauca.restaurante.client.access.Factory;
+import co.unicauca.restaurante.client.access.IClienteAccess;
+import co.unicauca.restaurante.client.domain.clienteService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,15 +17,18 @@ import java.util.logging.Logger;
  * @author Camilo Gonzalez
  */
 public class GUILogin extends javax.swing.JFrame {
-
+    
+    IClienteAccess service;
+    clienteService servicioRestaurante;
     /**
      * Creates new form GUILogin
      */
-  
-
+ 
     public GUILogin() {
         initComponents();
         this.setLocationRelativeTo(null);
+        service=Factory.getInstance().getClienteService();
+        servicioRestaurante=new clienteService(service);
 
     }
 
@@ -104,7 +110,7 @@ public class GUILogin extends javax.swing.JFrame {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     setVisible(false);
-                    GUIMenuAdmin ins = new GUIMenuAdmin();
+                    GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
                     //ins.setExtendedState(MAXIMIZED_BOTH);
                     ins.setVisible(true);
                 }
@@ -114,7 +120,7 @@ public class GUILogin extends javax.swing.JFrame {
                 public void run() {
                     GUIListar ins;
                     try {
-                        ins = new GUIListar();
+                        ins = new GUIListar(servicioRestaurante);
                         ins.setVisible(true);
                     } catch (Exception ex) {
                         Logger.getLogger(GUILogin.class.getName()).log(Level.SEVERE, null, ex);

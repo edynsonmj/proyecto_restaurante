@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package co.unicauca.restaurante.client.access;
-import co.unicauca.restaurante.commons.domain.Plato;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
 import co.unicauca.restaurante.commons.domain.Restaurante;
@@ -45,8 +44,6 @@ public interface IClienteAccess {
     public String deletePlatoDia(int idPlaD) throws Exception;
     public String deletePlatoEspecial(int idPlaE) throws Exception;
     //modificar
-    //listar
-    
     /**
      * Lista los menus por tipo y recibe por parametro el id del restaurante
      * 

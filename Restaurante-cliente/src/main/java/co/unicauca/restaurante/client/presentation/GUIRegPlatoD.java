@@ -5,14 +5,10 @@
  */
 package co.unicauca.restaurante.client.presentation;
 
-import co.unicauca.restaurante.client.access.Factory;
-import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
 import co.unicauca.restaurante.commons.domain.DiaEnum;
 import co.unicauca.restaurante.commons.domain.MenuDia;
-import co.unicauca.restaurante.commons.domain.MenuEspecial;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
-import co.unicauca.restaurante.commons.domain.PlatoEspecial;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,17 +20,18 @@ import javax.swing.JOptionPane;
  * @author Camilo Gonzalez
  */
 public class GUIRegPlatoD extends javax.swing.JFrame {
+    clienteService servicioRestaurante;
+    DefaultListModel modelListDia;
     /**
      * Creates new form GUIRegPlato
+     * @param servicioRestaurnate
      */
-    IClienteAccess service;
-    DefaultListModel modelListDia;
-    public GUIRegPlatoD() {
+    public GUIRegPlatoD(clienteService servicioRestaurnate) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.modelListDia=new DefaultListModel();
         jListPlatoDia.setModel(modelListDia);
-        this.service = Factory.getInstance().getClienteService();
+        this.servicioRestaurante=servicioRestaurnate;
         
         try {
             // TODO add your handling code here:
@@ -274,7 +271,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         setVisible(false);
-        GUIMenuAdmin ins = new GUIMenuAdmin();
+        GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -287,15 +284,14 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         if (txtNombre.getText()!=null && txtDescripcion.getText()!=null && txtCodigo.getText()!=null && txtValor.getText()!=null 
             && txtBebida.getText()!=null && txtPrincipio.getText()!=null && txtEntrada.getText()!=null && txtCarne.getText()!=null
             && !((cboDia.getSelectedItem().toString()).equalsIgnoreCase("Seleccione"))) {
-            
-            clienteService servicioRestaurante = new clienteService(service);
-            MenuDia menuDia = new MenuDia(1);
+
+            MenuDia menuDia = new MenuDia(10);
             PlatoDia platoDia = new PlatoDia(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText()
                                              , DiaEnum.valueOf(cboDia.getSelectedItem().toString()),txtEntrada.getText(),txtPrincipio.getText(),txtCarne.getText()
                                              , txtBebida.getText(),menuDia.getId());
             try{
                 String platoD = servicioRestaurante.savePlatoDia(platoDia);
-                if (platoD.equals(platoDia.getNombre())){
+                if (!platoD.equals("FALLO")){
                     System.out.println(platoD);
                     JOptionPane.showMessageDialog(null, "Se registro el plato exitosamente");
                     txtCodigo.setText("");
@@ -328,13 +324,13 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         if ((cboTipoPlato.getSelectedItem().toString().equalsIgnoreCase("Plato Especial")))
         {
             this.setVisible(false);
-            GUIRegPlato frame = new GUIRegPlato();
+            GUIRegPlato frame = new GUIRegPlato(servicioRestaurante);
             frame.setVisible(true);
         }
         if ((cboTipoPlato.getSelectedItem().toString().equalsIgnoreCase("Plato del Dia")))
         {
             this.setVisible(false);
-            GUIRegPlatoD frame = new GUIRegPlatoD();
+            GUIRegPlatoD frame = new GUIRegPlatoD(servicioRestaurante);
             frame.setVisible(true);
         }
         /*
@@ -352,8 +348,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_txtValorKeyTyped
-    public void listar() throws Exception{
-        clienteService servicioRestaurante = new clienteService(service);
+    private void listar() throws Exception{
         int resId=1;
         List<PlatoDia> lsDia=servicioRestaurante.listarMenuDia(resId);
         modelListDia.clear();

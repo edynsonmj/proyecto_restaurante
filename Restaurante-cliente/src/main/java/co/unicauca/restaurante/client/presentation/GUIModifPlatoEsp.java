@@ -5,8 +5,6 @@
  */
 package co.unicauca.restaurante.client.presentation;
 
-import co.unicauca.restaurante.client.access.Factory;
-import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
 import co.unicauca.restaurante.commons.infra.Utilities;
@@ -21,21 +19,21 @@ import javax.swing.JOptionPane;
  * @author Camilo Gonzalez
  */
 public class GUIModifPlatoEsp extends javax.swing.JFrame {
-
+    
+    clienteService servicioRestaurante;
     DefaultListModel modelListEspecial;
-    IClienteAccess service;
     /**
      * Creates new form GUIModifPlatoEsp
+     * @param servicioRestaurante
      */
-    public GUIModifPlatoEsp() {
+    public GUIModifPlatoEsp(clienteService servicioRestaurante) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.btnActualizar.setEnabled(false);
         
         this.modelListEspecial=new DefaultListModel();
         this.jListPlato.setModel(modelListEspecial);
-        
-        service = Factory.getInstance().getClienteService();
+        this.servicioRestaurante=servicioRestaurante;
         
         try {
             // TODO add your handling code here:
@@ -164,7 +162,7 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        GUIMenuModificar ins = new GUIMenuModificar ();
+        GUIMenuModificar ins = new GUIMenuModificar(servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButtonVolverActionPerformed
@@ -173,8 +171,7 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
      * lista de la base de datos los platos
      * @throws Exception 
      */
-    public void listar() throws Exception {
-        clienteService servicioRestaurante = new clienteService(service);
+    private void listar() throws Exception {
         int resId = 1;
         List<PlatoEspecial> lista = servicioRestaurante.listarMenuEspecial(resId);
         modelListEspecial.clear();
@@ -213,10 +210,9 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
                 return;
             }
         }
-        clienteService servicioRestaurante = new clienteService(service);
         try {
             respuesta = servicioRestaurante.updatePlatoEspecial(id, atributo, valor);
-            
+
             if(!respuesta){
                 JOptionPane.showMessageDialog(null, "por favor verifique los valores, no se encuentra el item");
             }

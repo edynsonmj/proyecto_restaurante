@@ -239,8 +239,6 @@ public class RestauranteServerSocket implements Runnable{
         output.println(response);
         Logger.getLogger(RestauranteServerSocket.class.getName()).log(Level.SEVERE, "response: "+response+" clave:"+clave+" atributo:"+atributo+" valor: "+valor);
     }
-    
-
     /**
      * Recibe la peticion del cliente, manda el id del restaurante
      * y manda esta peticion procesada al repositorio del servidor
@@ -255,7 +253,6 @@ public class RestauranteServerSocket implements Runnable{
         output.println(response);
         
     }
-    
     /**
      * Recibe la peticion del cliente, manda el id del restaurante
      * y manda esta peticion procesada al repositorio del servidor

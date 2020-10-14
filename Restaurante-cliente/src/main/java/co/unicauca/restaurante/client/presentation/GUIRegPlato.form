@@ -5,6 +5,8 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[817, 370]"/>
     </Property>
@@ -12,6 +14,7 @@
       <Dimension value="[700, 450]"/>
     </Property>
 >>>>>>> 6b21bfcf1f29bcb9676f011caa3900a3635f9ff1
+>>>>>>> f8341ac439c1d4572ed2125bc85f653550e00ce4
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>

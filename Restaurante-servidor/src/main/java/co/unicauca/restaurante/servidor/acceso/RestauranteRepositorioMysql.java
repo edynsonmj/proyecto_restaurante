@@ -188,13 +188,12 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.close();
             //se termina la coneccion
             this.disconnect();
-            return instancia.getNombre();   
+              
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
-            return "FALLO";
+            //return "FALLO";
         }
-        //lo ideal es retornor un id
-        
+        return instancia.getNombre(); 
     }
     
     /**
@@ -340,6 +339,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         //lo ideal es retornor un id
         return instancia.getNombre();
     }
+    
     /**
      * guarda un restaurante en la base de datos
      * @param res instancia a guardar
@@ -364,7 +364,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return res.getNombre();
     }
-    
     /**
      * Lista el menu desde la consulta hecha a la base de datos 
      * añade las tuplas encontradas en una lista de Plato
@@ -384,15 +383,12 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             String sql = "select pdia_id,pdia_nombre,pdia_descripcion,pdia_dia, pdia_entrada,pdia_principio,pdia_carne,pdia_bebida,pdia_precio, m.mdia_id from (restaurante r inner join menudia m on r.res_id=m.res_id) inner join platodia p on m.mdia_id=p.mdia_id where r.res_id ="+resId;
             PreparedStatement pstmt=conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
-            
             while (rs.next()) {      
                 Plato pla=  new PlatoDia(Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(9)), rs.getString(3), DiaEnum.valueOf(rs.getString(4)), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Integer.parseInt(rs.getString(10)));
                 list.add(pla);
             }
             response=listToJson(list);
-            //se cierra
             pstmt.close();
-            //se termina la coneccion
             this.disconnect();
         }catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al listar el menu del dia", ex);
@@ -425,9 +421,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
                 list.add(pla);
             }
             response=listToJson(list);
-            //se cierra
             pstmt.close();
-            //se termina la coneccion
             this.disconnect();
         }catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al listar el menu del especial", ex);

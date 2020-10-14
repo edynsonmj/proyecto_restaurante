@@ -44,7 +44,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         
         String requestJson = crearRestauranteJson(res);
         if((this.procesarConexion(requestJson)).equals("FALLO")){
-            return null;
+            return "FALLO";
         }
         return res.getNombre();
     }
@@ -117,7 +117,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         //devuelve un string en formato Json que lo que se enviara
         String requestJson = crearPlatoDiaJson(instancia);
         if((this.procesarConexion(requestJson)).equals("FALLO")){
-            return null;
+            return "FALLO";
         }
         return instancia.getNombre();
     }
@@ -248,7 +248,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         //devuelve un string en formato Json que lo que se enviara
         String requestJson = crearPlatoEspecialJson(instancia);
         if((this.procesarConexion(requestJson).equals("FALLO"))){
-            return null;
+            return "FALLO";
         }
         return instancia.getNombre();
 
@@ -335,25 +335,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         
         return requestJson;
     }
-      /**
-     * Convierte jsonCustomer, proveniente del server socket, de json a un
-     * objeto Customer
-     *
-     * @param resId
-     * @return 
-     * @throws java.lang.Exception 
-     */
-    /*private Customer jsonToCustomer(String jsonCustomer) {
 
-        Gson gson = new Gson();
-        Customer customer = gson.fromJson(jsonCustomer, Customer.class);
-
-        return customer;
-
-    }*/
-
-
-    
     /**
      * Envia el id de un restaurante y devuelve la lista llegada desde el servidor 
      * el cual transforma el json recibido desde este
