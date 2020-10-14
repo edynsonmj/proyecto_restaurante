@@ -36,7 +36,6 @@ public class GUIRegPlato extends javax.swing.JFrame {
         this.modelListEspecial=new DefaultListModel();
         jListPlatoEspecial.setModel(modelListEspecial);
         this.service = Factory.getInstance().getClienteService();
-        
         try {
             // TODO add your handling code here:
             listar();
@@ -236,23 +235,23 @@ public class GUIRegPlato extends javax.swing.JFrame {
     }//GEN-LAST:event_cboTipoPlatoActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        if (txtNombre.getText()!=null && txtDescripcion.getText()!=null && txtCodigo.getText()!=null && txtValor.getText()!=null) {
+        if (txtNombre.getText() != null && txtDescripcion.getText() != null && txtCodigo.getText() != null && txtValor.getText() != null) {
             clienteService servicioRestaurante = new clienteService(service);
             MenuEspecial menuEspecial = new MenuEspecial(1);
-            PlatoEspecial platoEspecial = new PlatoEspecial(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText(),menuEspecial.getId());
-            try{
+            PlatoEspecial platoEspecial = new PlatoEspecial(Integer.valueOf(txtCodigo.getText()), txtNombre.getText(), Integer.valueOf(txtValor.getText()), txtDescripcion.getText(), menuEspecial.getId());
+            try {
                 String platoE = servicioRestaurante.savePlatoEspecial(platoEspecial);
-                if (platoE.equals(platoEspecial.getNombre())){
-                JOptionPane.showMessageDialog(null, "plato agragado con exito");
-                txtCodigo.setText("");
-                txtNombre.setText("");
-                txtValor.setText("");
-                txtDescripcion.setText("");
-                listar();
+                if (platoE.equals(platoEspecial.getNombre())) {
+                    JOptionPane.showMessageDialog(null, "plato agragado con exito");
+                    txtCodigo.setText("");
+                    txtNombre.setText("");
+                    txtValor.setText("");
+                    txtDescripcion.setText("");
+                    listar();
                 }
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(null, "El plato ya esta registrado"+ex.getMessage());
-             
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "El plato ya esta registrado" + ex.getMessage());
+
             }
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed

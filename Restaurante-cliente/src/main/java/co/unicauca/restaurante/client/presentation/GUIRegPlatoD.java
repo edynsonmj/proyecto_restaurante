@@ -35,6 +35,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         this.modelListDia=new DefaultListModel();
         jListPlatoDia.setModel(modelListDia);
         this.service = Factory.getInstance().getClienteService();
+        
         try {
             // TODO add your handling code here:
             listar();

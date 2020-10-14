@@ -15,6 +15,7 @@ import java.util.List;
  * servicios que el cliente puede usar del servidor (mascaras)
  * se comunica con la capa de bajo nivel que envia la solicitud
  * @author EdynsonMJ
+ * @author Jhonny Rosero
  */
 public class clienteService {
     private final IClienteAccess service;
@@ -73,11 +74,11 @@ public class clienteService {
     }
     
     //aqui los otros servicios, eliminar, modificar listar etc
-    public boolean deletePlatoDia(int idPlaD) throws Exception{
+
+    public String deletePlatoDia(int idPlaD) throws Exception{
         return service.deletePlatoDia(idPlaD);
     }
-    
-    public boolean deletePlatoEspecial(int idPlaE) throws Exception{
+    public String deletePlatoEspecial(int idPlaE) throws Exception{
         return service.deletePlatoEspecial(idPlaE);
     }
 }

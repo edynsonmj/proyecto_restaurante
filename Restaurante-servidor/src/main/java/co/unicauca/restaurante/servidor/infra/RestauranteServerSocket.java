@@ -30,6 +30,7 @@ import co.unicauca.restaurante.servidor.acceso.IPlatoRepositorio;
 /**
  * esta clase se encarga de establecer y gestionar la conexion entre el servidor y los clientes
  * @author EdynsonMJ
+ * @author Jhonny Rosero
  */
 public class RestauranteServerSocket implements Runnable{
     /**
@@ -177,7 +178,7 @@ public class RestauranteServerSocket implements Runnable{
                 if(protocolRequest.getAction().equals("postRestaurante")){
                     this.clienteResgistrarRestaurante(protocolRequest);
                 }
-                
+
                 if(protocolRequest.getAction().equals("updateEspecial")){
                     administradorUpdateEspecial(protocolRequest);
                 }
@@ -185,11 +186,9 @@ public class RestauranteServerSocket implements Runnable{
                 if(protocolRequest.getAction().equals("updatePlatoDia")){
                     administradorUpdatePlatoDia(protocolRequest);
                 }
-                
                 if(protocolRequest.getAction().equals("eliminarPlatoDia")){
                     this.administradorEliminarPlatoDia(protocolRequest);
                 }
-                
                 if(protocolRequest.getAction().equals("eliminarPlatoEspecial")){
                     this.administradorEliminarPlatoEspecial(protocolRequest);
                 }
@@ -210,7 +209,9 @@ public class RestauranteServerSocket implements Runnable{
                     this.listarMenuEspecial(protocolRequest);
                 }
                 break;
+
             }
+
     }
     /**
      * recibe un protocolo con la informacion necesarioa para modificar el plato del dia en la base de datos.
@@ -280,24 +281,32 @@ public class RestauranteServerSocket implements Runnable{
         response = service.saveRestaurante(res);
         output.println(response);
     }
-    
+    /**
+     * Procesa la solicitud de eliminar el plato dia que ha enviado el cliente
+     *
+     * @param protocolRequest Protocolo de la solicitud
+     */
     private void administradorEliminarPlatoDia(Protocol protocolRequest){
         int idPlaD;
         idPlaD = Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
         String response=null;
         //el servicio comunicara con la base de datos,
         //se pasa el plato creado, y servicio llamara al repositorio
-        response = ""+service.deletePlatoDia(idPlaD);
+        response = service.deletePlatoDia(idPlaD);
         output.println(response);
     }
-    
+    /**
+     * Procesa la solicitud de eliminar el plato especial que ha enviado el cliente
+     *
+     * @param protocolRequest Protocolo de la solicitud
+     */
     private void administradorEliminarPlatoEspecial(Protocol protocolRequest){
         int idPlaE;
         idPlaE = Integer.parseInt(protocolRequest.getParameters().get(0).getValue());
         String response=null;
         //el servicio comunicara con la base de datos,
         //se pasa el plato creado, y servicio llamara al repositorio
-        response = ""+service.deletePlatoEspecial(idPlaE);
+        response = service.deletePlatoEspecial(idPlaE);
         output.println(response);
     }
      /**

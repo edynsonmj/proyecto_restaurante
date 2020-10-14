@@ -23,6 +23,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * objeto concreto de un repositorio, en este caso un repositorio de mysql
+ * @author EdynsonMJ
+ * @author Jhonny Rosero
+ */
 public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     /**
      * Conección con Mysql
@@ -197,12 +202,16 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     
     /**
      * cumunicacion con la base de datos para eliminar un plato del dia
+     * @param idPlaD id del plato a eliminar
      * @return 
      */
     @Override
-    public boolean deletePlatoDia(int idPlaD) {
-        if(!(this.findPlatoDia(idPlaD))){
-            return false;
+    public String deletePlatoDia(int idPlaD) {
+        if(findPlatoDia(idPlaD)){
+            System.out.println("EXISTE EL ELEMENTO");
+        }else{
+            System.out.println("NO EXISTE EL ELEMENTO");
+            return "FALLO";
         }
         try{
             //primero se establece la conexion
@@ -222,18 +231,20 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al eliminar el plato", ex);
         }
-        return true;
+        return ""+idPlaD;
     }
-    
     /**
      * cumunicacion con la base de datos para eliminar un plato del dia
-     * @param idPlaE id plato especial que se desea eliminar
+     * @param idPlaE id plato que se desea eliminar
      * @return 
      */
     @Override
-    public boolean deletePlatoEspecial(int idPlaE) {
-        if(!(this.findPlatoEspecial(idPlaE))){
-            return false;
+    public String deletePlatoEspecial(int idPlaE) {
+        if(findPlatoEspecial(idPlaE)){
+            System.out.println("EXISTE EL ELEMENTO");
+        }else{
+            System.out.println("NO EXISTE EL ELEMENTO");
+            return "FALLO";
         }
         try{
             //primero se establece la conexion
@@ -250,11 +261,11 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.close();
             //se termina la coneccion
             this.disconnect();
+  
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al eliminar el plato", ex);
         }
-        return true;
-
+        return ""+idPlaE;
     }
     /**
      * Permite hacer la conexion con la base de datos
