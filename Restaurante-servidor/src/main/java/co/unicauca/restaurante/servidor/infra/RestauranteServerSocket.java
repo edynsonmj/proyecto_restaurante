@@ -303,10 +303,14 @@ public class RestauranteServerSocket implements Runnable{
     }
      /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Procesa la solicitud de registrar el plato dia que ha enviado el cliente
 =======
      * Procesa la solicitud de registrar un plato del dia que ha enviado el cliente
 >>>>>>> 06288f53e5b29e34994a235dd348795dd8ad52cf
+=======
+     * Procesa la solicitud de registrar el plato dia que ha enviado el cliente
+>>>>>>> f968881b2ddf92a634dc84f97e66e5888dd574f8
      *
      * @param protocolRequest Protocolo de la solicitud
      */

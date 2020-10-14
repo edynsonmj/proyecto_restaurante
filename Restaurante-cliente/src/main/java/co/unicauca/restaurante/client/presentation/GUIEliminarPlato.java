@@ -163,7 +163,11 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
 
     private void jButtonEliminarPlatoEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarPlatoEspecialActionPerformed
         // TODO add your handling code here:
-            //se captura el id del plato a eliminar
+        //se captura el id del plato a eliminar
+        if (!(jTextFieldEliminarPlaEsp.getText().length() > 0)) {
+            JOptionPane.showMessageDialog(null, "No digito ningun id");
+            jTextFieldEliminarPlaEsp.setText(null);
+        } else {
             int idPlaE = Integer.parseInt(jTextFieldEliminarPlaEsp.getText());
             //se ejecuta la funcionalidad eliminar plato especial
             try {
@@ -171,13 +175,16 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
                 resultado = servicioRestaurante.deletePlatoEspecial(idPlaE);
                 if ("FALLO".equals(resultado)) {
                     JOptionPane.showMessageDialog(null, "El id del plato es incorrecto");
+                    jTextFieldEliminarPlaEsp.setText(null);
                 } else {
                     JOptionPane.showMessageDialog(null, "Plato eliminado con exito");
                     listar();
+                    jTextFieldEliminarPlaEsp.setText(null);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(GUIEliminarPlato.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
     }//GEN-LAST:event_jButtonEliminarPlatoEspecialActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -197,19 +204,27 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
     private void jButtonEliminarPlatoDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarPlatoDiaActionPerformed
         // TODO add your handling code here:
         //se captura el id del plato a eliminar
-        int idPlaD = Integer.parseInt(jTextFieldEliminarPlaDia.getText());
-        //se ejecuta la funcionalidad eliminar plato especial
-        try {
-            String resultado;
-            resultado = servicioRestaurante.deletePlatoDia(idPlaD);
-            if ("FALLO".equals(resultado)) {
+        //int idPlaD = Integer.parseInt(jTextFieldEliminarPlaDia.getText());
+        if (!(jTextFieldEliminarPlaDia.getText().length() > 0)) {
+            JOptionPane.showMessageDialog(null, "No digito ningun id");
+            jTextFieldEliminarPlaDia.setText(null);
+        } else {
+            //se ejecuta la funcionalidad eliminar plato especial
+            int idPlaD = Integer.parseInt(jTextFieldEliminarPlaDia.getText());
+            try {
+                String resultado;
+                resultado = servicioRestaurante.deletePlatoDia(idPlaD);
+                if ("FALLO".equals(resultado)) {
                     JOptionPane.showMessageDialog(null, "El id del plato es incorrecto");
+                    jTextFieldEliminarPlaDia.setText(null);
                 } else {
                     JOptionPane.showMessageDialog(null, "Plato eliminado con exito");
                     listar();
+                    jTextFieldEliminarPlaDia.setText(null);
                 }
-        } catch (Exception ex) {
-            Logger.getLogger(GUIEliminarPlato.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(GUIEliminarPlato.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButtonEliminarPlatoDiaActionPerformed
 
@@ -219,6 +234,7 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_jTextFieldEliminarPlaDiaKeyTyped
+
     public void listar() throws Exception{
         clienteService servicioRestaurante = new clienteService(service);
         int resId=1;

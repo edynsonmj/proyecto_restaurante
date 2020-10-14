@@ -192,6 +192,7 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldEliminarPlaEsp">
+<<<<<<< HEAD
       <Events>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldEliminarPlaEspKeyTyped"/>
       </Events>
@@ -203,6 +204,22 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonEliminarPlatoDia">
       <Properties>
+=======
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ingrese id del plato a eliminar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldEliminarPlaEspKeyTyped"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="550" y="330" width="240" height="30"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonEliminarPlatoDia">
+      <Properties>
+>>>>>>> f968881b2ddf92a634dc84f97e66e5888dd574f8
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="99" type="rgb"/>
         </Property>
@@ -221,6 +238,12 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldEliminarPlaDia">
+<<<<<<< HEAD
+=======
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ingrese id del plato a eliminar"/>
+      </Properties>
+>>>>>>> f968881b2ddf92a634dc84f97e66e5888dd574f8
       <Events>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldEliminarPlaDiaKeyTyped"/>
       </Events>
