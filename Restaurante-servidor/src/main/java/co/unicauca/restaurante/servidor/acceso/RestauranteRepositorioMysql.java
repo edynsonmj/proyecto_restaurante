@@ -157,9 +157,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     @Override
     public String savePlatoDia(PlatoDia instancia) {
-        if(!(this.findPlatoDia(instancia.getId()))){
-            return "FALLO";
-        }
         try{
             if (findPlatoDia(instancia.getId()))
             {
@@ -313,9 +310,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     @Override
     public String savePlatoEspecial(PlatoEspecial instancia) {
-        if(!this.findPlatoEspecial(instancia.getId())){
-            return "FALLO";
-        }
         try{
             if (findPlatoEspecial(instancia.getId()))
             {
