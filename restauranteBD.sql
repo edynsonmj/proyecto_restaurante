@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2020 a las 05:41:06
+-- Tiempo de generación: 14-10-2020 a las 11:30:29
 -- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.3.22
+-- Versión de PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,6 +32,12 @@ CREATE TABLE `menudia` (
   `RES_ID` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `menudia`
+--
+
+INSERT INTO `menudia` (`MDIA_ID`, `RES_ID`) VALUES (1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -43,6 +49,12 @@ CREATE TABLE `menuespecial` (
   `RES_ID` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `menuespecial`
+--
+
+INSERT INTO `menuespecial` (`MESP_ID`, `RES_ID`) VALUES (1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -53,13 +65,22 @@ CREATE TABLE `platodia` (
   `PDIA_ID` int(10) NOT NULL,
   `MDIA_ID` int(10) NOT NULL,
   `PDIA_NOMBRE` varchar(100) NOT NULL,
-  `PDIA_DESCRIPCION` char(100) NOT NULL,
+  `PDIA_DESCRIPCION` varchar(100) NOT NULL,
+  `PDIA_DIA` varchar(100) NOT NULL,
   `PDIA_ENTRADA` varchar(100) NOT NULL,
   `PDIA_PRINCIPIO` varchar(100) NOT NULL,
   `PDIA_BEBIDA` varchar(100) NOT NULL,
   `PDIA_CARNE` varchar(100) NOT NULL,
   `PDIA_PRECIO` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `platodia`
+--
+
+INSERT INTO `platodia` (`PDIA_ID`, `MDIA_ID`, `PDIA_NOMBRE`, `PDIA_DESCRIPCION`, `PDIA_DIA`, `PDIA_ENTRADA`, `PDIA_PRINCIPIO`, `PDIA_BEBIDA`, `PDIA_CARNE`, `PDIA_PRECIO`) VALUES
+(98, 1, 'jdfkdf', 'kfkfd', 'Lunes', 'jgj', 'kyiy', 'iyiyt', 'kgg', 69),
+(100, 1, 'kjdfjkdf', 'jgfjfd', 'Lunes', 'jgjf', 'jgfjgfjgf', 'kkdf', 'kgkg', 5000);
 
 -- --------------------------------------------------------
 
@@ -71,9 +92,17 @@ CREATE TABLE `platoespecial` (
   `PESP_ID` int(10) NOT NULL,
   `MESP_ID` int(10) NOT NULL,
   `PESP_NOMBRE` char(20) NOT NULL,
-  `PESP_DESCRIPCION` char(90) NOT NULL,
+  `PESP_DESCRIPCION` varchar(90) NOT NULL,
   `PESP_PRECIO` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `platoespecial`
+--
+
+INSERT INTO `platoespecial` (`PESP_ID`, `MESP_ID`, `PESP_NOMBRE`, `PESP_DESCRIPCION`, `PESP_PRECIO`) VALUES
+(69, 1, 'kgktgl', 'khkh', 5000),
+(101, 1, 'jhonfer', 'fdjjdk', 8000);
 
 -- --------------------------------------------------------
 
@@ -90,10 +119,7 @@ CREATE TABLE `restaurante` (
 -- Volcado de datos para la tabla `restaurante`
 --
 
-INSERT INTO `restaurante` (`RES_ID`, `RES_NOMBRE`) VALUES
-(2, 'primero'),
-(3, 'primero'),
-(4, 'primero');
+INSERT INTO `restaurante` (`RES_ID`, `RES_NOMBRE`) VALUES (1, 'theGalactics');
 
 --
 -- Índices para tablas volcadas
@@ -161,7 +187,7 @@ ALTER TABLE `platodia`
 ALTER TABLE `platoespecial`
   ADD CONSTRAINT `FK_PLATOESP_MESP_REL__MENUESPE` FOREIGN KEY (`MESP_ID`) REFERENCES `menuespecial` (`MESP_ID`);
 COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
