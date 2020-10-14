@@ -335,6 +335,15 @@ public class ClienteAccessSocket implements IClienteAccess{
         return requestJson;
     }
     
+    /**
+     * Envia el id de un restaurante y devuelve la lista llegada desde el servidor 
+     * el cual transforma el json recibido desde este
+     * en una lista de PLlato dia que conforma un menu por dias
+     * 
+     * @param resId
+     * @return
+     * @throws Exception 
+     */
     @Override
     public List<PlatoDia> listarMenuDia(int resId) throws Exception{
         String resource="administrador";
@@ -343,7 +352,16 @@ public class ClienteAccessSocket implements IClienteAccess{
         String response=procesarConexion(requestJson);
         return jsonListarMenuDia(response);
     }
-
+    
+    /**
+     * Envia el id de un restaurante y devuelve la lista llegada desde el servidor 
+     * el cual transforma el json recibido desde este
+     * en una lista de PlatoEspecial que conforma un menu especial
+     * 
+     * @param resId
+     * @return
+     * @throws Exception 
+     */
     @Override
     public List<PlatoEspecial> listarMenuEspecial(int resId)throws Exception {
         String resource="administrador";
@@ -353,6 +371,14 @@ public class ClienteAccessSocket implements IClienteAccess{
         return jsonListarMenuEspecial(response);
     }
     
+    /**
+     * Crea el plato recibido en un json para el envio por el sockect al servidor
+     * 
+     * @param resource
+     * @param accion
+     * @param resId
+     * @return 
+     */
     private String createlistMenuJson(String resource,String accion,int resId){
         Protocol protocol=new Protocol();
         protocol.setResource(resource);
@@ -364,11 +390,25 @@ public class ClienteAccessSocket implements IClienteAccess{
         System.out.println("json: "+requestJson);
         return requestJson;
     }
+    
+    /**
+     * Convierte un json en una lista de tipo plato dia
+     * 
+     * @param jsonListarMenu
+     * @return 
+     */
     private List<PlatoDia> jsonListarMenuDia(String jsonListarMenu){
         Gson gson=new Gson();
         Type list = new TypeToken<List<PlatoDia>>(){}.getType();
         return gson.fromJson(jsonListarMenu, list);
     }
+    
+    /**
+     * Convierte un json en una lista de tipo plato especial
+     * 
+     * @param jsonListarMenu
+     * @return 
+     */
     private List<PlatoEspecial> jsonListarMenuEspecial(String jsonListarMenu){
         Gson gson=new Gson();
         Type list = new TypeToken<List<PlatoEspecial>>(){}.getType();

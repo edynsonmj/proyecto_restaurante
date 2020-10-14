@@ -41,16 +41,16 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         boolean resultado;
         try{
             this.connect();
-            String sql = "SELECT PESP_ID FROM platoespecial where PESP_ID = ?";
+            String sql = "select pesp_nombre from platoespecial where PESP_ID = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet res= ps.executeQuery();
-            resultado=res.next();
+            ResultSet rs = ps.executeQuery();
+            resultado = rs.next();
             ps.close();
             this.disconnect();
             return resultado;
-        }catch (SQLException ex){
-            System.out.println("se jodio pe xd"+ex.getMessage());
+        }catch(SQLException ex){
+            System.out.println("revento excepcion encontrar plato especial_:"+ex.getMessage());
             return false;
         }
     }
@@ -58,15 +58,16 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         boolean resultado;
         try{
             this.connect();
-            String sql = "SELECT PDIA_NOMBRE FROM platodia where PDIA_ID = ?";
+            String sql = "select pdia_nombre from platodia where PDIA_ID = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet res= ps.executeQuery();
-            resultado=res.next();
+            ResultSet rs = ps.executeQuery();
+            resultado = rs.next();
+            ps.close();
             this.disconnect();
             return resultado;
-        }catch (SQLException ex){
-            System.out.println("se jodio pe xd"+ex.getMessage());
+        }catch(SQLException ex){
+            System.out.println("revento excepcion encontrar plato_:"+ex.getMessage());
             return false;
         }
     }
@@ -137,8 +138,13 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     @Override
     public String savePlatoDia(PlatoDia instancia) {
         try{
+            if (findPlatoDia(instancia.getId()))
+            {
+                return "FALLO";
+            }
+            System.out.println("entro");
             //primero se establece la conexion
-            this.connect(); //validar cuando la conexion no sea exitosa
+            this.connect(); 
             //se estructura la sentencia sql en un string
             String sql = "INSERT INTO platodia(PDIA_ID,MDIA_ID,PDIA_NOMBRE,PDIA_DESCRIPCION,PDIA_DIA,PDIA_ENTRADA,PDIA_PRINCIPIO,PDIA_BEBIDA,PDIA_CARNE,PDIA_PRECIO) VALUES (?,?,?,?,?,?,?,?,?,?)";
             //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
@@ -160,11 +166,49 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.close();
             //se termina la coneccion
             this.disconnect();
+            return instancia.getNombre();   
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
+            return "FALLO";
         }
         //lo ideal es retornor un id
-        return instancia.getNombre();   
+        
+    }
+    /**
+     * comunicacion con la base de datos para guardar un plato Especial
+     * @param instancia un plato Especial que se desea registrar
+     * @return 
+     */
+    @Override
+    public String savePlatoEspecial(PlatoEspecial instancia) {
+        try{
+            if (findPlatoEspecial(instancia.getId()))
+            {
+                return "FALLO";
+            }
+            //primero se establece la conexion
+            this.connect(); 
+            //se estructura la sentencia sql en un string
+            String sql = "INSERT INTO platoespecial(PESP_ID,MESP_ID,PESP_NOMBRE,PESP_DESCRIPCION,PESP_PRECIO) VALUES (?,?,?,?,?)";
+            //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            //se registra cada elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato
+            pstmt.setInt(1, instancia.getId());
+            pstmt.setInt(2, instancia.getMenuEsp());
+            pstmt.setString(3, instancia.getNombre());
+            pstmt.setString(4, instancia.getDescripcion());
+            pstmt.setInt(5, (int)instancia.getPrecio());
+            //se ejecuta la sentencia sql
+            pstmt.executeUpdate();
+            //se cierra
+            pstmt.close();
+            //se termina la coneccion
+            this.disconnect();
+            return instancia.getNombre();
+        } catch (SQLException ex) {
+            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
+            return null;
+        }
     }
     
     /**
@@ -272,39 +316,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.FINER, "Error al cerrar Connection", ex);
         }
     }
-
-    /**
-     * 
-     * @param instancia
-     * @return 
-     */
-    @Override
-    public String savePlatoEspecial(PlatoEspecial instancia) {
-        try{
-            //primero se establece la conexion
-            this.connect(); //validar cuando la conexion no sea exitosa
-            //se estructura la sentencia sql en un string
-            String sql = "INSERT INTO platoespecial(PESP_ID,MESP_ID,PESP_NOMBRE,PESP_DESCRIPCION,PESP_PRECIO) VALUES (?,?,?,?,?)";
-            //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            //se registra cada elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato
-            pstmt.setInt(1, instancia.getId());
-            pstmt.setInt(2, instancia.getMenuEsp());
-            pstmt.setString(3, instancia.getNombre());
-            pstmt.setString(4, instancia.getDescripcion());
-            pstmt.setInt(5, (int)instancia.getPrecio());
-            //se ejecuta la sentencia sql
-            pstmt.executeUpdate();
-            //se cierra
-            pstmt.close();
-            //se termina la coneccion
-            this.disconnect();
-        } catch (SQLException ex) {
-            Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
-        }
-        //lo ideal es retornor un id
-        return instancia.getNombre();
-    }
     /**
      * guarda un restaurante en la base de datos
      * @param res instancia a guardar
@@ -329,7 +340,16 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return res.getNombre();
     }
-
+    
+    /**
+     * Lista el menu desde la consulta hecha a la base de datos 
+     * añade las tuplas encontradas en una lista de Plato
+     * y convierte la lista en json para enviarla por el sockect devuelta
+     * al cliente
+     * 
+     * @param resId
+     * @return 
+     */
     @Override
     public String listarMenuDia(int resId) {
         List<Plato> list=new ArrayList<>();
@@ -355,7 +375,15 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return response;
     }
-
+    
+    /**
+     * Lista el menu desde la consulta hecha a la base de datos 
+     * añade las tuplas encontradas en una lista de Plato
+     * y convierte la lista en json para enviarla por el sockect devuelta
+     * al cliente
+     * @param resId
+     * @return 
+     */
     @Override
     public String listarMenuEspecial(int resId) {
         List<Plato> list=new ArrayList<>();
@@ -382,7 +410,12 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
        return response;
     }
-    
+    /**
+     * Convierte una lista de tipo plato en un json
+     * 
+     * @param list
+     * @return 
+     */
     public String listToJson (List<Plato> list){
         Gson gson=new Gson();
         String response=gson.toJson(list);

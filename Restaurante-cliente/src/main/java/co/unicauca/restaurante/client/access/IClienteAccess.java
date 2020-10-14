@@ -29,6 +29,14 @@ public interface IClienteAccess {
     public String deletePlatoEspecial(int idPlaE) throws Exception;
     //modificar
     //listar
+    
+    /**
+     * Lista los menus por tipo y recibe por parametro el id del restaurante
+     * 
+     * @param resId
+     * @return
+     * @throws Exception 
+     */
     public List<PlatoDia> listarMenuDia(int resId)throws Exception;
     public List<PlatoEspecial> listarMenuEspecial(int resId)throws Exception;
 }

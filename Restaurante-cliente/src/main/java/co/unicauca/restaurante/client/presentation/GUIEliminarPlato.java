@@ -8,8 +8,12 @@ package co.unicauca.restaurante.client.presentation;
 import co.unicauca.restaurante.client.access.Factory;
 import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
+import co.unicauca.restaurante.commons.domain.PlatoDia;
+import co.unicauca.restaurante.commons.domain.PlatoEspecial;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,14 +22,29 @@ import javax.swing.JOptionPane;
  * @author Jhonny Rosero
  */
 public class GUIEliminarPlato extends javax.swing.JFrame {
-    IClienteAccess service = Factory.getInstance().getClienteService();
-    clienteService servicioRestaurante = new clienteService(service);
+    IClienteAccess service;
+    clienteService servicioRestaurante;
+    DefaultListModel modelListEspecial;
+    DefaultListModel modelListDia;
     /**
      * Creates new form GUIEliminarPlato
      */
     public GUIEliminarPlato() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.modelListEspecial=new DefaultListModel();
+        this.modelListDia=new DefaultListModel();
+        jListPlatoEspecial.setModel(modelListEspecial);
+        jListPlatoDia.setModel(modelListDia);
+        this.service = Factory.getInstance().getClienteService();
+        this.servicioRestaurante = new clienteService(service);
+        
+        try {
+            // TODO add your handling code here:
+            listar();
+        } catch (Exception ex) {
+            Logger.getLogger(GUIListar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -115,7 +134,6 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, 410));
 
-        jTextFieldEliminarPlaEsp.setText("Ingrese id del plato a eliminar");
         jTextFieldEliminarPlaEsp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldEliminarPlaEspKeyTyped(evt);
@@ -133,7 +151,6 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonEliminarPlatoDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 160, 30));
 
-        jTextFieldEliminarPlaDia.setText("Ingrese id del plato a eliminar");
         jTextFieldEliminarPlaDia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldEliminarPlaDiaKeyTyped(evt);
@@ -156,6 +173,7 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "El id del plato es incorrecto");
                 } else {
                     JOptionPane.showMessageDialog(null, "Plato eliminado con exito");
+                    listar();
                 }
             } catch (Exception ex) {
                 Logger.getLogger(GUIEliminarPlato.class.getName()).log(Level.SEVERE, null, ex);
@@ -188,6 +206,7 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "El id del plato es incorrecto");
                 } else {
                     JOptionPane.showMessageDialog(null, "Plato eliminado con exito");
+                    listar();
                 }
         } catch (Exception ex) {
             Logger.getLogger(GUIEliminarPlato.class.getName()).log(Level.SEVERE, null, ex);
@@ -200,7 +219,25 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_jTextFieldEliminarPlaDiaKeyTyped
+    public void listar() throws Exception{
+        clienteService servicioRestaurante = new clienteService(service);
+        int resId=1;
+        List<PlatoDia> lsDia=servicioRestaurante.listarMenuDia(resId);
+        List<PlatoEspecial> lsEspecial=servicioRestaurante.listarMenuEspecial(resId);
+        modelListDia.clear();
+        modelListEspecial.clear();
+        for (PlatoDia ls : lsDia) {
+            modelListDia.addElement("ID: " + ls.getId() + " NOMBRE: " + ls.getNombre()
+                    + " DIA SEMANA: " + ls.getDiaSemana().name() + " DESCRIPCION: " + ls.getDescripcion()
+                    + " PRECIO: " + ls.getPrecio() + " ENTRADA: " + ls.getEntrada()
+                    + " PRINCIPIO" + ls.getPrincipio() + " CARNE: " + ls.getCarne() + " BEBIDA: " + ls.getBebida());
+        }
 
+        for (PlatoEspecial lse : lsEspecial) {
+            modelListEspecial.addElement("ID: " + lse.getId() + " NOMBRE: " + lse.getNombre()
+                    + " DESCRIPCION: " + lse.getDescripcion() + " PRECIO: " + lse.getPrecio());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
