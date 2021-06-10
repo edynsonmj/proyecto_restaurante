@@ -1,12 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.client.presentation;
 
-import co.unicauca.restaurante.client.access.Factory;
-import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
@@ -130,7 +123,6 @@ public class GUIListar extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
-        //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -170,7 +162,6 @@ public class GUIListar extends javax.swing.JFrame {
         }
     }
   
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListDia;
     private javax.swing.JList<String> ListEspecial;

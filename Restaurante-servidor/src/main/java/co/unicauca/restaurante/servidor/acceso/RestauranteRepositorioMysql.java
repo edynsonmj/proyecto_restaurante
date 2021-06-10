@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.servidor.acceso;
 
 
@@ -34,9 +29,8 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     private Connection conn;
 
-    public RestauranteRepositorioMysql(){
+    public RestauranteRepositorioMysql(){}
 
-    }
     /**
      * busca un plato especial en la base de datos.
      * @param id identificador del plato
@@ -59,6 +53,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             return false;
         }
     }
+
     /**
      * busca un plato del dia en la base de datos
      * @param id identificador del plato
@@ -81,6 +76,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             return false;
         }
     }
+
     /**
      * actualiza un item de plato del dia en la base de datos.
      * @param clave identificador del plato
@@ -95,7 +91,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         try{
             this.connect();
-            //String sql = "UPDATE platoespecial set "+atributo+" = "+valor+" WHERE PESP_NOMBRE = "+clave;
             String sql = "UPDATE platodia SET "+atributo+" = ? WHERE PDIA_ID = ?";
             System.out.println("SENTENCIA SQL UPDATE PLATO DIA: "+sql);
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -106,9 +101,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
                 pstmt.setString(1, valor);
             }
             pstmt.setInt(2, Integer.parseInt(clave));
-            
             pstmt.executeUpdate();
-            
             pstmt.close();
             this.disconnect();
         }catch (SQLException ex) {
@@ -116,6 +109,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return clave;
     }
+
     /**
      * actualiza un item plato especial en la base de datos
      * @param clave identificador del plato
@@ -140,9 +134,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
                 pstmt.setString(1, valor);
             }
             pstmt.setInt(2, Integer.parseInt(clave));
-            
             pstmt.executeUpdate();
-            
             pstmt.close();
             this.disconnect();
         }catch (SQLException ex) {
@@ -150,6 +142,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return clave;
     }
+
     /**
      * cumunicacion con la base de datos para guardar un platodel dia
      * @param instancia un plato del dia que se desea registrar
@@ -162,16 +155,9 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             {
                 return "FALLO";
             }
-
-            System.out.println("entro");
-
-            //primero se establece la conexion
             this.connect(); 
-            //se estructura la sentencia sql en un string
             String sql = "INSERT INTO platodia(PDIA_ID,MDIA_ID,PDIA_NOMBRE,PDIA_DESCRIPCION,PDIA_DIA,PDIA_ENTRADA,PDIA_PRINCIPIO,PDIA_BEBIDA,PDIA_CARNE,PDIA_PRECIO) VALUES (?,?,?,?,?,?,?,?,?,?)";
-            //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            //se registra cada elemento, OJO Ddebe cumplir estrictamente el orden y el tipo de dato
             pstmt.setInt(1, instancia.getId());
             pstmt.setInt(2, instancia.getMenuId());
             pstmt.setString(3, instancia.getNombre());
@@ -182,16 +168,11 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.setString(8, instancia.getBebida());
             pstmt.setString(9, instancia.getCarne());
             pstmt.setInt(10, (int)instancia.getPrecio());
-            //se ejecuta la sentencia sql
             pstmt.executeUpdate();
-            //se cierra
             pstmt.close();
-            //se termina la coneccion
             this.disconnect();
-              
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
-            //return "FALLO";
         }
         return instancia.getNombre(); 
     }
@@ -211,7 +192,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         try{
             //primero se establece la conexion
-            this.connect(); //validar cuando la conexion no sea exitosa
+            this.connect(); 
             //se estructura la sentencia sql en un string
             String sql = "DELETE FROM platodia WHERE pdia_id = (?)";
             //pstmt mantendra la solicitud sobre la base de datos, se asignam sus columnas
@@ -229,6 +210,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return ""+idPlaD;
     }
+
     /**
      * cumunicacion con la base de datos para eliminar un plato del dia
      * @param idPlaE id plato que se desea eliminar
@@ -257,12 +239,12 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.close();
             //se termina la coneccion
             this.disconnect();
-  
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al eliminar el plato", ex);
         }
         return ""+idPlaE;
     }
+
     /**
      * Permite hacer la conexion con la base de datos
      *
@@ -314,7 +296,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             {
                 return "FALLO";
             }
-            System.out.println("entro");
             //primero se establece la conexion
             this.connect(); //validar cuando la conexion no sea exitosa
             //se estructura la sentencia sql en un string
@@ -336,7 +317,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         } catch (SQLException ex) {
             Logger.getLogger(RestauranteRepositorioMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
         }
-        //lo ideal es retornor un id
         return instancia.getNombre();
     }
     
@@ -347,7 +327,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
      */
     @Override
     public String saveRestaurante(Restaurante res) {
-        System.out.println("ingreso a guardar");
         try{
             this.connect();
             String sql = "INSERT INTO restaurante(RES_ID,RES_NOMBRE) VALUES (?,?)";
@@ -364,6 +343,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
         return res.getNombre();
     }
+
     /**
      * Lista el menu desde la consulta hecha a la base de datos 
      * añade las tuplas encontradas en una lista de Plato
@@ -377,7 +357,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     public String listarMenuDia(int resId) {
         List<Plato> list=new ArrayList<>();
         String response=null;
-        System.out.println("ingreso al listar Menu Dia");
         try{
             this.connect();
             String sql = "select pdia_id,pdia_nombre,pdia_descripcion,pdia_dia, pdia_entrada,pdia_principio,pdia_carne,pdia_bebida,pdia_precio, m.mdia_id from (restaurante r inner join menudia m on r.res_id=m.res_id) inner join platodia p on m.mdia_id=p.mdia_id where r.res_id ="+resId;
@@ -408,7 +387,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     public String listarMenuEspecial(int resId) {
         List<Plato> list=new ArrayList<>();
         String response=null;
-        System.out.println("ingreso al listar Menu Dia");
         try{
             this.connect();
             String sql = "select pesp_id,pesp_nombre,pesp_descripcion,pesp_precio,m.mesp_id from (restaurante r inner join menuespecial m on r.res_id=m.res_id) inner join platoespecial p on m.mesp_id=p.mesp_id where r.res_id = (?)";
@@ -416,7 +394,6 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.setInt(1, resId);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {   
-                
                 Plato pla = new PlatoEspecial(Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(4)), rs.getString(3), Integer.parseInt(rs.getString(5)));
                 list.add(pla);
             }
@@ -428,6 +405,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         }
        return response;
     }
+
     /**
      * Convierte una lista de tipo plato en un json
      * 

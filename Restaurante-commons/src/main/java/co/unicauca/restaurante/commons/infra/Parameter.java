@@ -6,7 +6,6 @@ package co.unicauca.restaurante.commons.infra;
  * @author Libardo, Julio
  */
 public class Parameter {
-
     private String name;
     private String value;
 
@@ -34,5 +33,4 @@ public class Parameter {
     public void setValue(String value) {
         this.value = value;
     }
-
 }

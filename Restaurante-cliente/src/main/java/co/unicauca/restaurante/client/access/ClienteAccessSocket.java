@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.client.access;
 import co.unicauca.restaurante.client.infra.RestauranteSocket;
 import co.unicauca.restaurante.commons.domain.PlatoDia;
@@ -16,13 +11,12 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
-
 /**
- *
  * @author EdynsonMJ
  * @author Jhonny Rosero
  */
 public class ClienteAccessSocket implements IClienteAccess{
+
     /**
      * uso de un socket para comunicarse con el servidor
      */
@@ -41,13 +35,13 @@ public class ClienteAccessSocket implements IClienteAccess{
      */
     @Override
     public String saveRestaurante(Restaurante res) throws Exception{
-        
         String requestJson = crearRestauranteJson(res);
         if((this.procesarConexion(requestJson)).equals("FALLO")){
             return "FALLO";
         }
         return res.getNombre();
     }
+
     /**
      * establece la conexion con el servidor para una solicitud que se pasa por parametro
      * @param requestJson solicitud al servidor
@@ -57,14 +51,11 @@ public class ClienteAccessSocket implements IClienteAccess{
     private String procesarConexion(String requestJson)throws Exception{
         String jsonResponse = null;
         try{
-            //se establece la conexion
             mySocket.connect();
-            //se envia la solicitud y se recibe una respuesta,
-            //(CREO)AQUI VALIDAR SI SE DIO CON EXITO LA OPERACION, SEGUN LA REPUESTA DEL SERVIDOR
             jsonResponse = mySocket.sendStream(requestJson);
             mySocket.closeStream();
             mySocket.disconnect();
-	    if(jsonResponse.equals("FALLO")){
+	          if(jsonResponse.equals("FALLO")){
                 return "FALLO";
             }else{
                 System.out.println("todo normal");
@@ -76,16 +67,12 @@ public class ClienteAccessSocket implements IClienteAccess{
             throw new Exception("no se pudo conectar al servidor");
         }else{
             if (jsonResponse.contains("error")) {
-                //Devolvió algún erroR, usar mejor login
-                System.out.println("hubo algun tipo de error");
                 throw new Exception(this.extractMessages(jsonResponse));
             } else {
-                //Devuelve la respuesta del servidor
                 return jsonResponse;
             }
         }
     }
-
     
     /**
      * crea el plotocolo en formato yeison de la informacion que se desea enviar
@@ -94,12 +81,10 @@ public class ClienteAccessSocket implements IClienteAccess{
      */
     private String crearRestauranteJson(Restaurante instancia){
         Protocol protocol = new Protocol();
-        //el orden debe ser respetado
         protocol.setResource("administrador");
         protocol.setAction("postRestaurante");
         protocol.addParameter("res_id", String.valueOf(instancia.getId()));
         protocol.addParameter("nombre", instancia.getNombre());
-        
         Gson gson = new Gson();
         String requestJson = gson.toJson(protocol);
         System.out.println("json: "+requestJson);
@@ -114,13 +99,13 @@ public class ClienteAccessSocket implements IClienteAccess{
      */
     @Override
     public String savePlatoDia(PlatoDia instancia) throws Exception{
-        //devuelve un string en formato Json que lo que se enviara
         String requestJson = crearPlatoDiaJson(instancia);
         if((this.procesarConexion(requestJson)).equals("FALLO")){
             return "FALLO";
         }
         return instancia.getNombre();
     }
+
     @Override
     public boolean updatePlatoDia(int clave, String atributo, String valor) throws Exception{
         String requestJson = updatePlatoDiaJson(clave, atributo, valor);
@@ -132,18 +117,17 @@ public class ClienteAccessSocket implements IClienteAccess{
     
     public String updatePlatoDiaJson(int clave, String atributo, String valor){
         Protocol protocol = new Protocol();
-        //el orden debe ser respetado
         protocol.setResource("administrador");
         protocol.setAction("updatePlatoDia");
         protocol.addParameter("clave", ""+clave);
         protocol.addParameter("atributo", atributo);
         protocol.addParameter("valor", valor);
-        
         Gson gson = new Gson();
         String requestJson = gson.toJson(protocol);
         System.out.println("json enviado: "+requestJson);
         return requestJson;
     }
+
     /**
      * hace un update sobre la tabla menu especial en la base de datos
      * @param clave valor con el que se encontraran coincidencias, en este caso el nombre
@@ -153,15 +137,13 @@ public class ClienteAccessSocket implements IClienteAccess{
      */
     @Override
     public boolean updatePlatoEspecial(int clave, String atributo, String valor) throws Exception{
-        //estring en formato json que se enviara al servidor
         String requestJson = updateEspecialJson(clave, atributo, valor);
          if(procesarConexion(requestJson).equals("FALLO")){
-            System.out.println("devolvio fallo");
             return false;
         }
-         System.out.println("devolvio ");
         return true;
     }
+
     /**
      * genera el string en el formato json para ser enviado
      * @param clave 
@@ -171,13 +153,11 @@ public class ClienteAccessSocket implements IClienteAccess{
      */
     private String updateEspecialJson(int clave, String atributo, String valor){
         Protocol protocol = new Protocol();
-        //el orden debe ser respetado
         protocol.setResource("administrador");
         protocol.setAction("updateEspecial");
         protocol.addParameter("clave", ""+clave);
         protocol.addParameter("atributo", atributo);
         protocol.addParameter("valor", valor);
-        
         Gson gson = new Gson();
         String requestJson = gson.toJson(protocol);
         System.out.println("json enviado: "+requestJson);
@@ -197,6 +177,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         }
         return msjs;
     }
+
     /**
      * Convierte el jsonError a un array de objetos jsonError
      *
@@ -229,12 +210,12 @@ public class ClienteAccessSocket implements IClienteAccess{
         protocol.addParameter("bebida", instancia.getBebida());
         protocol.addParameter("carne", instancia.getCarne());
         protocol.addParameter("precio", String.valueOf(instancia.getPrecio()));
-        
         Gson gson = new Gson();
         String requestJson = gson.toJson(protocol);
         System.out.println("json: "+requestJson);
         return requestJson;
     }
+
     /**
      * se hace practicamente lo mismo que savePlatoEspecial
      * FALTA IMPLEMENTAR
@@ -245,14 +226,13 @@ public class ClienteAccessSocket implements IClienteAccess{
     @Override
     public String savePlatoEspecial(PlatoEspecial instancia) throws Exception{
         String jsonResponse = null;
-        //devuelve un string en formato Json que lo que se enviara
         String requestJson = crearPlatoEspecialJson(instancia);
         if((this.procesarConexion(requestJson).equals("FALLO"))){
             return "FALLO";
         }
         return instancia.getNombre();
-
     }
+
     private String crearPlatoEspecialJson(PlatoEspecial instancia){
         Protocol protocol = new Protocol();
         protocol.setResource("administrador");
@@ -262,19 +242,17 @@ public class ClienteAccessSocket implements IClienteAccess{
         protocol.addParameter("nombre", instancia.getNombre());
         protocol.addParameter("descripcion", instancia.getDescripcion());
         protocol.addParameter("precio", String.valueOf(instancia.getPrecio()));
-        
         Gson gson = new Gson();
         String requestJson = gson.toJson(protocol);
         System.out.println("json: "+requestJson);
         return requestJson;
     }
 
-     /* envia la solicitud al servidor para eliminar un plato dia
+    /** envia la solicitud al servidor para eliminar un plato dia
      * @param idPlaD id del plato dia que se quiere eliminar
      * @return
      * @throws Exception
      */
-
     @Override
     public String deletePlatoDia(int idPlaD) throws Exception {
         String respJson = deletePlatoDiaJson(idPlaD);
@@ -283,6 +261,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         }
         return ""+idPlaD;
     }
+
     /**
      * se crea el protocolo de comunicacion, en parameter van los datos del plato a borrar
      * OJO el orden debe ser exacto
@@ -295,13 +274,12 @@ public class ClienteAccessSocket implements IClienteAccess{
         protocol.setResource("administrador");
         protocol.setAction("eliminarPlatoDia");
         protocol.addParameter("id", ""+idPlaD);
-        
         Gson gson = new Gson();
         String requestJson = gson.toJson(protocol);
         System.out.println("json: "+requestJson);
-        
         return requestJson;
     }
+
     /**
      * envia la solicitud al servidor para eliminar un plato dia
      * @param idPlaE id del plato dia que se quiere eliminar
@@ -316,6 +294,7 @@ public class ClienteAccessSocket implements IClienteAccess{
         }
         return ""+idPlaE;
     }
+
     /**
      * se crea el protocolo de comunicacion, en parameter van los datos del plato a borrar
      * OJO el orden debe ser exacto
@@ -328,11 +307,9 @@ public class ClienteAccessSocket implements IClienteAccess{
         protocol.setResource("administrador");
         protocol.setAction("eliminarPlatoEspecial");
         protocol.addParameter("id", ""+idPlaE);
-        
         Gson gson = new Gson();
         String requestJson = gson.toJson(protocol);
         System.out.println("json: "+requestJson);
-        
         return requestJson;
     }
 
@@ -385,7 +362,6 @@ public class ClienteAccessSocket implements IClienteAccess{
         protocol.setResource(resource);
         protocol.setAction(accion);
         protocol.addParameter("resId", String.valueOf(resId));
-        
         Gson gson = new Gson();
         String requestJson = gson.toJson(protocol);
         System.out.println("json: "+requestJson);

@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.client.presentation;
+
 import co.unicauca.restaurante.client.domain.clienteService;
 import co.unicauca.restaurante.commons.domain.MenuEspecial;
 import co.unicauca.restaurante.commons.domain.PlatoEspecial;
@@ -12,7 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -207,7 +202,6 @@ public class GUIRegPlato extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
-        //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -224,10 +218,6 @@ public class GUIRegPlato extends javax.swing.JFrame {
                GUIRegPlatoD frame = new GUIRegPlatoD(servicioRestaurante);
                frame.setVisible(true);
            }
-        /*
-        GUIPrincipal frame = new GUIPrincipal();
-        GUIRegPlato frame2 = new GUIRegPlato();
-        frame2.getContentPane().add(frame);        // TODO add your handling code here:*/
     }//GEN-LAST:event_cboTipoPlatoActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed

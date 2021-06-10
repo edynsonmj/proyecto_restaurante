@@ -1,12 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.commons.domain;
-
-//Implementar plato dia como el modelo
-
 
 /**
  *
@@ -57,7 +49,6 @@ public class PlatoDia extends Plato{
         this.bebida=bebida;
         this.menuId=menuId;
     }
-    
 
     public DiaEnum getDiaSemana() {
         return diaSemana;
@@ -66,7 +57,6 @@ public class PlatoDia extends Plato{
     public void setDiaSemana(DiaEnum diaSemana) {
         this.diaSemana = diaSemana;
     }
-    
     
     public String getEntrada() {
         return entrada;
@@ -99,6 +89,7 @@ public class PlatoDia extends Plato{
     public void setBebida(String bebida) {
         this.bebida = bebida;
     }
+
     public int getMenuId() {
         return menuId;
     }

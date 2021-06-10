@@ -9,7 +9,6 @@ import java.util.List;
  * @author Libardo, Julio
  */
 public class Protocol {
-
     private String resource;
     private String action;
     private List<Parameter> parameters;
@@ -45,6 +44,5 @@ public class Protocol {
     public void addParameter(String name, String value) {
         parameters.add(new Parameter(name, value));
     }
-
 }
 

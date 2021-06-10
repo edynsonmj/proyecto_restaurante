@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.commons.domain;
 
 /**
@@ -20,7 +15,6 @@ public class Plato {
      * precio del alimento
      */
     private double precio;
-    
     
     public Plato(){}
     
@@ -62,5 +56,4 @@ public class Plato {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    
 }

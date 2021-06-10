@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.client.presentation;
 
 import co.unicauca.restaurante.client.domain.clienteService;
@@ -30,7 +25,6 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.btnActualizar.setEnabled(false);
-        
         this.modelListEspecial=new DefaultListModel();
         this.jListaPlato.setModel(modelListEspecial);
         this.servicioRestaurante=servicioRestaurante;
@@ -170,7 +164,6 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
         // TODO add your handling code here:
          setVisible(false);
         GUIMenuModificar ins = new GUIMenuModificar (servicioRestaurante);
-        //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
 
@@ -186,28 +179,20 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
         boolean respuesta = false;
         int id =Integer.parseInt(txtID.getText());
         String valor = this.txtValor.getText();
-        //
         String atributo=null;
         if(this.cbxTipo.getSelectedIndex()==1){
-            //nombre
             atributo = "PDIA_NOMBRE";
         }else if(this.cbxTipo.getSelectedIndex()==2){
-            //descripcion
             atributo = "PDIA_DESCRIPCION";
         }else if(this.cbxTipo.getSelectedIndex()==3){
-            //entrada
             atributo = "PDIA_ENTRADA";
         }else if(this.cbxTipo.getSelectedIndex()==4){
-            //principio
             atributo = "PDIA_PRINCIPIO";
         }else if(this.cbxTipo.getSelectedIndex()==5){
-            //bebida
             atributo = "PDIA_BEBIDA";
         }else if(this.cbxTipo.getSelectedIndex()==6){
-            //carne
             atributo = "PDIA_CARNE";
         }else if(this.cbxTipo.getSelectedIndex()==7){
-            //precio
             atributo = "PDIA_PRECIO";
         }
         
@@ -302,7 +287,6 @@ public class GUIModificarPlatoDia extends javax.swing.JFrame {
         }else{
             this.btnActualizar.setEnabled(true);
         }
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

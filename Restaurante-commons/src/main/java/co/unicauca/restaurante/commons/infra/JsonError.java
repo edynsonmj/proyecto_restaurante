@@ -6,24 +6,26 @@ package co.unicauca.restaurante.commons.infra;
  * @author Libardo, Julio
  */
 public class JsonError {
-
     /**
      * Ej. 404
      */
     private String code;
+
     /**
      * Ej. Not_found
      */
     private String error;
+
     /**
      * Ej. La cédula del cliente no existe
      */
     private String message;
+
     /**
      * Constructor por defecto
      */
-    public JsonError() {
-    }
+    public JsonError() {}
+
     /**
      * Constructor parametrizado
      * @param code
@@ -59,5 +61,4 @@ public class JsonError {
     public void setMessage(String message) {
         this.message = message;
     }
-
 }

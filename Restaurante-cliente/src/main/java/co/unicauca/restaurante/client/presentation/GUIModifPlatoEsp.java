@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.client.presentation;
 
 import co.unicauca.restaurante.client.domain.clienteService;
@@ -30,11 +25,9 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.btnActualizar.setEnabled(false);
-        
         this.modelListEspecial=new DefaultListModel();
         this.jListPlato.setModel(modelListEspecial);
         this.servicioRestaurante=servicioRestaurante;
-        
         try {
             // TODO add your handling code here:
             listar();
@@ -63,6 +56,7 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
         jButtonVolver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,7 +145,9 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MOFICAR PLATO ESPECIAL");
         jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 60));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 60));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 60));
+
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, -1, -1));
 
@@ -163,7 +159,6 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         GUIMenuModificar ins = new GUIMenuModificar(servicioRestaurante);
-        //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
@@ -192,16 +187,12 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
         boolean respuesta = false;
         int id =Integer.parseInt(txtID.getText());
         String valor = this.txtValor.getText();
-        //
         String atributo=null;
         if(this.cbxTipo.getSelectedIndex()==1){
-            //nombre
             atributo = "PESP_NOMBRE";
         }else if(this.cbxTipo.getSelectedIndex()==2){
-            //descripcion
             atributo = "PESP_DESCRIPCION";
         }else if(this.cbxTipo.getSelectedIndex()==3){
-            //precio
             atributo = "PESP_PRECIO";
         }
         if(atributo.equals("PESP_PRECIO")){
@@ -219,10 +210,7 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "ha fallado la peticion, intentelo nuevamente");
             Logger.getLogger(GUIModificarPlatoDia.class.getName()).log(Level.SEVERE, null, ex);
-            //mostrar mensaje
         }
-        
-        //DESABILITAR AL FINAL
         this.txtID.setText(null);
         this.cbxTipo.setSelectedIndex(0);
         this.txtValor.setText(null);
@@ -273,7 +261,6 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
         }else{
             this.btnActualizar.setEnabled(true);
         }
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -281,6 +268,7 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxTipo;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCodigo;
     private javax.swing.JLabel jLabelModificar;

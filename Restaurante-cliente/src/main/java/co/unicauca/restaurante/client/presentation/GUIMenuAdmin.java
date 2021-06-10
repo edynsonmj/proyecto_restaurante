@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.client.presentation;
 
 import co.unicauca.restaurante.client.domain.clienteService;
@@ -42,6 +37,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         jButtonListar = new javax.swing.JButton();
         jButtonVolver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 450));
@@ -116,7 +112,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         jLabel2.setText("MENÚ DE ADMINISTRADOR");
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
-
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -125,7 +121,6 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         GUIMenuModificar ins = new GUIMenuModificar(servicioRestaurante);
-        //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
@@ -135,17 +130,13 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         GUIRegPlatoD ins = new GUIRegPlatoD(servicioRestaurante);
         //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
-
-
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
         setVisible(false);
         GUIEliminarPlato ins = new GUIEliminarPlato(servicioRestaurante);
-        //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
-
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
@@ -165,10 +156,8 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         GUILogin ins = new GUILogin();
-        //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButtonVolverActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEliminar;
@@ -178,5 +167,6 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

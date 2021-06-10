@@ -220,7 +220,6 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-<<<<<<< HEAD
           <AbsoluteConstraints x="0" y="0" width="820" height="60"/>
         </Constraint>
       </Constraints>
@@ -228,10 +227,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="50" width="800" height="360"/>
-=======
           <AbsoluteConstraints x="0" y="0" width="940" height="60"/>
->>>>>>> 8f31a6d533acfc1d91f98e8a8d2b70d652785848
         </Constraint>
       </Constraints>
     </Component>

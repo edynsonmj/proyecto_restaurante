@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.servidor.acceso;
 
 /**
@@ -10,11 +5,10 @@ package co.unicauca.restaurante.servidor.acceso;
  * @author EdynsonMJ
  */
 public class FabricaRepositorio {
-    
     private static FabricaRepositorio instance;
     
-    private FabricaRepositorio(){
-    }
+    private FabricaRepositorio(){}
+
     /**
      * retorno solo una instancia de fabrica
      * singleton
@@ -26,13 +20,13 @@ public class FabricaRepositorio {
         }
         return instance;
     }
+
     /**
      * retorna un repositorio
      * @return instancia del repositorio
      */
     public IPlatoRepositorio getRepository(){
         IPlatoRepositorio repositorio = new RestauranteRepositorioMysql();
-        //IPlatoRepositorio repositorio = new RestauranteRepositorioDeveloper();
         return repositorio;
     }
 }

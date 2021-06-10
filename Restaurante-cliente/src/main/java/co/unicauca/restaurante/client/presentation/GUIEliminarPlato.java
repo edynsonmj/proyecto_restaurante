@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.client.presentation;
 
 import co.unicauca.restaurante.client.domain.clienteService;
@@ -23,6 +18,7 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
     clienteService servicioRestaurante;
     DefaultListModel modelListEspecial;
     DefaultListModel modelListDia;
+
     /**
      * Creates new form GUIEliminarPlato
      * @param servicioRestaurante
@@ -35,9 +31,7 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
         jListPlatoEspecial.setModel(modelListEspecial);
         jListPlatoDia.setModel(modelListDia);
         this.servicioRestaurante = servicioRestaurante;
-        
         try {
-            // TODO add your handling code here:
             listarMenuDia();
             listarMenuEspecial();
         } catch (Exception ex) {
@@ -132,6 +126,7 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, 410));
 
+        jTextFieldEliminarPlaEsp.setText("Ingrese id del plato a eliminar");
         jTextFieldEliminarPlaEsp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldEliminarPlaEspKeyTyped(evt);
@@ -149,6 +144,7 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonEliminarPlatoDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 160, 30));
 
+        jTextFieldEliminarPlaDia.setText("Ingrese id del plato a eliminar");
         jTextFieldEliminarPlaDia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldEliminarPlaDiaKeyTyped(evt);
@@ -161,13 +157,11 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
 
     private void jButtonEliminarPlatoEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarPlatoEspecialActionPerformed
         // TODO add your handling code here:
-        //se captura el id del plato a eliminar
         if (!(jTextFieldEliminarPlaEsp.getText().length() > 0)) {
             JOptionPane.showMessageDialog(null, "No digito ningun id");
             jTextFieldEliminarPlaEsp.setText(null);
         } else {
             int idPlaE = Integer.parseInt(jTextFieldEliminarPlaEsp.getText());
-            //se ejecuta la funcionalidad eliminar plato especial
             try {
                 String resultado;
                 resultado = servicioRestaurante.deletePlatoEspecial(idPlaE);
@@ -189,7 +183,6 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
-        //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -201,13 +194,10 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
 
     private void jButtonEliminarPlatoDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarPlatoDiaActionPerformed
         // TODO add your handling code here:
-        //se captura el id del plato a eliminar
-        //int idPlaD = Integer.parseInt(jTextFieldEliminarPlaDia.getText());
         if (!(jTextFieldEliminarPlaDia.getText().length() > 0)) {
             JOptionPane.showMessageDialog(null, "No digito ningun id");
             jTextFieldEliminarPlaDia.setText(null);
         } else {
-            //se ejecuta la funcionalidad eliminar plato especial
             int idPlaD = Integer.parseInt(jTextFieldEliminarPlaDia.getText());
             try {
                 String resultado;
@@ -242,6 +232,7 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
                     + " DESCRIPCION: " + lse.getDescripcion() + " PRECIO: " + lse.getPrecio());
         }
     }
+
     private void listarMenuDia() throws Exception{
         int resId=1;
         List<PlatoDia> lsDia=servicioRestaurante.listarMenuDia(resId);

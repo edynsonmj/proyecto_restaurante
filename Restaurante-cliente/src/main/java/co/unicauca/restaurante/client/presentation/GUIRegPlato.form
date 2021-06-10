@@ -3,18 +3,12 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[817, 370]"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[700, 450]"/>
     </Property>
->>>>>>> 6b21bfcf1f29bcb9676f011caa3900a3635f9ff1
->>>>>>> f8341ac439c1d4572ed2125bc85f653550e00ce4
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -346,8 +340,6 @@
         </Constraint>
       </Constraints>
     </Component>
-<<<<<<< HEAD
-=======
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="opaque" type="boolean" value="true"/>
@@ -358,6 +350,5 @@
         </Constraint>
       </Constraints>
     </Component>
->>>>>>> 06288f53e5b29e34994a235dd348795dd8ad52cf
   </SubComponents>
 </Form>

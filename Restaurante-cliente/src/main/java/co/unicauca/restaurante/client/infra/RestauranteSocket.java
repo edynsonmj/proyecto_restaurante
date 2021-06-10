@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.client.infra;
 
 import co.unicauca.restaurante.commons.infra.Utilities;
@@ -91,5 +86,4 @@ public class RestauranteSocket {
         socket = new java.net.Socket(IP_SERVER, PORT);
         Logger.getLogger("SocketClient").log(Level.INFO, "Socket establecido");
     }
-
 }

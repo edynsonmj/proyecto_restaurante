@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.client.presentation;
 
 import co.unicauca.restaurante.client.domain.clienteService;
@@ -75,11 +70,9 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         lblDia = new javax.swing.JLabel();
         cboDia = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-
         cboTipoPlato = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 450));
@@ -244,7 +237,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 870, 70));
 
-
         cboTipoPlato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Plato del Dia", "Plato Especial" }));
         cboTipoPlato.setBorder(null);
         cboTipoPlato.addActionListener(new java.awt.event.ActionListener() {
@@ -264,7 +256,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         jLabel3.setOpaque(true);
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 350));
 
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -272,7 +263,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         
         setVisible(false);
         GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
-        //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -307,7 +297,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
                 
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(null, "El plato ya esta registrado; Message: "+ex.getMessage());
-               // System.out.println("atencion no se save si agrego"+ex.getMessage());
             }
         }// TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -333,10 +322,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
             GUIRegPlatoD frame = new GUIRegPlatoD(servicioRestaurante);
             frame.setVisible(true);
         }
-        /*
-        GUIPrincipal frame = new GUIPrincipal();
-        GUIRegPlato frame2 = new GUIRegPlato();
-        frame2.getContentPane().add(frame);        // TODO add your handling code here:*/
     }//GEN-LAST:event_cboTipoPlatoActionPerformed
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
@@ -360,17 +345,14 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         }
     }
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cboDia;
     private javax.swing.JComboBox<String> cboTipoPlato;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
-
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
-
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JList<String> jListPlatoDia;
     private javax.swing.JScrollPane jScrollPane1;

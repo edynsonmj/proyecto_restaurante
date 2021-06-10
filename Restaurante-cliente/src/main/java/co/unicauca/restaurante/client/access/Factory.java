@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.client.access;
 
 import co.unicauca.restaurante.commons.infra.Utilities;
@@ -17,12 +12,14 @@ public class Factory {
     private Factory(){
         
     }
+
     public static Factory getInstance(){
         if(instance == null){
             instance = new Factory();
         }
         return instance;
     }
+
     /**
      * crea una clase concreta de ClienteAccessSocket que realiza la comunicacion
      * @return 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.client.presentation;
 
 import co.unicauca.restaurante.client.domain.clienteService;
@@ -102,7 +97,6 @@ public class GUIMenuModificar extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         GUIModificarPlatoDia ins = new GUIModificarPlatoDia(servicioRestaurante);
-        //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -110,7 +104,6 @@ public class GUIMenuModificar extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         GUIModifPlatoEsp ins = new GUIModifPlatoEsp(servicioRestaurante);
-        //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -118,7 +111,6 @@ public class GUIMenuModificar extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
-        //ins.setExtendedState(MAXIMIZED_BOTH);
         ins.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 

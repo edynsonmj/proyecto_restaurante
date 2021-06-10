@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.restaurante.client.presentation;
 
 import co.unicauca.restaurante.client.access.Factory;
@@ -10,7 +5,6 @@ import co.unicauca.restaurante.client.access.IClienteAccess;
 import co.unicauca.restaurante.client.domain.clienteService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 /**
  *
@@ -29,7 +23,6 @@ public class GUILogin extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         service=Factory.getInstance().getClienteService();
         servicioRestaurante=new clienteService(service);
-
     }
 
     /**
@@ -111,7 +104,6 @@ public class GUILogin extends javax.swing.JFrame {
                 public void run() {
                     setVisible(false);
                     GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
-                    //ins.setExtendedState(MAXIMIZED_BOTH);
                     ins.setVisible(true);
                 }
             });
@@ -125,8 +117,6 @@ public class GUILogin extends javax.swing.JFrame {
                     } catch (Exception ex) {
                         Logger.getLogger(GUILogin.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    //ins.setExtendedState(MAXIMIZED_BOTH);
-                    
                 }
             });
             
