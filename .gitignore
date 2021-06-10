@@ -1,5 +1,6 @@
-/Restaurante-servidor/target/
-/Restaurante-cliente/target/
-/Restaurante-commons/target/
-/Restaurante-cliente/nbproject/
-
+Restaurante-servidor/target/
+Restaurante-servidor/ojdbc7.jar
+Restaurante-cliente/target/
+Restaurante-cliente/lib/
+Restaurante-cliente/nbproject/
+Restaurante-commons/target/
