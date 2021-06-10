@@ -4,19 +4,19 @@ import co.unicauca.restaurante.client.domain.clienteService;
 
 /**
  *
- * @author Camilo Gonzalez
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class GUIMenuModificar extends javax.swing.JFrame {
+    private clienteService servicioRestaurante;
     
-    clienteService servicioRestaurante;
     /**
      * Creates new form MenuModificar
      * @param servicioRestaurante
      */
     public GUIMenuModificar(clienteService servicioRestaurante) {
-        initComponents();
+        this.initComponents();
         this.setLocationRelativeTo(null);
-        this.servicioRestaurante=servicioRestaurante;
+        this.servicioRestaurante = servicioRestaurante;
     }
 
     /**
@@ -28,99 +28,90 @@ public class GUIMenuModificar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabelTitulo = new javax.swing.JLabel();
+        lblSubtitle = new javax.swing.JLabel();
+        btnModPlatD = new javax.swing.JButton();
+        btnModPlatE = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 450));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setBackground(new java.awt.Color(153, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Cual Plato desea Modificar?");
-        jLabel2.setOpaque(true);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
+        lblSubtitle.setBackground(new java.awt.Color(153, 0, 0));
+        lblSubtitle.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblSubtitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblSubtitle.setText("Cual Plato desea Modificar?");
+        lblSubtitle.setOpaque(true);
+        getContentPane().add(lblSubtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        jButton1.setText("Plato del Dia");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnModPlatD.setBackground(new java.awt.Color(255, 255, 255));
+        btnModPlatD.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        btnModPlatD.setText("Plato del Dia");
+        btnModPlatD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnModPlatD.setBorderPainted(false);
+        btnModPlatD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnModPlatDActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 280, 160));
+        getContentPane().add(btnModPlatD, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 280, 160));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        jButton2.setText("Plato Especial");
-        jButton2.setBorderPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnModPlatE.setBackground(new java.awt.Color(255, 255, 255));
+        btnModPlatE.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        btnModPlatE.setText("Plato Especial");
+        btnModPlatE.setBorderPainted(false);
+        btnModPlatE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnModPlatEActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 290, 160));
+        getContentPane().add(btnModPlatE, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 290, 160));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jButton3.setText("Volver");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setBackground(new java.awt.Color(255, 255, 255));
+        btnVolver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo Gonzalez\\Desktop\\background.jpg")); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 780, 400));
-
-        jLabelTitulo.setBackground(new java.awt.Color(153, 0, 0));
-        jLabelTitulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("MODIFICAR PLATOS");
-        jLabelTitulo.setOpaque(true);
-        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, -10, 780, 80));
+        lblTitle.setBackground(new java.awt.Color(153, 0, 0));
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("MODIFICAR PLATOS");
+        lblTitle.setOpaque(true);
+        getContentPane().add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, -10, 780, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        GUIModificarPlatoDia ins = new GUIModificarPlatoDia(servicioRestaurante);
+    private void btnModPlatDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPlatDActionPerformed
+        this.setVisible(false);
+        GUIModificarPlatoDia ins = new GUIModificarPlatoDia(this.servicioRestaurante);
         ins.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnModPlatDActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        GUIModifPlatoEsp ins = new GUIModifPlatoEsp(servicioRestaurante);
+    private void btnModPlatEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPlatEActionPerformed
+        this.setVisible(false);
+        GUIModifPlatoEsp ins = new GUIModifPlatoEsp(this.servicioRestaurante);
         ins.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnModPlatEActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.setVisible(false);
+        GUIMenuAdmin ins = new GUIMenuAdmin(this.servicioRestaurante);
         ins.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JButton btnModPlatD;
+    private javax.swing.JButton btnModPlatE;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel lblSubtitle;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

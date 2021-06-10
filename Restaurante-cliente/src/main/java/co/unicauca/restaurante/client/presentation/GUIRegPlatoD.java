@@ -12,29 +12,27 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Camilo Gonzalez
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class GUIRegPlatoD extends javax.swing.JFrame {
-    clienteService servicioRestaurante;
-    DefaultListModel modelListDia;
+    private clienteService servicioRestaurante;
+    private DefaultListModel modelListDia;
+    
     /**
      * Creates new form GUIRegPlato
      * @param servicioRestaurnate
      */
     public GUIRegPlatoD(clienteService servicioRestaurnate) {
-        initComponents();
+        this.initComponents();
         this.setLocationRelativeTo(null);
-        this.modelListDia=new DefaultListModel();
-        jListPlatoDia.setModel(modelListDia);
-        this.servicioRestaurante=servicioRestaurnate;
-        
+        this.modelListDia = new DefaultListModel();
+        this.jListPlatoDia.setModel(this.modelListDia);
+        this.servicioRestaurante = servicioRestaurnate;
         try {
-            // TODO add your handling code here:
-            listar();
+            this.listar();
         } catch (Exception ex) {
-            Logger.getLogger(GUIListar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GUIRegPlatoD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
     /**
@@ -46,7 +44,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelTitulo = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
@@ -56,7 +54,7 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         txtBebida = new javax.swing.JTextField();
         lblCodigo = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         txtValor = new javax.swing.JTextField();
         txtEntrada = new javax.swing.JTextField();
         txtPrincipio = new javax.swing.JTextField();
@@ -68,22 +66,22 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         txtCarne = new javax.swing.JTextField();
         lblBebida1 = new javax.swing.JLabel();
         lblDia = new javax.swing.JLabel();
-        cboDia = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        cboTipoPlato = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        cbxDia = new javax.swing.JComboBox<>();
+        lblContenTitle = new javax.swing.JLabel();
+        cbxTipoPlato = new javax.swing.JComboBox<>();
+        lblCategoryPlate = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 450));
         setPreferredSize(new java.awt.Dimension(817, 370));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelTitulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("REGISTRAR PLATO DIA");
-        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("REGISTRAR PLATO DIA");
+        getContentPane().add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
 
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 160, 30));
@@ -133,11 +131,6 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         getContentPane().add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, -1, -1));
 
         txtCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
-            }
-        });
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyTyped(evt);
@@ -145,23 +138,18 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         });
         getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 110, 30));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jButton2.setText("Volver");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setBackground(new java.awt.Color(255, 255, 255));
+        btnVolver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 20));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 20));
 
         txtValor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorActionPerformed(evt);
-            }
-        });
         txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtValorKeyTyped(evt);
@@ -222,107 +210,81 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         lblDia.setOpaque(true);
         getContentPane().add(lblDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
-        cboDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
-        cboDia.setBorder(null);
-        cboDia.addActionListener(new java.awt.event.ActionListener() {
+        cbxDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
+        cbxDia.setBorder(null);
+        getContentPane().add(cbxDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 180, 30));
+
+        lblContenTitle.setBackground(new java.awt.Color(153, 0, 0));
+        lblContenTitle.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        lblContenTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblContenTitle.setOpaque(true);
+        getContentPane().add(lblContenTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 870, 70));
+
+        cbxTipoPlato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Plato del Dia", "Plato Especial" }));
+        cbxTipoPlato.setBorder(null);
+        cbxTipoPlato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboDiaActionPerformed(evt);
+                cbxTipoPlatoActionPerformed(evt);
             }
         });
-        getContentPane().add(cboDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 180, 30));
+        getContentPane().add(cbxTipoPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 170, 40));
 
-        jLabel2.setBackground(new java.awt.Color(153, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setOpaque(true);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 870, 70));
+        lblCategoryPlate.setBackground(new java.awt.Color(255, 255, 255));
+        lblCategoryPlate.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblCategoryPlate.setForeground(new java.awt.Color(153, 0, 0));
+        lblCategoryPlate.setText(" Categoría del Plato:");
+        lblCategoryPlate.setOpaque(true);
+        getContentPane().add(lblCategoryPlate, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        cboTipoPlato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Plato del Dia", "Plato Especial" }));
-        cboTipoPlato.setBorder(null);
-        cboTipoPlato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboTipoPlatoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cboTipoPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 170, 40));
-
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(153, 0, 0));
-        jLabel6.setText(" Categoría del Plato:");
-        jLabel6.setOpaque(true);
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
-
-        jLabel3.setOpaque(true);
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 350));
+        lblFondo.setOpaque(true);
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        setVisible(false);
-        GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.setVisible(false);
+        GUIMenuAdmin ins = new GUIMenuAdmin(this.servicioRestaurante);
         ins.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorActionPerformed
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        if (txtNombre.getText()!=null && txtDescripcion.getText()!=null && txtCodigo.getText()!=null && txtValor.getText()!=null 
-            && txtBebida.getText()!=null && txtPrincipio.getText()!=null && txtEntrada.getText()!=null && txtCarne.getText()!=null
-            && !((cboDia.getSelectedItem().toString()).equalsIgnoreCase("Seleccione"))) {
-
-            MenuDia menuDia = new MenuDia(10);
-            PlatoDia platoDia = new PlatoDia(Integer.valueOf(txtCodigo.getText()),txtNombre.getText(),Integer.valueOf(txtValor.getText()),txtDescripcion.getText()
-                                             , DiaEnum.valueOf(cboDia.getSelectedItem().toString()),txtEntrada.getText(),txtPrincipio.getText(),txtCarne.getText()
-                                             , txtBebida.getText(),menuDia.getId());
+        if (this.txtNombre.getText()!=null && this.txtDescripcion.getText()!=null && this.txtCodigo.getText()!=null && this.txtValor.getText()!=null 
+            && this.txtBebida.getText()!=null && this.txtPrincipio.getText()!=null && this.txtEntrada.getText()!=null && this.txtCarne.getText()!=null
+            && !this.cbxDia.getSelectedItem().toString().equalsIgnoreCase("Seleccione")) {
+            MenuDia menuDia = new MenuDia(1);
+            PlatoDia platoDia = new PlatoDia(Integer.valueOf(this.txtCodigo.getText()), this.txtNombre.getText(),Integer.valueOf(this.txtValor.getText()), this.txtDescripcion.getText()
+                                             , DiaEnum.valueOf(this.cbxDia.getSelectedItem().toString()), this.txtEntrada.getText(), this.txtPrincipio.getText(), this.txtCarne.getText()
+                                             , this.txtBebida.getText(),menuDia.getId());
             try{
-                String platoD = servicioRestaurante.savePlatoDia(platoDia);
+                String platoD = this.servicioRestaurante.savePlatoDia(platoDia);
                 if (!platoD.equals("FALLO")){
-                    System.out.println(platoD);
                     JOptionPane.showMessageDialog(null, "Se registro el plato exitosamente");
-                    txtCodigo.setText("");
-                    txtNombre.setText("");
-                    txtValor.setText("");
-                    txtDescripcion.setText("");
-                    txtBebida.setText("");
-                    txtPrincipio.setText("");
-                    txtEntrada.setText("");
-                    txtCarne.setText("");
-                    listar();  
+                    this.cbxTipoPlato.setSelectedIndex(0);
+                    this.cbxDia.setSelectedIndex(0);
+                    this.txtCodigo.setText("");
+                    this.txtNombre.setText("");
+                    this.txtValor.setText("");
+                    this.txtDescripcion.setText("");
+                    this.txtBebida.setText("");
+                    this.txtPrincipio.setText("");
+                    this.txtEntrada.setText("");
+                    this.txtCarne.setText("");
+                    this.listar();  
                 }
-                
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(null, "El plato ya esta registrado; Message: "+ex.getMessage());
             }
-        }// TODO add your handling code here:
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
-
-    private void cboDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiaActionPerformed
-
-    private void cboTipoPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoPlatoActionPerformed
-        if ((cboTipoPlato.getSelectedItem().toString().equalsIgnoreCase("Plato Especial")))
-        {
+    private void cbxTipoPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoPlatoActionPerformed
+        if (this.cbxTipoPlato.getSelectedItem().toString().equalsIgnoreCase("Plato Especial")){
             this.setVisible(false);
-            GUIRegPlato frame = new GUIRegPlato(servicioRestaurante);
+            GUIRegPlato frame = new GUIRegPlato(this.servicioRestaurante);
             frame.setVisible(true);
         }
-        if ((cboTipoPlato.getSelectedItem().toString().equalsIgnoreCase("Plato del Dia")))
-        {
-            this.setVisible(false);
-            GUIRegPlatoD frame = new GUIRegPlatoD(servicioRestaurante);
-            frame.setVisible(true);
-        }
-    }//GEN-LAST:event_cboTipoPlatoActionPerformed
+    }//GEN-LAST:event_cbxTipoPlatoActionPerformed
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         char c = evt.getKeyChar();
@@ -333,37 +295,38 @@ public class GUIRegPlatoD extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_txtValorKeyTyped
+    
     private void listar() throws Exception{
-        int resId=1;
-        List<PlatoDia> lsDia=servicioRestaurante.listarMenuDia(resId);
-        modelListDia.clear();
-        for (PlatoDia ls : lsDia) {
-            modelListDia.addElement("ID: " + ls.getId() + " NOMBRE: " + ls.getNombre()
+        int resId = 1;
+        List<PlatoDia> lsDia = this.servicioRestaurante.listarMenuDia(resId);
+        this.modelListDia.clear();
+        lsDia.forEach(ls -> {
+            this.modelListDia.addElement("ID: " + ls.getId() + " NOMBRE: " + ls.getNombre()
                     + " DIA SEMANA: " + ls.getDiaSemana().name() + " DESCRIPCION: " + ls.getDescripcion()
                     + " PRECIO: " + ls.getPrecio() + " ENTRADA: " + ls.getEntrada()
                     + " PRINCIPIO" + ls.getPrincipio() + " CARNE: " + ls.getCarne() + " BEBIDA: " + ls.getBebida());
-        }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> cboDia;
-    private javax.swing.JComboBox<String> cboTipoPlato;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cbxDia;
+    private javax.swing.JComboBox<String> cbxTipoPlato;
     private javax.swing.JList<String> jListPlatoDia;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBebida;
     private javax.swing.JLabel lblBebida1;
+    private javax.swing.JLabel lblCategoryPlate;
     private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblContenTitle;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblDia;
     private javax.swing.JLabel lblEntrada;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPrincipio;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblValor;
     private javax.swing.JTextField txtBebida;
     private javax.swing.JTextField txtCarne;

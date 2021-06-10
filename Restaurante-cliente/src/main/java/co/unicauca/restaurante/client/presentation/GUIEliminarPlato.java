@@ -11,29 +11,28 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Camilo Gonzalez
- * @author Jhonny Rosero
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class GUIEliminarPlato extends javax.swing.JFrame {
-    clienteService servicioRestaurante;
-    DefaultListModel modelListEspecial;
-    DefaultListModel modelListDia;
+    private clienteService servicioRestaurante;
+    private DefaultListModel modelListEspecial;
+    private DefaultListModel modelListDia;
 
     /**
      * Creates new form GUIEliminarPlato
      * @param servicioRestaurante
      */
     public GUIEliminarPlato(clienteService servicioRestaurante) {
-        initComponents();
+        this.initComponents();
         this.setLocationRelativeTo(null);
-        this.modelListEspecial=new DefaultListModel();
-        this.modelListDia=new DefaultListModel();
-        jListPlatoEspecial.setModel(modelListEspecial);
-        jListPlatoDia.setModel(modelListDia);
         this.servicioRestaurante = servicioRestaurante;
+        this.modelListEspecial = new DefaultListModel();
+        this.modelListDia = new DefaultListModel();
+        this.listPlatoDia.setModel(this.modelListDia);
+        this.listPlatoEspecial.setModel(this.modelListEspecial);
         try {
-            listarMenuDia();
-            listarMenuEspecial();
+            this.listarMenuDia();
+            this.listarMenuEspecial();
         } catch (Exception ex) {
             Logger.getLogger(GUIListar.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -48,197 +47,243 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jScrollPanePlatoDia = new javax.swing.JScrollPane();
-        jListPlatoDia = new javax.swing.JList<>();
-        jScrollPanePlatoEspecial = new javax.swing.JScrollPane();
-        jListPlatoEspecial = new javax.swing.JList<>();
-        jLabelPlatoEspecial = new javax.swing.JLabel();
-        jButtonEliminarPlatoEspecial = new javax.swing.JButton();
-        jLabelPlatoDia = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabelFondo = new javax.swing.JLabel();
-        jTextFieldEliminarPlaEsp = new javax.swing.JTextField();
-        jButtonEliminarPlatoDia = new javax.swing.JButton();
-        jTextFieldEliminarPlaDia = new javax.swing.JTextField();
+        btnVolver = new javax.swing.JButton();
+        scrollPnlPlatoDia = new javax.swing.JScrollPane();
+        listPlatoDia = new javax.swing.JList<>();
+        scrollPnlPlatoEspecial = new javax.swing.JScrollPane();
+        listPlatoEspecial = new javax.swing.JList<>();
+        lblPlatoEspecial = new javax.swing.JLabel();
+        btnEliminarPlatoEspecial = new javax.swing.JButton();
+        lblPlatoDia = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
+        txtEliminarPlaEsp = new javax.swing.JTextField();
+        btnEliminarPlatoDia = new javax.swing.JButton();
+        txtEliminarPlaDia = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 450));
         setPreferredSize(new java.awt.Dimension(817, 370));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        jListPlatoDia.setModel(new javax.swing.AbstractListModel<String>() {
+        listPlatoDia.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPanePlatoDia.setViewportView(jListPlatoDia);
+        listPlatoDia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listPlatoDiaMouseClicked(evt);
+            }
+        });
+        scrollPnlPlatoDia.setViewportView(listPlatoDia);
 
-        getContentPane().add(jScrollPanePlatoDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 330, 210));
+        getContentPane().add(scrollPnlPlatoDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 330, 210));
 
-        jListPlatoEspecial.setModel(new javax.swing.AbstractListModel<String>() {
+        listPlatoEspecial.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPanePlatoEspecial.setViewportView(jListPlatoEspecial);
+        listPlatoEspecial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listPlatoEspecialMouseClicked(evt);
+            }
+        });
+        scrollPnlPlatoEspecial.setViewportView(listPlatoEspecial);
 
-        getContentPane().add(jScrollPanePlatoEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 330, 210));
+        getContentPane().add(scrollPnlPlatoEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 330, 210));
 
-        jLabelPlatoEspecial.setBackground(new java.awt.Color(153, 0, 0));
-        jLabelPlatoEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        jLabelPlatoEspecial.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelPlatoEspecial.setText("Platos Especiales");
-        jLabelPlatoEspecial.setOpaque(true);
-        getContentPane().add(jLabelPlatoEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, -1, -1));
+        lblPlatoEspecial.setBackground(new java.awt.Color(153, 0, 0));
+        lblPlatoEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        lblPlatoEspecial.setForeground(new java.awt.Color(255, 255, 255));
+        lblPlatoEspecial.setText("Platos Especiales");
+        lblPlatoEspecial.setOpaque(true);
+        getContentPane().add(lblPlatoEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, -1, -1));
 
-        jButtonEliminarPlatoEspecial.setBackground(new java.awt.Color(153, 0, 0));
-        jButtonEliminarPlatoEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jButtonEliminarPlatoEspecial.setText("Eliminar");
-        jButtonEliminarPlatoEspecial.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarPlatoEspecial.setBackground(new java.awt.Color(153, 0, 0));
+        btnEliminarPlatoEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btnEliminarPlatoEspecial.setText("Eliminar");
+        btnEliminarPlatoEspecial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEliminarPlatoEspecialActionPerformed(evt);
+                btnEliminarPlatoEspecialActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEliminarPlatoEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 160, 30));
+        getContentPane().add(btnEliminarPlatoEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 160, 30));
 
-        jLabelPlatoDia.setBackground(new java.awt.Color(153, 0, 0));
-        jLabelPlatoDia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        jLabelPlatoDia.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelPlatoDia.setText("Platos del dia");
-        jLabelPlatoDia.setOpaque(true);
-        getContentPane().add(jLabelPlatoDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
+        lblPlatoDia.setBackground(new java.awt.Color(153, 0, 0));
+        lblPlatoDia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        lblPlatoDia.setForeground(new java.awt.Color(255, 255, 255));
+        lblPlatoDia.setText("Platos del dia");
+        lblPlatoDia.setOpaque(true);
+        getContentPane().add(lblPlatoDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
 
-        jLabel1.setBackground(new java.awt.Color(153, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ELIMINAR PLATO");
-        jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, 410));
+        lblTitle.setBackground(new java.awt.Color(153, 0, 0));
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("ELIMINAR PLATO");
+        lblTitle.setOpaque(true);
+        getContentPane().add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, 410));
 
-        jTextFieldEliminarPlaEsp.setText("Ingrese id del plato a eliminar");
-        jTextFieldEliminarPlaEsp.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtEliminarPlaEsp.setText("Ingrese id del plato a eliminar");
+        txtEliminarPlaEsp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEliminarPlaEspMouseClicked(evt);
+            }
+        });
+        txtEliminarPlaEsp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldEliminarPlaEspKeyTyped(evt);
+                txtEliminarPlaEspKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextFieldEliminarPlaEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 240, 30));
+        getContentPane().add(txtEliminarPlaEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 240, 30));
 
-        jButtonEliminarPlatoDia.setBackground(new java.awt.Color(153, 0, 0));
-        jButtonEliminarPlatoDia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jButtonEliminarPlatoDia.setText("Eliminar");
-        jButtonEliminarPlatoDia.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarPlatoDia.setBackground(new java.awt.Color(153, 0, 0));
+        btnEliminarPlatoDia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btnEliminarPlatoDia.setText("Eliminar");
+        btnEliminarPlatoDia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEliminarPlatoDiaActionPerformed(evt);
+                btnEliminarPlatoDiaActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEliminarPlatoDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 160, 30));
+        getContentPane().add(btnEliminarPlatoDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 160, 30));
 
-        jTextFieldEliminarPlaDia.setText("Ingrese id del plato a eliminar");
-        jTextFieldEliminarPlaDia.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldEliminarPlaDiaKeyTyped(evt);
+        txtEliminarPlaDia.setText("Ingrese id del plato a eliminar");
+        txtEliminarPlaDia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEliminarPlaDiaMouseClicked(evt);
             }
         });
-        getContentPane().add(jTextFieldEliminarPlaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 240, 30));
+        txtEliminarPlaDia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEliminarPlaDiaKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtEliminarPlaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 240, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonEliminarPlatoEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarPlatoEspecialActionPerformed
-        // TODO add your handling code here:
-        if (!(jTextFieldEliminarPlaEsp.getText().length() > 0)) {
+    private void btnEliminarPlatoEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPlatoEspecialActionPerformed
+        if (this.txtEliminarPlaEsp.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "No digito ningun id");
-            jTextFieldEliminarPlaEsp.setText(null);
-        } else {
-            int idPlaE = Integer.parseInt(jTextFieldEliminarPlaEsp.getText());
+        }else{
+            int idPlaE = Integer.parseInt(this.txtEliminarPlaEsp.getText());
             try {
-                String resultado;
-                resultado = servicioRestaurante.deletePlatoEspecial(idPlaE);
-                if ("FALLO".equals(resultado)) {
+                String resultado = this.servicioRestaurante.deletePlatoEspecial(idPlaE);
+                if (resultado.equals("FALLO")) {
                     JOptionPane.showMessageDialog(null, "El id del plato es incorrecto");
-                    jTextFieldEliminarPlaEsp.setText(null);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Plato eliminado con exito");
-                    jTextFieldEliminarPlaEsp.setText(null);
-                    listarMenuEspecial();
+                    JOptionPane.showMessageDialog(null, "Plato eliminado con exito");                
+                    this.listarMenuEspecial();
                 }
             } catch (Exception ex) {
                 Logger.getLogger(GUIEliminarPlato.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jButtonEliminarPlatoEspecialActionPerformed
+        this.txtEliminarPlaEsp.setText("Ingrese id del plato a eliminar");
+    }//GEN-LAST:event_btnEliminarPlatoEspecialActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.setVisible(false);
+        GUIMenuAdmin ins = new GUIMenuAdmin(this.servicioRestaurante);
         ins.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void jTextFieldEliminarPlaEspKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEliminarPlaEspKeyTyped
-        //valida que lo que se ingrese sean numeros
+    private void txtEliminarPlaEspKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEliminarPlaEspKeyTyped
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
-    }//GEN-LAST:event_jTextFieldEliminarPlaEspKeyTyped
+    }//GEN-LAST:event_txtEliminarPlaEspKeyTyped
 
-    private void jButtonEliminarPlatoDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarPlatoDiaActionPerformed
-        // TODO add your handling code here:
-        if (!(jTextFieldEliminarPlaDia.getText().length() > 0)) {
+    private void btnEliminarPlatoDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPlatoDiaActionPerformed
+        if (this.txtEliminarPlaDia.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "No digito ningun id");
-            jTextFieldEliminarPlaDia.setText(null);
-        } else {
-            int idPlaD = Integer.parseInt(jTextFieldEliminarPlaDia.getText());
+        }else{
+            int idPlaD = Integer.parseInt(this.txtEliminarPlaDia.getText());
             try {
-                String resultado;
-                resultado = servicioRestaurante.deletePlatoDia(idPlaD);
-                if ("FALLO".equals(resultado)) {
+                String resultado = this.servicioRestaurante.deletePlatoDia(idPlaD);
+                if (resultado.equals("FALLO")) {
                     JOptionPane.showMessageDialog(null, "El id del plato es incorrecto");
-                    jTextFieldEliminarPlaDia.setText(null);
                 } else {
                     JOptionPane.showMessageDialog(null, "Plato eliminado con exito");
-                    jTextFieldEliminarPlaDia.setText(null);
-                    listarMenuDia();
+                    this.listarMenuDia();
                 }
             } catch (Exception ex) {
                 Logger.getLogger(GUIEliminarPlato.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jButtonEliminarPlatoDiaActionPerformed
+        this.txtEliminarPlaDia.setText("Ingrese id del plato a eliminar");
+    }//GEN-LAST:event_btnEliminarPlatoDiaActionPerformed
 
-    private void jTextFieldEliminarPlaDiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEliminarPlaDiaKeyTyped
-        // TODO add your handling code here:
-        //valida que lo que se ingrese sean numeros
+    private void txtEliminarPlaDiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEliminarPlaDiaKeyTyped
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
-    }//GEN-LAST:event_jTextFieldEliminarPlaDiaKeyTyped
+    }//GEN-LAST:event_txtEliminarPlaDiaKeyTyped
+
+    private void txtEliminarPlaDiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEliminarPlaDiaMouseClicked
+        this.txtEliminarPlaDia.setText("");
+    }//GEN-LAST:event_txtEliminarPlaDiaMouseClicked
+
+    private void txtEliminarPlaEspMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEliminarPlaEspMouseClicked
+        this.txtEliminarPlaEsp.setText("");
+    }//GEN-LAST:event_txtEliminarPlaEspMouseClicked
+
+    private void listPlatoDiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listPlatoDiaMouseClicked
+        this.validaFieldELiminarPlatoDia();
+    }//GEN-LAST:event_listPlatoDiaMouseClicked
+
+    private void listPlatoEspecialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listPlatoEspecialMouseClicked
+        this.validaFieldEliminarPlatoEspecial();
+    }//GEN-LAST:event_listPlatoEspecialMouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        this.validaFieldELiminarPlatoDia();
+        this.validaFieldEliminarPlatoEspecial();
+    }//GEN-LAST:event_formMouseClicked
+    
+    private void validaFieldELiminarPlatoDia(){
+        if (this.txtEliminarPlaDia.getText().length() == 0) {
+            this.txtEliminarPlaDia.setText("Ingrese id del plato a eliminar");
+        }
+    }
+    
+    private void validaFieldEliminarPlatoEspecial(){
+        if(this.txtEliminarPlaEsp.getText().length() == 0){
+            this.txtEliminarPlaEsp.setText("Ingrese id del plato a eliminar");
+        }
+    }
     
     private void listarMenuEspecial()throws Exception{
-        int resId=1;
-        List<PlatoEspecial> lsEspecial=servicioRestaurante.listarMenuEspecial(resId);
-        modelListEspecial.clear();
+        int resId = 1;
+        List<PlatoEspecial> lsEspecial = this.servicioRestaurante.listarMenuEspecial(resId);
+        this.modelListEspecial.clear();
         for (PlatoEspecial lse : lsEspecial) {
-            modelListEspecial.addElement("ID: " + lse.getId() + " NOMBRE: " + lse.getNombre()
+            this.modelListEspecial.addElement("ID: " + lse.getId() + " NOMBRE: " + lse.getNombre()
                     + " DESCRIPCION: " + lse.getDescripcion() + " PRECIO: " + lse.getPrecio());
         }
     }
 
     private void listarMenuDia() throws Exception{
-        int resId=1;
-        List<PlatoDia> lsDia=servicioRestaurante.listarMenuDia(resId);
-        modelListDia.clear();
+        int resId = 1;
+        List<PlatoDia> lsDia = this.servicioRestaurante.listarMenuDia(resId);
+        this.modelListDia.clear();
         for (PlatoDia ls : lsDia) {
-            modelListDia.addElement("ID: " + ls.getId() + " NOMBRE: " + ls.getNombre()
+            this.modelListDia.addElement("ID: " + ls.getId() + " NOMBRE: " + ls.getNombre()
                     + " DIA SEMANA: " + ls.getDiaSemana().name() + " DESCRIPCION: " + ls.getDescripcion()
                     + " PRECIO: " + ls.getPrecio() + " ENTRADA: " + ls.getEntrada()
                     + " PRINCIPIO" + ls.getPrincipio() + " CARNE: " + ls.getCarne() + " BEBIDA: " + ls.getBebida());
@@ -246,18 +291,18 @@ public class GUIEliminarPlato extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonEliminarPlatoDia;
-    private javax.swing.JButton jButtonEliminarPlatoEspecial;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelFondo;
-    private javax.swing.JLabel jLabelPlatoDia;
-    private javax.swing.JLabel jLabelPlatoEspecial;
-    private javax.swing.JList<String> jListPlatoDia;
-    private javax.swing.JList<String> jListPlatoEspecial;
-    private javax.swing.JScrollPane jScrollPanePlatoDia;
-    private javax.swing.JScrollPane jScrollPanePlatoEspecial;
-    private javax.swing.JTextField jTextFieldEliminarPlaDia;
-    private javax.swing.JTextField jTextFieldEliminarPlaEsp;
+    private javax.swing.JButton btnEliminarPlatoDia;
+    private javax.swing.JButton btnEliminarPlatoEspecial;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblPlatoDia;
+    private javax.swing.JLabel lblPlatoEspecial;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JList<String> listPlatoDia;
+    private javax.swing.JList<String> listPlatoEspecial;
+    private javax.swing.JScrollPane scrollPnlPlatoDia;
+    private javax.swing.JScrollPane scrollPnlPlatoEspecial;
+    private javax.swing.JTextField txtEliminarPlaDia;
+    private javax.swing.JTextField txtEliminarPlaEsp;
     // End of variables declaration//GEN-END:variables
 }

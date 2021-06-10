@@ -10,26 +10,27 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author Camilo Gonzalez
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
-public class GUIListar extends javax.swing.JFrame {
+public class GUIListar extends javax.swing.JFrame {   
+    private clienteService servicioRestaurante;  
+    private DefaultListModel modelListDia;
+    private DefaultListModel modelListEspecial;
+    private String user;
     
-    clienteService servicioRestaurante;
-    
-    DefaultListModel modelListDia;
-    DefaultListModel modelListEspecial;
     /**
      * Creates new form GUIListar
      * @param servicioRestaurante
      */
-    public GUIListar(clienteService servicioRestaurante){
-        initComponents();
+    public GUIListar(clienteService servicioRestaurante, String user){
+        this.initComponents();
         this.setLocationRelativeTo(null);
-        this.modelListDia=new DefaultListModel();
-        this.modelListEspecial=new DefaultListModel();
-        ListDia.setModel(modelListDia);
-        ListEspecial.setModel(modelListEspecial);
-        this.servicioRestaurante=servicioRestaurante;
+        this.modelListDia = new DefaultListModel();
+        this.modelListEspecial = new DefaultListModel();
+        this.ListDia.setModel(this.modelListDia);
+        this.ListEspecial.setModel(this.modelListEspecial);
+        this.servicioRestaurante = servicioRestaurante;
+        this.user = user;
     }
 
     /**
@@ -41,15 +42,15 @@ public class GUIListar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPaneMenuEsp = new javax.swing.JScrollPane();
+        btnVolver = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
+        scrollPnlMenuEsp = new javax.swing.JScrollPane();
         ListEspecial = new javax.swing.JList<>();
-        jButtonListar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        btnListar = new javax.swing.JButton();
+        lblMenuDia = new javax.swing.JLabel();
+        lblMenuEspecial = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPnlMenuDia = new javax.swing.JScrollPane();
         ListDia = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,54 +58,54 @@ public class GUIListar extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(817, 370));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setBackground(new java.awt.Color(255, 255, 255));
+        btnVolver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        jLabel1.setBackground(new java.awt.Color(153, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LISTA DE PLATOS");
-        jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
+        lblTitle.setBackground(new java.awt.Color(153, 0, 0));
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("LISTA DE PLATOS");
+        lblTitle.setOpaque(true);
+        getContentPane().add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
         ListEspecial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPaneMenuEsp.setViewportView(ListEspecial);
+        scrollPnlMenuEsp.setViewportView(ListEspecial);
 
-        getContentPane().add(jScrollPaneMenuEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 360, 240));
+        getContentPane().add(scrollPnlMenuEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 360, 240));
 
-        jButtonListar.setBackground(new java.awt.Color(153, 0, 0));
-        jButtonListar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        jButtonListar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonListar.setText("Ver platos");
-        jButtonListar.setBorderPainted(false);
-        jButtonListar.addActionListener(new java.awt.event.ActionListener() {
+        btnListar.setBackground(new java.awt.Color(153, 0, 0));
+        btnListar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        btnListar.setForeground(new java.awt.Color(255, 255, 255));
+        btnListar.setText("Ver platos");
+        btnListar.setBorderPainted(false);
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonListarActionPerformed(evt);
+                btnListarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 210, -1));
+        getContentPane().add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 210, -1));
 
-        jLabel2.setBackground(new java.awt.Color(153, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Menu Dia");
-        jLabel2.setOpaque(true);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 90, -1));
+        lblMenuDia.setBackground(new java.awt.Color(153, 0, 0));
+        lblMenuDia.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblMenuDia.setForeground(new java.awt.Color(255, 255, 255));
+        lblMenuDia.setText("Menu Dia");
+        lblMenuDia.setOpaque(true);
+        getContentPane().add(lblMenuDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 90, -1));
 
-        jLabel3.setBackground(new java.awt.Color(153, 0, 0));
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Menu Especial");
-        jLabel3.setOpaque(true);
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, -1));
+        lblMenuEspecial.setBackground(new java.awt.Color(153, 0, 0));
+        lblMenuEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblMenuEspecial.setForeground(new java.awt.Color(255, 255, 255));
+        lblMenuEspecial.setText("Menu Especial");
+        lblMenuEspecial.setOpaque(true);
+        getContentPane().add(lblMenuEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, -1));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 800, 430));
 
         ListDia.setModel(new javax.swing.AbstractListModel<String>() {
@@ -112,28 +113,31 @@ public class GUIListar extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(ListDia);
+        scrollPnlMenuDia.setViewportView(ListDia);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 340, 240));
+        getContentPane().add(scrollPnlMenuDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 340, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        GUIMenuAdmin ins = new GUIMenuAdmin(servicioRestaurante);
-        ins.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        if (this.user.equals("Administrador")) {
+            GUIMenuAdmin insAdmin = new GUIMenuAdmin(this.servicioRestaurante);
+            insAdmin.setVisible(true);
+        }else{
+            GUILogin ins = new GUILogin();
+            ins.setVisible(true);
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         try {
-            // TODO add your handling code here:
-            listar();
+            this.listar();
         } catch (Exception ex) {
             Logger.getLogger(GUIListar.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButtonListarActionPerformed
+    }//GEN-LAST:event_btnListarActionPerformed
     
     /**
      * Lista el menu del dia por platos de este y el menu especial.
@@ -142,21 +146,21 @@ public class GUIListar extends javax.swing.JFrame {
      */
     public void listar() throws Exception {
         int resId = 1;
-        List<PlatoDia> lsDia = servicioRestaurante.listarMenuDia(resId);
-        List<PlatoEspecial> lsEspecial = servicioRestaurante.listarMenuEspecial(resId);
+        List<PlatoDia> lsDia = this.servicioRestaurante.listarMenuDia(resId);
+        List<PlatoEspecial> lsEspecial = this.servicioRestaurante.listarMenuEspecial(resId);
         if (lsDia.size() > 0) {
-            modelListDia.removeAllElements();
+            this.modelListDia.removeAllElements();
             for (PlatoDia ls : lsDia) {
-                modelListDia.addElement("ID: " + ls.getId() + " NOMBRE: " + ls.getNombre()
+                this.modelListDia.addElement("ID: " + ls.getId() + " NOMBRE: " + ls.getNombre()
                         + " DIA SEMANA: " + ls.getDiaSemana().name() + " DESCRIPCION: " + ls.getDescripcion()
                         + " PRECIO: " + ls.getPrecio() + " ENTRADA: " + ls.getEntrada()
                         + " PRINCIPIO" + ls.getPrincipio() + " CARNE: " + ls.getCarne() + " BEBIDA: " + ls.getBebida());
             }
         }
         if (lsEspecial.size() > 0) {
-            modelListEspecial.removeAllElements();
+            this.modelListEspecial.removeAllElements();
             for (PlatoEspecial lse : lsEspecial) {
-                modelListEspecial.addElement("ID: " + lse.getId() + " NOMBRE: " + lse.getNombre()
+                this.modelListEspecial.addElement("ID: " + lse.getId() + " NOMBRE: " + lse.getNombre()
                         + " DESCRIPCION: " + lse.getDescripcion() + " PRECIO: " + lse.getPrecio());
             }
         }
@@ -165,13 +169,13 @@ public class GUIListar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListDia;
     private javax.swing.JList<String> ListEspecial;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonListar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton btnListar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPaneMenuEsp;
+    private javax.swing.JLabel lblMenuDia;
+    private javax.swing.JLabel lblMenuEspecial;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JScrollPane scrollPnlMenuDia;
+    private javax.swing.JScrollPane scrollPnlMenuEsp;
     // End of variables declaration//GEN-END:variables
 }

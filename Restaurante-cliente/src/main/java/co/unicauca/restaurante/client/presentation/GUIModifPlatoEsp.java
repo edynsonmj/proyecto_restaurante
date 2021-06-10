@@ -11,28 +11,27 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Camilo Gonzalez
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class GUIModifPlatoEsp extends javax.swing.JFrame {
+    private clienteService servicioRestaurante;
+    private DefaultListModel modelListEspecial;
     
-    clienteService servicioRestaurante;
-    DefaultListModel modelListEspecial;
     /**
      * Creates new form GUIModifPlatoEsp
      * @param servicioRestaurante
      */
     public GUIModifPlatoEsp(clienteService servicioRestaurante) {
-        initComponents();
+        this.initComponents();
         this.setLocationRelativeTo(null);
         this.btnActualizar.setEnabled(false);
-        this.modelListEspecial=new DefaultListModel();
-        this.jListPlato.setModel(modelListEspecial);
-        this.servicioRestaurante=servicioRestaurante;
+        this.modelListEspecial = new DefaultListModel();
+        this.listPlatoEspecial.setModel(this.modelListEspecial);
+        this.servicioRestaurante = servicioRestaurante;
         try {
-            // TODO add your handling code here:
-            listar();
+            this.listar();
         } catch (Exception ex) {
-            Logger.getLogger(GUIListar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GUIModifPlatoEsp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -45,48 +44,46 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelCodigo = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
-        jLabelTipo = new javax.swing.JLabel();
+        lblCodigoPlatEsp = new javax.swing.JLabel();
+        txtCodigoPlatEsp = new javax.swing.JTextField();
+        lblTypeModified = new javax.swing.JLabel();
         cbxTipo = new javax.swing.JComboBox<>();
-        txtValor = new javax.swing.JTextField();
-        jLabelModificar = new javax.swing.JLabel();
+        txtFieldModified = new javax.swing.JTextField();
+        lblFieldModified = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jListPlato = new javax.swing.JList<>();
+        listPlatoEspecial = new javax.swing.JList<>();
         btnActualizar = new javax.swing.JButton();
-        jButtonVolver = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 450));
         setPreferredSize(new java.awt.Dimension(950, 450));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelCodigo.setBackground(new java.awt.Color(153, 0, 0));
-        jLabelCodigo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabelCodigo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelCodigo.setText("Codigo del Plato");
-        jLabelCodigo.setOpaque(true);
-        getContentPane().add(jLabelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        lblCodigoPlatEsp.setBackground(new java.awt.Color(153, 0, 0));
+        lblCodigoPlatEsp.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblCodigoPlatEsp.setForeground(new java.awt.Color(255, 255, 255));
+        lblCodigoPlatEsp.setText("Codigo del Plato");
+        lblCodigoPlatEsp.setOpaque(true);
+        getContentPane().add(lblCodigoPlatEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
-        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCodigoPlatEsp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtIDKeyReleased(evt);
+                txtCodigoPlatEspKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtIDKeyTyped(evt);
+                txtCodigoPlatEspKeyTyped(evt);
             }
         });
-        getContentPane().add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 180, 40));
+        getContentPane().add(txtCodigoPlatEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 180, 40));
 
-        jLabelTipo.setBackground(new java.awt.Color(153, 0, 0));
-        jLabelTipo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabelTipo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTipo.setText("Seleccione que desea modificar");
-        jLabelTipo.setOpaque(true);
-        getContentPane().add(jLabelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        lblTypeModified.setBackground(new java.awt.Color(153, 0, 0));
+        lblTypeModified.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblTypeModified.setForeground(new java.awt.Color(255, 255, 255));
+        lblTypeModified.setText("Seleccione que desea modificar");
+        lblTypeModified.setOpaque(true);
+        getContentPane().add(lblTypeModified, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Nombre", "Descripcion", "Precio" }));
         cbxTipo.addItemListener(new java.awt.event.ItemListener() {
@@ -96,26 +93,26 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
         });
         getContentPane().add(cbxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 260, 40));
 
-        txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtFieldModified.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtValorKeyReleased(evt);
+                txtFieldModifiedKeyReleased(evt);
             }
         });
-        getContentPane().add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 220, 40));
+        getContentPane().add(txtFieldModified, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 220, 40));
 
-        jLabelModificar.setBackground(new java.awt.Color(153, 0, 0));
-        jLabelModificar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabelModificar.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelModificar.setText("Modificación");
-        jLabelModificar.setOpaque(true);
-        getContentPane().add(jLabelModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+        lblFieldModified.setBackground(new java.awt.Color(153, 0, 0));
+        lblFieldModified.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblFieldModified.setForeground(new java.awt.Color(255, 255, 255));
+        lblFieldModified.setText("Modificación");
+        lblFieldModified.setOpaque(true);
+        getContentPane().add(lblFieldModified, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
-        jListPlato.setModel(new javax.swing.AbstractListModel<String>() {
+        listPlatoEspecial.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jListPlato);
+        jScrollPane1.setViewportView(listPlatoEspecial);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 600, 280));
 
@@ -129,38 +126,33 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
         });
         getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 363, 160, 30));
 
-        jButtonVolver.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonVolver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jButtonVolver.setText("Volver");
-        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setBackground(new java.awt.Color(255, 255, 255));
+        btnVolver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVolverActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        jLabel1.setBackground(new java.awt.Color(153, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MOFICAR PLATO ESPECIAL");
-        jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 60));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 60));
-
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, -1, -1));
+        lblTitle.setBackground(new java.awt.Color(153, 0, 0));
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("MODIFICAR PLATO ESPECIAL");
+        lblTitle.setOpaque(true);
+        getContentPane().add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        GUIMenuModificar ins = new GUIMenuModificar(servicioRestaurante);
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.setVisible(false);
+        GUIMenuModificar ins = new GUIMenuModificar(this.servicioRestaurante);
         ins.setVisible(true);
-    }//GEN-LAST:event_jButtonVolverActionPerformed
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * lista de la base de datos los platos
@@ -168,11 +160,10 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
      */
     private void listar() throws Exception {
         int resId = 1;
-        List<PlatoEspecial> lista = servicioRestaurante.listarMenuEspecial(resId);
-        modelListEspecial.clear();
-
+        List<PlatoEspecial> lista = this.servicioRestaurante.listarMenuEspecial(resId);
+        this.modelListEspecial.clear();
         for (PlatoEspecial lse : lista) {
-            modelListEspecial.addElement("ID: " + lse.getId()
+            this.modelListEspecial.addElement("ID: " + lse.getId()
                     + " NOMBRE: " + lse.getNombre()
                     + " DESCRIPCION: " + lse.getDescripcion()
                     + " PRECIO: " + lse.getPrecio());
@@ -185,15 +176,14 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
      */
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         boolean respuesta = false;
-        int id =Integer.parseInt(txtID.getText());
-        String valor = this.txtValor.getText();
+        int id = Integer.parseInt(this.txtCodigoPlatEsp.getText());
+        String valor = this.txtFieldModified.getText();
         String atributo=null;
-        if(this.cbxTipo.getSelectedIndex()==1){
-            atributo = "PESP_NOMBRE";
-        }else if(this.cbxTipo.getSelectedIndex()==2){
-            atributo = "PESP_DESCRIPCION";
-        }else if(this.cbxTipo.getSelectedIndex()==3){
-            atributo = "PESP_PRECIO";
+        switch (this.cbxTipo.getSelectedIndex()) {
+            case 1: atributo = "PESP_NOMBRE"; break;
+            case 2: atributo = "PESP_DESCRIPCION"; break;
+            case 3: atributo = "PESP_PRECIO"; break;
+            default: break;
         }
         if(atributo.equals("PESP_PRECIO")){
             if(!Utilities.isNumeric(valor)){
@@ -202,18 +192,19 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
             }
         }
         try {
-            respuesta = servicioRestaurante.updatePlatoEspecial(id, atributo, valor);
+            respuesta = this.servicioRestaurante.updatePlatoEspecial(id, atributo, valor);
             if(!respuesta){
                 JOptionPane.showMessageDialog(null, "por favor verifique los valores, no se encuentra el item");
+            }else{
+                this.listar();
             }
-            this.listar();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "ha fallado la peticion, intentelo nuevamente");
             Logger.getLogger(GUIModificarPlatoDia.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.txtID.setText(null);
+        this.txtCodigoPlatEsp.setText(null);
         this.cbxTipo.setSelectedIndex(0);
-        this.txtValor.setText(null);
+        this.txtFieldModified.setText(null);
         this.btnActualizar.setEnabled(false);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -221,42 +212,42 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
      * impide que se digiten caracteres no numericos
      * @param evt 
      */
-    private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
+    private void txtCodigoPlatEspKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoPlatEspKeyTyped
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
-    }//GEN-LAST:event_txtIDKeyTyped
+    }//GEN-LAST:event_txtCodigoPlatEspKeyTyped
 
     /**
      * se despliega al digitar en la caja de texto
      * @param evt 
      */
-    private void txtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyReleased
+    private void txtCodigoPlatEspKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoPlatEspKeyReleased
         this.habilitarBtnActualizar();
-    }//GEN-LAST:event_txtIDKeyReleased
+    }//GEN-LAST:event_txtCodigoPlatEspKeyReleased
 
     /**
      * se depliega al digitar en caja de texto
      * @param evt 
      */
-    private void txtValorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyReleased
+    private void txtFieldModifiedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFieldModifiedKeyReleased
         this.habilitarBtnActualizar();
-    }//GEN-LAST:event_txtValorKeyReleased
+    }//GEN-LAST:event_txtFieldModifiedKeyReleased
 
     /**
      * se activa al momento de elegir una opcion en el combo box
      * @param evt 
      */
     private void cbxTipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxTipoItemStateChanged
-        habilitarBtnActualizar();
+        this.habilitarBtnActualizar();
     }//GEN-LAST:event_cbxTipoItemStateChanged
 
     /**
      * verifica que los campos esten diligenciados, si es activa el boton
      */
     private void habilitarBtnActualizar(){
-        if(this.txtID.getText().isEmpty() 
-                || this.txtValor.getText().isEmpty()
-                || this.cbxTipo.getSelectedIndex()==0){
+        if(this.txtCodigoPlatEsp.getText().isEmpty() 
+                || this.txtFieldModified.getText().isEmpty()
+                || this.cbxTipo.getSelectedIndex() == 0){
             this.btnActualizar.setEnabled(false);
         }else{
             this.btnActualizar.setEnabled(true);
@@ -265,17 +256,15 @@ public class GUIModifPlatoEsp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cbxTipo;
-    private javax.swing.JButton jButtonVolver;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabelCodigo;
-    private javax.swing.JLabel jLabelModificar;
-    private javax.swing.JLabel jLabelTipo;
-    private javax.swing.JList<String> jListPlato;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtValor;
+    private javax.swing.JLabel lblCodigoPlatEsp;
+    private javax.swing.JLabel lblFieldModified;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTypeModified;
+    private javax.swing.JList<String> listPlatoEspecial;
+    private javax.swing.JTextField txtCodigoPlatEsp;
+    private javax.swing.JTextField txtFieldModified;
     // End of variables declaration//GEN-END:variables
 }

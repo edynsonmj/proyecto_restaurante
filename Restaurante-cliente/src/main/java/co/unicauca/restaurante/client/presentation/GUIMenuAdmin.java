@@ -6,19 +6,19 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Camilo Gonzalez
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
-public class GUIMenuAdmin extends javax.swing.JFrame {
+public class GUIMenuAdmin extends javax.swing.JFrame { 
+    private clienteService servicioRestaurante;
     
-    clienteService servicioRestaurante;
     /**
      * Creates new form GUIMenuAdmin
      * @param servicioRestaurante
      */
     public GUIMenuAdmin(clienteService servicioRestaurante) {
-        initComponents();
+        this.initComponents();
         this.setLocationRelativeTo(null);
-        this.servicioRestaurante=servicioRestaurante;
+        this.servicioRestaurante = servicioRestaurante;
     }
 
     /**
@@ -31,142 +31,134 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButtonRegistrar = new javax.swing.JButton();
-        jButtonModificar = new javax.swing.JButton();
-        jButtonEliminar = new javax.swing.JButton();
-        jButtonListar = new javax.swing.JButton();
-        jButtonVolver = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        btnRegistrar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnListar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 450));
         setPreferredSize(new java.awt.Dimension(817, 370));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonRegistrar.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonRegistrar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButtonRegistrar.setForeground(new java.awt.Color(153, 0, 0));
-        jButtonRegistrar.setText("REGISTRAR UN MENÚ");
-        jButtonRegistrar.setToolTipText("");
-        jButtonRegistrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButtonRegistrar.setBorderPainted(false);
-        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(153, 0, 0));
+        btnRegistrar.setText("REGISTRAR UN MENÚ");
+        btnRegistrar.setToolTipText("");
+        btnRegistrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRegistrar.setBorderPainted(false);
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegistrarActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 310, 110));
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 310, 110));
 
-        jButtonModificar.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonModificar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButtonModificar.setForeground(new java.awt.Color(153, 0, 0));
-        jButtonModificar.setText("MODIFICAR UN PLATO");
-        jButtonModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
-        jButtonModificar.setBorderPainted(false);
-        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setBackground(new java.awt.Color(255, 255, 255));
+        btnModificar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(153, 0, 0));
+        btnModificar.setText("MODIFICAR UN PLATO");
+        btnModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
+        btnModificar.setBorderPainted(false);
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonModificarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 310, 110));
+        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 310, 110));
 
-        jButtonEliminar.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButtonEliminar.setForeground(new java.awt.Color(153, 0, 0));
-        jButtonEliminar.setText("ELIMINAR UN PLATO");
-        jButtonEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
-        jButtonEliminar.setBorderPainted(false);
-        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(153, 0, 0));
+        btnEliminar.setText("ELIMINAR UN PLATO");
+        btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
+        btnEliminar.setBorderPainted(false);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEliminarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 310, 110));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 310, 110));
 
-        jButtonListar.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonListar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButtonListar.setForeground(new java.awt.Color(153, 0, 0));
-        jButtonListar.setText("LISTAR MENÚ");
-        jButtonListar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
-        jButtonListar.setBorderPainted(false);
-        jButtonListar.addActionListener(new java.awt.event.ActionListener() {
+        btnListar.setBackground(new java.awt.Color(255, 255, 255));
+        btnListar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
+        btnListar.setForeground(new java.awt.Color(153, 0, 0));
+        btnListar.setText("LISTAR MENÚ");
+        btnListar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
+        btnListar.setBorderPainted(false);
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonListarActionPerformed(evt);
+                btnListarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 310, 110));
+        getContentPane().add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 310, 110));
 
-        jButtonVolver.setText("Volver");
-        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVolverActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        jLabel2.setBackground(new java.awt.Color(153, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("MENÚ DE ADMINISTRADOR");
-        jLabel2.setOpaque(true);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 340));
+        lblTitle.setBackground(new java.awt.Color(153, 0, 0));
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("MENÚ DE ADMINISTRADOR");
+        lblTitle.setOpaque(true);
+        getContentPane().add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        GUIMenuModificar ins = new GUIMenuModificar(servicioRestaurante);
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        this.setVisible(false);
+        GUIMenuModificar ins = new GUIMenuModificar(this.servicioRestaurante);
         ins.setVisible(true);
-    }//GEN-LAST:event_jButtonModificarActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        GUIRegPlatoD ins = new GUIRegPlatoD(servicioRestaurante);
-        //ins.setExtendedState(MAXIMIZED_BOTH);
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        this.setVisible(false);
+        GUIRegPlatoD ins = new GUIRegPlatoD(this.servicioRestaurante);
         ins.setVisible(true);
-    }//GEN-LAST:event_jButtonRegistrarActionPerformed
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-        // TODO add your handling code here:
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         setVisible(false);
-        GUIEliminarPlato ins = new GUIEliminarPlato(servicioRestaurante);
+        GUIEliminarPlato ins = new GUIEliminarPlato(this.servicioRestaurante);
         ins.setVisible(true);
-    }//GEN-LAST:event_jButtonEliminarActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        GUIListar ins;
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         try {
-            ins = new GUIListar(servicioRestaurante);
+            this.setVisible(false);
+            GUIListar ins = new GUIListar(this.servicioRestaurante, "Administrador");
             ins.setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(GUIMenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_jButtonListarActionPerformed
+        }    
+    }//GEN-LAST:event_btnListarActionPerformed
 
-    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         GUILogin ins = new GUILogin();
         ins.setVisible(true);
-    }//GEN-LAST:event_jButtonVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonEliminar;
-    private javax.swing.JButton jButtonListar;
-    private javax.swing.JButton jButtonModificar;
-    private javax.swing.JButton jButtonRegistrar;
-    private javax.swing.JButton jButtonVolver;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnListar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }
