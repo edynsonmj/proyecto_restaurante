@@ -12,8 +12,8 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 /**
- * @author EdynsonMJ
- * @author Jhonny Rosero
+ *
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class ClienteAccessSocket implements IClienteAccess{
 

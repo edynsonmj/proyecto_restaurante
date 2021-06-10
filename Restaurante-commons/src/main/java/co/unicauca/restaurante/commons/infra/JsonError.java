@@ -3,7 +3,7 @@ package co.unicauca.restaurante.commons.infra;
 /**
  * Representa un error
  *
- * @author Libardo, Julio
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class JsonError {
     /**

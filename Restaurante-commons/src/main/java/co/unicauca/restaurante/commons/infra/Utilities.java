@@ -8,7 +8,7 @@ import java.util.Properties;
 /**
  * Utilidades varias utilizadas por otras clases
  *
- * @author Libardo, Julio
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class Utilities {
     /**

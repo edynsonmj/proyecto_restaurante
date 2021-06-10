@@ -20,8 +20,7 @@ import java.util.logging.Logger;
 
 /**
  * objeto concreto de un repositorio, en este caso un repositorio de mysql
- * @author EdynsonMJ
- * @author Jhonny Rosero
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class RestauranteRepositorioMysql implements IPlatoRepositorio{
     /**
@@ -168,7 +167,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.setString(8, instancia.getBebida());
             pstmt.setString(9, instancia.getCarne());
             pstmt.setInt(10, (int)instancia.getPrecio());
-            pstmt.executeUpdate();
+            pstmt.execute();
             pstmt.close();
             this.disconnect();
         } catch (SQLException ex) {
@@ -309,7 +308,7 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
             pstmt.setString(4, instancia.getDescripcion());
             pstmt.setInt(5, (int)instancia.getPrecio());
             //se ejecuta la sentencia sql
-            pstmt.executeUpdate();
+            pstmt.execute();
             //se cierra
             pstmt.close();
             //se termina la coneccion
@@ -389,15 +388,14 @@ public class RestauranteRepositorioMysql implements IPlatoRepositorio{
         String response=null;
         try{
             this.connect();
-            String sql = "select pesp_id,pesp_nombre,pesp_descripcion,pesp_precio,m.mesp_id from (restaurante r inner join menuespecial m on r.res_id=m.res_id) inner join platoespecial p on m.mesp_id=p.mesp_id where r.res_id = (?)";
+            String sql = "select pesp_id,pesp_nombre,pesp_descripcion,pesp_precio,m.mesp_id from (restaurante r inner join menuespecial m on r.res_id=m.res_id) inner join platoespecial p on m.mesp_id=p.mesp_id where r.res_id ="+resId;
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, resId);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {   
                 Plato pla = new PlatoEspecial(Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(4)), rs.getString(3), Integer.parseInt(rs.getString(5)));
                 list.add(pla);
             }
-            response=listToJson(list);
+            response = listToJson(list);
             pstmt.close();
             this.disconnect();
         }catch (SQLException ex) {

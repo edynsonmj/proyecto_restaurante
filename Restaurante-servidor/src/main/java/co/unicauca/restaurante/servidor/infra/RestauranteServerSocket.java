@@ -24,8 +24,7 @@ import co.unicauca.restaurante.servidor.acceso.IPlatoRepositorio;
 
 /**
  * esta clase se encarga de establecer y gestionar la conexion entre el servidor y los clientes
- * @author EdynsonMJ
- * @author Jhonny Rosero
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class RestauranteServerSocket implements Runnable{
     /**

@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Protocolo de comunicación entre la aplicación cliente y el servidor
  *
- * @author Libardo, Julio
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class Protocol {
     private String resource;

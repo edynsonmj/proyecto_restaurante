@@ -2,7 +2,7 @@ package co.unicauca.restaurante.commons.domain;
 
 /**
  *
- * @author EdynsonMJ
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class Restaurante {
     private String nombre;

@@ -6,8 +6,7 @@ import java.util.List;
 
 /**
  * entidad abstracta del los servicios que el cliente puede solicitar al servidor
- * @author EdynsonMJ
- * @author Jhonny Rosero
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public interface IClienteAccess {
     public String savePlatoDia(PlatoDia instancia) throws Exception;

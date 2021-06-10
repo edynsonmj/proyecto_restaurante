@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 /**
  *establece las configuaciones para la comunicacion con el cliente, (es usada)
  * no modificar esta clase.
- * @author EdynsonMJ
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class RestauranteSocket {
     /**

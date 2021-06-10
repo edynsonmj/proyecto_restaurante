@@ -5,8 +5,7 @@ import co.unicauca.restaurante.commons.domain.Restaurante;
 
 /**
  *interface del repositorio de platos, usarla mediante inyeccion de dependencias
- * @author EdynsonMJ
- * @author Jhonny Rosero
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public interface IPlatoRepositorio {
     /**

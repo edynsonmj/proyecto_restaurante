@@ -4,7 +4,7 @@ import co.unicauca.restaurante.commons.infra.Utilities;
 
 /**
  * fabrica que retorna una instancia para el acceso al servidor
- * @author EdynsonMJ
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class Factory {
     private static Factory instance;

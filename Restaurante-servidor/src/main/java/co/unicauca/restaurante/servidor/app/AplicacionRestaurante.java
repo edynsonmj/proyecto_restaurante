@@ -4,7 +4,7 @@ import co.unicauca.restaurante.servidor.infra.RestauranteServerSocket;
 
 /**
  *
- * @author EdynsonMJ
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class AplicacionRestaurante {
 

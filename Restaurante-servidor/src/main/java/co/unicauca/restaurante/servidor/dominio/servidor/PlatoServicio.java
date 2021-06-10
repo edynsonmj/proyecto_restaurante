@@ -8,8 +8,7 @@ import co.unicauca.restaurante.servidor.acceso.IPlatoRepositorio;
 /**
  *comunicacion con la capa de bajo nivel
  * metodos contra la base de datos
- * @author EdynsonMJ
- * @author Jhonny Rosero
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class PlatoServicio {
     /**

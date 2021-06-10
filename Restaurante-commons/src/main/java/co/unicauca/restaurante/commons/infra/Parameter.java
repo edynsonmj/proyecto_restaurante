@@ -3,7 +3,7 @@ package co.unicauca.restaurante.commons.infra;
 /**
  * Parametro.
  * Lo usa la clase Protocol
- * @author Libardo, Julio
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class Parameter {
     private String name;

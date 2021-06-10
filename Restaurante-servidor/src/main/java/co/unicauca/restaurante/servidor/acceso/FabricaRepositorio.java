@@ -2,7 +2,7 @@ package co.unicauca.restaurante.servidor.acceso;
 
 /**
  *fabrica que instacia un repositorio concreto, este repositorio accede a la base de datos
- * @author EdynsonMJ
+ * @author Camilo Gonzalez, Jhonny Rosero, Edynson Muñoz, James Silva, Jhonfer Ruiz
  */
 public class FabricaRepositorio {
     private static FabricaRepositorio instance;
